@@ -1,0 +1,65 @@
+
+/* unvisited link */
+a:link {
+  color: #555555;
+}
+
+/* visited link */
+a:visited {
+  color: #555555;
+}
+
+/* mouse over link */
+a:hover {
+  color: black;
+}
+
+/* selected link */
+a:active {
+  color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+.txtSearch {
+  padding: 5px;
+  color: darkgrey;
+  font-style: italic;
+  width:100%;
+  border-style: solid;
+  border-color: darkgrey;
+  border-width: 0.9px
+}
+
+.divBoxSearch {
+  width: 100%;
+  border-style: solid;
+  border-color: darkgrey;
+  border-width: 1px;
+  background-color: white;
+  padding: 15px 15px 15px 15px;
+  z-index: 1000;
+  position:absolute
+}
+
+.divBoxSearchInternal {
+  text-align: left;
+  cursor: pointer;
+}
+
+.spanSearchItems {
+  padding:3px;
+  color: darkorange
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+}

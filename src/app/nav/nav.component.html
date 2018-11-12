@@ -1,0 +1,49 @@
+<nav class="navbar navbar-inverse navbar-default">
+  <div class="navbar-header">
+    <button
+      type="button"
+      class="navbar-toggle collapsed"
+      data-toggle="collapse"
+      data-target="#navbar"
+      aria-expanded="false"
+      aria-controls="navbar"
+    >
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span> <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">
+      <span style="color:deepskyblue">Indica</span
+      ><span style="color:#FF8C00">Moovies</span>
+    </a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse" *ngIf="isLogged">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="profile"><span class="glyphicon glyphicon-user"></span> {{ localUser.user_displayName }} </a>
+      </li>
+      <li>
+        <a href="#"><span class="glyphicon glyphicon-remove"></span> <span (click)="logout()">Sair</span> </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="form-group has-feedback">
+  <input
+    #srch
+    (keyup)="searchMoovies(srch.value)"
+    type="text"
+    class="txtSearch"
+    placeholder="Digite o nome do filme que deseja encontrar..."
+  />
+  <div class="divBoxSearch" *ngIf="arrayMoovies.length > 0 && srch.value != ''">
+    <div class="divBoxSearchInternal" *ngFor="let am of arrayMoovies">
+      <a href="/moovie?id={{am.id}}">
+        <span class="glyphicon glyphicon-film spanSearchItems"></span
+        >{{ am.title }} - ({{ am.release_date | date: "y" }})
+      </a>
+    </div>
+  </div>
+  <i class="glyphicon glyphicon-search form-control-feedback"></i>
+</div>
