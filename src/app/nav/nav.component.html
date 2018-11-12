@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-default">
+<nav class="navbar navbar-inverse navbar-default" *ngIf="isLogged">
   <div class="navbar-header">
     <button
       type="button"
@@ -17,7 +17,7 @@
       ><span style="color:#FF8C00">Moovies</span>
     </a>
   </div>
-  <div id="navbar" class="navbar-collapse collapse" *ngIf="isLogged">
+  <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav navbar-right">
       <li>
         <a href="profile"><span class="glyphicon glyphicon-user"></span> {{ localUser.user_displayName }} </a>
@@ -29,7 +29,7 @@
   </div>
 </nav>
 
-<div class="form-group has-feedback">
+<div class="form-group has-feedback" *ngIf="isLogged">
   <input
     #srch
     (keyup)="searchMoovies(srch.value)"

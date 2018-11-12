@@ -15,6 +15,14 @@ export class AuthService {
     return login;
   }
 
+  loginWithTwitter() {
+    const login = this.af.auth.login({
+      provider: AuthProviders.Twitter,
+      method: AuthMethods.Popup
+    });
+    return login;
+  }
+
   logout() {
     return this.af.auth.logout();
   }

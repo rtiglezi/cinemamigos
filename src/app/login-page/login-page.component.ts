@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 
 import { AuthService } from "../providers/auth.service";
 import { LocalUser } from "../models/local_user";
+import * as firebase from 'firebase';
 
 @Component({
   selector: "app-login-page",
@@ -21,7 +22,21 @@ export class LoginPageComponent {
         user_photo: data.auth.photoURL
       };
       this.authService.setLocalUser(user);
-      this.router.navigate(['']);
+      this.router.navigate([""]);
     });
+  }
+
+  loginTwitter() {
+    this.authService.loginWithTwitter().then(data => {
+      const user: LocalUser = {
+        user_uid: data.auth.uid,
+        user_displayName: data.auth.displayName,
+        user_email: data.auth.email,
+        user_photo: data.auth.photoURL
+      };
+      this.authService.setLocalUser(user);
+      this.router.navigate([""]);
+    });
+
   }
 }
