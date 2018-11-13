@@ -29,6 +29,17 @@
 
     <div style="padding: 10px"></div>
 
+
+    Você já assistiu a este filme? <br/>
+    <span (click)="updateMoovieService(true)">
+      <button #marcarAssistido [class]="classSim">SIM</button>
+    </span>
+
+    <span (click)="updateMoovieService(false)">
+      <button #marcarNaoAssistido [class]="classNao">NÃO</button>
+    </span>
+
+
   </div>
 
   <div style="padding: 3px"></div>
