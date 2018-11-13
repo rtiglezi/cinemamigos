@@ -14,10 +14,11 @@ export class MoovieDetailsComponent implements OnInit {
 
   localUser = this.authService.getLocalUser();
 
-  public classSim = "";
-  public classNao = "";
+  public clsJaVi           = "";
+  public clsQueroVer       = "";
+  public clsNaoMeInteressa = "";
 
-  public assistido: boolean = false;
+  public status: string;
 
   public filme = new Object();
   public filmeid;
@@ -57,37 +58,49 @@ export class MoovieDetailsComponent implements OnInit {
   }
 
   getMoovieService() {
-    this.db.list("watchedMoovies").subscribe(r => {
+    this.db.list("meusFilmes").subscribe(r => {
       r.map(m=>{
         if (m.$key === this.filmeid + "_" + this.localUser.user_uid){
-          if (m.assistido == true) {
-            this.assistido = true;
+          if (m.filmeId == this.filmeid) {
+            this.status = m.status;
           }
-          if (this.assistido) {
-            this.classSim = "btn btn-sm btn-danger";
-            this.classNao = "btn btn-sm btn-default";
-          } else {
-            this.classNao = "btn btn-sm btn-danger";
-            this.classSim = "btn btn-sm btn-default";
+          if (this.status == "1") {
+            this.clsJaVi           = "btn btn-sm btn-danger";
+            this.clsQueroVer       = "btn btn-sm btn-default";
+            this.clsNaoMeInteressa = "btn btn-sm btn-default";
+          } else if (this.status == "2" ) {
+            this.clsJaVi           = "btn btn-sm btn-default";
+            this.clsQueroVer       = "btn btn-sm btn-danger";
+            this.clsNaoMeInteressa = "btn btn-sm btn-default";
+          } else if (this.status == "3") {
+            this.clsJaVi           = "btn btn-sm btn-default";
+            this.clsQueroVer       = "btn btn-sm btn-default";
+            this.clsNaoMeInteressa = "btn btn-sm btn-danger";
           }
         }
       });
     });
   }
 
-  updateMoovieService(toogle) {
-    this.db.object("watchedMoovies/" + this.filmeid + "_" + this.localUser.user_uid).set({
+  updateMoovieService(status) {
+    this.db.object("meusFilmes/" + this.filmeid + "_" + this.localUser.user_uid).set({
       filmeId: this.filmeid,
       usuarioId: this.localUser.user_uid,
-      assistido: toogle
+      status: status
     }).then(r => {
-      this.assistido = toogle;
-      if (this.assistido) {
-        this.classSim = "btn btn-sm btn-danger";
-        this.classNao = "btn btn-sm btn-default";
-      } else {
-        this.classNao = "btn btn-sm btn-danger";
-        this.classSim = "btn btn-sm btn-default";
+      this.status = status;
+      if (this.status == "1") {
+        this.clsJaVi           = "btn btn-sm btn-danger";
+        this.clsQueroVer       = "btn btn-sm btn-default";
+        this.clsNaoMeInteressa = "btn btn-sm btn-default";
+      } else if (this.status == "2" ) {
+        this.clsJaVi           = "btn btn-sm btn-default";
+        this.clsQueroVer       = "btn btn-sm btn-danger";
+        this.clsNaoMeInteressa = "btn btn-sm btn-default";
+      } else if (this.status == "3") {
+        this.clsJaVi           = "btn btn-sm btn-default";
+        this.clsQueroVer       = "btn btn-sm btn-default";
+        this.clsNaoMeInteressa = "btn btn-sm btn-danger";
       }
     });
   }

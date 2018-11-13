@@ -30,13 +30,16 @@
     <div style="padding: 10px"></div>
 
 
-    Você já assistiu a este filme? <br/>
-    <span (click)="updateMoovieService(true)">
-      <button #marcarAssistido [class]="classSim">SIM</button>
+    <span (click)="updateMoovieService(1)">
+      <button #marcarJaVi [class]="clsJaVi">Já vi!</button>
     </span>
 
-    <span (click)="updateMoovieService(false)">
-      <button #marcarNaoAssistido [class]="classNao">NÃO</button>
+    <span (click)="updateMoovieService(2)">
+      <button #marcarQueroVer [class]="clsQueroVer">Quero ver...</button>
+    </span>
+
+    <span (click)="updateMoovieService(3)">
+      <button #marcarNaoMeInteressa [class]="clsNaoMeInteressa">Não me interessa</button>
     </span>
 
 
