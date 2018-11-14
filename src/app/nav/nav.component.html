@@ -18,12 +18,31 @@
     </a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav">
       <li>
-        <a href="profile"><span class="glyphicon glyphicon-user"></span> {{ localUser.user_displayName }} </a>
+        <a href=""
+          ><span class="glyphicon glyphicon-film"></span> Meus filmes</a
+        >
       </li>
       <li>
-        <a href="#"><span class="glyphicon glyphicon-remove"></span> <span (click)="logout()">Sair</span> </a>
+        <a href="home"
+          ><span class="glyphicon glyphicon-bullhorn"></span> Sugeridos</a
+        >
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="profile"
+          ><span class="glyphicon glyphicon-user"></span>
+          {{ localUser.user_displayName }}
+        </a>
+      </li>
+      <li>
+        <a href="#"
+          ><span class="glyphicon glyphicon-remove"></span>
+          <span (click)="logout()">Sair</span>
+        </a>
       </li>
     </ul>
   </div>

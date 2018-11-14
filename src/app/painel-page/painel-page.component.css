@@ -1,9 +1,11 @@
-.huge{
-  font-size: 35pt;
-color: white;
-text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+.huge {
+  font-size: 20px;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 a {
-  color: white;
+  font-size: 50px;
+  color: yellow;
+  text-shadow: -1px 0 rgb(5, 5, 5), 0 1px rgb(5, 5, 5), 1px 0 rgb(5, 5, 5), 0 -1px rgb(5, 5, 5);
 }
