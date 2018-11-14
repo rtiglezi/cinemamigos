@@ -13,6 +13,7 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { NavComponent } from "./nav/nav.component";
 import { ProfilePageComponent } from "./profile-page/profile-page.component";
 import { MoovieDetailsComponent } from "./moovie-details/moovie-details.component";
+import { PainelPageComponent } from './painel-page/painel-page.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDamhy3gQqiMz0i_3nwoVJAyp4qU85AutM",
@@ -24,7 +25,8 @@ export const firebaseConfig = {
 };
 
 const routes: Routes = [
-  { path: "", component: HomePageComponent },
+  { path: "", component: PainelPageComponent},
+  { path: "home", component: HomePageComponent },
   { path: "login", component: LoginPageComponent },
   { path: "profile", component: ProfilePageComponent },
   { path: "moovie", component: MoovieDetailsComponent }
@@ -37,7 +39,8 @@ const routes: Routes = [
     HomePageComponent,
     NavComponent,
     ProfilePageComponent,
-    MoovieDetailsComponent
+    MoovieDetailsComponent,
+    PainelPageComponent
   ],
   imports: [
     BrowserModule,

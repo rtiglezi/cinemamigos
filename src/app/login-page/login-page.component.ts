@@ -1,9 +1,10 @@
+import { AngularFireDatabase } from "angularfire2/database";
+
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { AuthService } from "../providers/auth.service";
 import { LocalUser } from "../models/local_user";
-import * as firebase from 'firebase';
 
 @Component({
   selector: "app-login-page",
@@ -11,7 +12,14 @@ import * as firebase from 'firebase';
   styleUrls: ["./login-page.component.css"]
 })
 export class LoginPageComponent {
-  constructor(public authService: AuthService, private router: Router) {}
+
+  public now = new Date();
+
+  constructor(
+      public authService: AuthService,
+      private router: Router,
+      private db: AngularFireDatabase
+      ) {}
 
   login() {
     this.authService.loginWithGoogle().then(data => {
@@ -23,6 +31,7 @@ export class LoginPageComponent {
       };
       this.authService.setLocalUser(user);
       this.router.navigate([""]);
+      this.registerLogin(user);
     });
   }
 
@@ -36,7 +45,31 @@ export class LoginPageComponent {
       };
       this.authService.setLocalUser(user);
       this.router.navigate([""]);
+      this.registerLogin(user);
     });
-
   }
+
+
+  registerLogin(user) {
+    this.db
+      .object("usuarios/" + user.user_uid + "/dados")
+      .update({
+        Id: user.user_uid,
+        nome: user.user_displayName,
+        email: user.user_email,
+        foto: user.user_photo,
+        ultimoAcesso: this.now.getDate()
+                      + '/'
+                      + (this.now.getMonth() + 1)
+                      + '/'
+                      + this.now.getFullYear()
+                      + ' '
+                      + this.now.getHours()
+                      + ':'
+                      + this.now.getMinutes()
+      })
+      .then(r => { });
+  }
+
+
 }

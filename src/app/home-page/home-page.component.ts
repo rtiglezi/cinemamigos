@@ -33,7 +33,7 @@ export class HomePageComponent implements OnInit {
     this.getLastMoovies(this.origem);
   }
 
-  getLastMoovies(search) {
+  getLastMoovies(search="top_rated") {
     if (search == "top_rated") {
       this.search = "Filmes mais bem avaliados";
       this.colorTitle = "darkgoldenrod";

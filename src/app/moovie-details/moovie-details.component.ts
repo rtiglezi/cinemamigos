@@ -33,7 +33,6 @@ export class MoovieDetailsComponent implements OnInit {
 
   public now = new Date();
 
-
   id: string;
   origem: string;
   private sub: any;
@@ -106,10 +105,9 @@ export class MoovieDetailsComponent implements OnInit {
   }
 
   updateMoovieService(status) {
-    var data = new Date();
     this.db
       .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
-      .set({
+      .update({
         titulo: this.filmeTitulo,
         lancamento: this.filmeAno,
         poster: this.filmePoster,
