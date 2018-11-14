@@ -108,6 +108,7 @@ export class MoovieDetailsComponent implements OnInit {
     this.db
       .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
       .update({
+        id: this.filmeid,
         titulo: this.filmeTitulo,
         lancamento: this.filmeAno,
         poster: this.filmePoster,

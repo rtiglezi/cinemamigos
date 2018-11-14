@@ -10,6 +10,8 @@ import { AuthService } from "./providers/auth.service";
 })
 export class AppComponent {
 
+  public isLogged: boolean = false;
+
   constructor(
     public authService: AuthService,
     private router: Router
@@ -17,6 +19,8 @@ export class AppComponent {
     this.authService.af.auth.subscribe(auth => {
       if (auth == null) {
         this.router.navigate(["login"]);
+      } else {
+        this.isLogged = true;
       }
     });
   }

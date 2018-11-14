@@ -14,6 +14,7 @@ import { NavComponent } from "./nav/nav.component";
 import { ProfilePageComponent } from "./profile-page/profile-page.component";
 import { MoovieDetailsComponent } from "./moovie-details/moovie-details.component";
 import { PainelPageComponent } from './painel-page/painel-page.component';
+import { MyMooviesPageComponent } from './my-moovies-page/my-moovies-page.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDamhy3gQqiMz0i_3nwoVJAyp4qU85AutM",
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: "home", component: HomePageComponent },
   { path: "login", component: LoginPageComponent },
   { path: "profile", component: ProfilePageComponent },
-  { path: "moovie", component: MoovieDetailsComponent }
+  { path: "moovie", component: MoovieDetailsComponent },
+  { path: "mymoovies", component: MyMooviesPageComponent }
 ];
 
 @NgModule({
@@ -40,7 +42,8 @@ const routes: Routes = [
     NavComponent,
     ProfilePageComponent,
     MoovieDetailsComponent,
-    PainelPageComponent
+    PainelPageComponent,
+    MyMooviesPageComponent
   ],
   imports: [
     BrowserModule,

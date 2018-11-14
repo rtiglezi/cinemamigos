@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-default" *ngIf="isLogged">
+<nav class="navbar navbar-inverse navbar-default">
   <div class="navbar-header">
     <button
       type="button"
@@ -31,7 +31,15 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" *ngIf="!isLogged">
+        <li>
+            <a href=""
+              > carregando ...
+            </a>
+          </li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right" *ngIf="isLogged">
       <li>
         <a href="profile"
           ><span class="glyphicon glyphicon-user"></span>
@@ -48,7 +56,7 @@
   </div>
 </nav>
 
-<div class="form-group has-feedback" *ngIf="isLogged">
+<div class="form-group has-feedback">
   <input
     #srch
     (keyup)="searchMoovies(srch.value)"

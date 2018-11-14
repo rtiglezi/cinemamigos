@@ -1,0 +1,60 @@
+<div
+  style=" text-align: center; font-weight: bold; padding-top: 20px; padding-bottom: 15px"
+>
+  {{ search }}
+</div>
+
+<div class="col-lg-4" *ngFor="let filme of lista_filmes">
+  <div class="box" style="background-color: #222222; color:#bbb">
+    <div
+      style="border-radius: 4px;
+                    text-align: center;
+                    font-weight: bolder;
+                    padding-top: 5px;
+                    color: #ccc;"
+    >
+      {{ filme.titulo }}
+    </div>
+
+    <div style="text-align: center">
+      <span
+        class="glyphicon glyphicon-star"
+        style="padding-right: 3px; color:rgb(175, 117, 35);"
+      ></span
+      >{{ filme }} |
+      <span
+        class="glyphicon glyphicon-fire"
+        style="padding-right: 3px; color: #C9302C;"
+      ></span
+      >{{ filme }} | ({{ filme.lancamento | date: "y" }})
+    </div>
+
+    <div style="text-align: center; padding-top: 10px">
+      <img
+        (click)="navigate(filme.id)"
+        [src]="'https://image.tmdb.org/t/p/w300/' + filme.poster"
+        class="img-fluid"
+        style="cursor: pointer"
+        height="360"
+      />
+    </div>
+
+    <div style="height: 120px; padding: 15px; font-size: 13px">
+      {{ filme.sinopse | slice: 0:150 }}
+      {{ filme.sinopse.length >= 150 ? "..." : "" }}
+    </div>
+
+    <div
+      style="text-align: center; cursor: pointer;"
+      (click)="navigate(filme.id)"
+    >
+      Mais informações
+    </div>
+  </div>
+
+  <br />
+</div>
+
+<div class="row container" (click)="backClicked()" style="text-align: center; padding-top: 15px; padding-bottom: 15px">
+  <button class="btn btn-warning btn-block"><span class="glyphicon glyphicon-triangle-left" style="padding-right: 5px;">Voltar</span></button>
+</div>

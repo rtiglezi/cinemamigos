@@ -1,94 +1,125 @@
-<div id="wrapper">
-  <div id="page-wrapper">
-    <!-- /.row -->
-    <div class="row">
-      <div class="col-lg-3 col-md-6">
-        <div class="panel" style="background: rgb(43, 204, 43)">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <i
-                  class="glyphicon glyphicon-ok-sign"
-                  style="color: rgb(224, 247, 205); font-size: 65px"
-                ></i>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div class="huge">
-                    filmes que<br /><strong>VOCÊ JÁ VIU!</strong><br /><a href="/protocols?an=1" id="numero">0</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-footer">
+<div style="padding: 5px">
+  <div class="panel panel-default" style="padding:10px; background: white">
+    <div style="background: #eee; padding:10px">
+      <div style="padding-top:5px; padding-bottom:20px; text-align:center">
+        <b>PAINEL COM AS CLASSIFICAÇÕES DOS SEUS FILMES ATÉ O MOMENTO</b>
+      </div>
 
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="panel" style="background: orange">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <i
-                  class="glyphicon glyphicon-screenshot"
-                  style="color: rgb(238, 240, 145); font-size: 65px"
-                ></i>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div class="huge">
-                    filmes que você<br /><strong>QUER VER!</strong><br /><a href="/protocols?an=2,7" id="numero">22</a>
+      <div id="wrapper">
+        <div id="page-wrapper">
+          <!-- /.row -->
+          <div class="row">
+            <div class="col-lg-3 col-md-6">
+              <div class="panel" style="background: rgb(43, 204, 43)">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-xs-3">
+                      <i
+                        class="glyphicon glyphicon-ok-sign"
+                        style="color: rgb(224, 247, 205); font-size: 65px"
+                      ></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                      <div class="huge">
+                        filmes que<br /><strong>VOCÊ JÁ VIU!</strong><br /><span
+                          class="numero"
+                          (click)="navigate(1)"
+                          ><span *ngIf="contadorJaVistos">{{
+                            contadorJaVistos
+                          }}</span>
+                          <span *ngIf="!contadorJaVistos">...</span></span
+                        >
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="panel" style="background: orange">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-xs-3">
+                      <i
+                        class="glyphicon glyphicon-screenshot"
+                        style="color: rgb(232, 233, 177); font-size: 65px"
+                      ></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                      <div class="huge">
+                        filmes que você<br /><strong>QUER VER!</strong
+                        ><br /><span (click)="navigate(2)" class="numero"
+                          ><span *ngIf="contadorQuerVer">{{
+                            contadorQuerVer
+                          }}</span>
+                          <span *ngIf="!contadorQuerVer">...</span></span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="panel" style="background: rgb(10, 153, 235)">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-xs-3">
+                      <i
+                        class="glyphicon glyphicon-circle-arrow-left"
+                        style="color:rgb(169, 205, 226); font-size: 65px;"
+                      ></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                      <div class="huge">
+                        filmes indicados<br /><strong>PARA VOCÊ!</strong
+                        ><br /><a href="" id="numero"
+                          ><span *ngIf="contadorIndicados">{{
+                            contadorIndicados
+                          }}</span>
+                          <span *ngIf="!contadorIndicados">...</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+              <div class="panel" style="background: #c42ff1">
+                <div class="panel-heading">
+                  <div class="row">
+                    <div class="col-xs-3">
+                      <i
+                        class="glyphicon glyphicon-circle-arrow-right"
+                        style="color: #ebbbe8; font-size: 65px"
+                      ></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                      <div class="huge">
+                        filmes indicados<br /><strong>POR VOCÊ</strong><br /><a
+                          href=""
+                          id="numero"
+                          ><span *ngIf="contadorIndiquei">{{
+                            contadorIndiquei
+                          }}</span>
+                          <span *ngIf="!contadorIndiquei">...</span></a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer"></div>
               </div>
             </div>
           </div>
-          <div class="panel-footer">
-          </div>
         </div>
+        <!-- /.col-lg-4 -->
       </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="panel" style="background: rgb(10, 153, 235)">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <i
-                  class="glyphicon glyphicon-circle-arrow-left"
-                  style="color:rgb(169, 205, 226); font-size: 65px;"
-                ></i>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div class="huge">
-                  filmes indicados<br /><strong>PARA VOCÊ!</strong><br /><a href="/protocols?an=3" id="numero">13</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-footer">
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6">
-        <div class="panel" style="background: #c42ff1">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <i
-                  class="glyphicon glyphicon-circle-arrow-right"
-                  style="color: #ebbbe8; font-size: 65px"
-                ></i>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div class="huge">
-                  filmes indicados<br /><strong>POR VOCÊ</strong><br /><a href="/protocols?an=4,5" id="numero">38</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-footer">
-          </div>
-        </div>
-      </div>
+      <!-- /.row -->
     </div>
   </div>
-  <!-- /.col-lg-4 -->
 </div>
-<!-- /.row -->
