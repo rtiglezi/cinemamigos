@@ -14,9 +14,13 @@ export class MoovieDetailsComponent implements OnInit {
 
   localUser = this.authService.getLocalUser();
 
-  public clsJaVi           = "";
-  public clsQueroVer       = "";
-  public clsNaoMeInteressa = "";
+  public clsJaVi           = "btn btn-sm";
+  public clsQueroVer       = "btn btn-sm";
+  public clsNaoMeInteressa = "btn btn-sm";
+
+  public clsMostrarJaVi           = "";
+  public clsMostrarQueroVer       = "";
+  public clsMostrarNaoMeInteressa = "";
 
   public status: string;
 
@@ -65,17 +69,35 @@ export class MoovieDetailsComponent implements OnInit {
             this.status = m.status;
           }
           if (this.status == "1") {
-            this.clsJaVi           = "btn btn-sm btn-danger";
-            this.clsQueroVer       = "btn btn-sm btn-default";
-            this.clsNaoMeInteressa = "btn btn-sm btn-default";
+
+            this.clsJaVi           = "btn btn-sm btn-success";
+            this.clsQueroVer       = "btn btn-sm";
+            this.clsNaoMeInteressa = "btn btn-sm";
+
+            this.clsMostrarJaVi           = "bold";
+            this.clsMostrarQueroVer       = "normal";
+            this.clsMostrarNaoMeInteressa = "normal";
+
           } else if (this.status == "2" ) {
-            this.clsJaVi           = "btn btn-sm btn-default";
-            this.clsQueroVer       = "btn btn-sm btn-danger";
-            this.clsNaoMeInteressa = "btn btn-sm btn-default";
+
+            this.clsJaVi           = "btn btn-sm";
+            this.clsQueroVer       = "btn btn-sm btn-warning";
+            this.clsNaoMeInteressa = "btn btn-sm";
+
+            this.clsMostrarJaVi           = "normal";
+            this.clsMostrarQueroVer       = "bold";
+            this.clsMostrarNaoMeInteressa = "normal";
+
           } else if (this.status == "3") {
-            this.clsJaVi           = "btn btn-sm btn-default";
-            this.clsQueroVer       = "btn btn-sm btn-default";
+
+            this.clsJaVi           = "btn btn-sm";
+            this.clsQueroVer       = "btn btn-sm";
             this.clsNaoMeInteressa = "btn btn-sm btn-danger";
+
+            this.clsMostrarJaVi           = "normal";
+            this.clsMostrarQueroVer       = "normal";
+            this.clsMostrarNaoMeInteressa = "bold";
+
           }
         }
       });
@@ -90,16 +112,16 @@ export class MoovieDetailsComponent implements OnInit {
     }).then(r => {
       this.status = status;
       if (this.status == "1") {
-        this.clsJaVi           = "btn btn-sm btn-danger";
-        this.clsQueroVer       = "btn btn-sm btn-default";
-        this.clsNaoMeInteressa = "btn btn-sm btn-default";
+        this.clsJaVi           = "btn btn-sm btn-success";
+        this.clsQueroVer       = "btn btn-sm";
+        this.clsNaoMeInteressa = "btn btn-sm";
       } else if (this.status == "2" ) {
-        this.clsJaVi           = "btn btn-sm btn-default";
-        this.clsQueroVer       = "btn btn-sm btn-danger";
-        this.clsNaoMeInteressa = "btn btn-sm btn-default";
+        this.clsJaVi           = "btn btn-sm";
+        this.clsQueroVer       = "btn btn-sm btn-warning";
+        this.clsNaoMeInteressa = "btn btn-sm";
       } else if (this.status == "3") {
-        this.clsJaVi           = "btn btn-sm btn-default";
-        this.clsQueroVer       = "btn btn-sm btn-default";
+        this.clsJaVi           = "btn btn-sm";
+        this.clsQueroVer       = "btn btn-sm";
         this.clsNaoMeInteressa = "btn btn-sm btn-danger";
       }
     });

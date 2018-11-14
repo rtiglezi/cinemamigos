@@ -40,7 +40,7 @@
 
 
     <div style="text-align: center; padding-top: 10px">
-      <img [src]="'https://image.tmdb.org/t/p/w300/' + filme.poster_path" class="img-fluid" height="360">
+      <img (click)="navigate(filme.id)" [src]="'https://image.tmdb.org/t/p/w300/' + filme.poster_path" class="img-fluid" style="cursor: pointer" height="360">
     </div>
 
     <div style="height: 120px; padding: 15px; font-size: 13px">

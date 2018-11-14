@@ -29,19 +29,24 @@
 
     <div style="padding: 10px"></div>
 
+    <hr />
 
     <span (click)="updateMoovieService(1)">
-      <button #marcarJaVi [class]="clsJaVi">Já vi!</button>
+      <button #marcarJaVi type="button" [class]="clsJaVi"><i class="glyphicon glyphicon-ok"></i></button>
+      <span #mostrarJaVi [class]="clsMostrarJaVi">Já assisti!</span>
     </span>
-
+    <div style="padding:2px;"></div>
     <span (click)="updateMoovieService(2)">
-      <button #marcarQueroVer [class]="clsQueroVer">Quero ver...</button>
+      <button #marcarQueroVer type="button" [class]="clsQueroVer"><i class="glyphicon glyphicon-screenshot"></i></button>
+      <span #mostrarQueroVer [class]="clsMostrarQueroVer">Quero ver!</span>
     </span>
-
+    <div style="padding:2px;"></div>
     <span (click)="updateMoovieService(3)">
-      <button #marcarNaoMeInteressa [class]="clsNaoMeInteressa">Não me interessa</button>
+      <button #marcarNaoMeInteressa type="button" [class]="clsNaoMeInteressa"><i class="glyphicon glyphicon-remove"></i></button>
+      <span #mostrarNãoMeInteressa [class]="clsMostrarNaoMeInteressa">Não me interessa</span>
     </span>
 
+    <hr />
 
   </div>
 
@@ -53,8 +58,6 @@
 
 </div>
 
-<div class="row container" (click)="backClicked()" style="text-align: center; padding-top: 15px">
-  <br />
-  <button class="btn btn-default btn-block"><span class="glyphicon glyphicon-triangle-left" style="padding-right: 5px;">Voltar</span></button>
-  <br />
+<div class="row container" (click)="backClicked()" style="text-align: center; padding-top: 15px; padding-bottom: 15px">
+  <button class="btn btn-warning btn-block"><span class="glyphicon glyphicon-triangle-left" style="padding-right: 5px;">Voltar</span></button>
 </div>
