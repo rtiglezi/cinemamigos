@@ -11,21 +11,28 @@ import { AuthService } from "./../providers/auth.service";
   providers: [MooviesService]
 })
 export class MoovieDetailsComponent implements OnInit {
-
   localUser = this.authService.getLocalUser();
 
-  public clsJaVi           = "btn btn-sm";
-  public clsQueroVer       = "btn btn-sm";
+  public clsJaVi = "btn btn-sm";
+  public clsQueroVer = "btn btn-sm";
   public clsNaoMeInteressa = "btn btn-sm";
 
-  public clsMostrarJaVi           = "";
-  public clsMostrarQueroVer       = "";
+  public clsMostrarJaVi = "";
+  public clsMostrarQueroVer = "";
   public clsMostrarNaoMeInteressa = "";
 
   public status: string;
 
   public filme = new Object();
+
   public filmeid;
+  public filmeTitulo;
+  public filmeAno;
+  public filmePoster;
+  public filmeSinopse;
+
+  public now = new Date();
+
 
   id: string;
   origem: string;
@@ -40,6 +47,7 @@ export class MoovieDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     this.sub = this.route.queryParams.subscribe(qp => {
       this.id = qp["id"];
       this.origem = qp["origem"];
@@ -51,10 +59,15 @@ export class MoovieDetailsComponent implements OnInit {
       const response = data as any;
       const objeto_retorno = JSON.parse(response._body);
       this.filme = objeto_retorno;
+
+      this.filmeTitulo = objeto_retorno.title;
+      this.filmeAno = objeto_retorno.release_date;
+      this.filmePoster = objeto_retorno.poster_path;
+      this.filmeSinopse = objeto_retorno.overview;
+
     });
 
     this.getMoovieService();
-
   }
 
   backClicked() {
@@ -62,69 +75,63 @@ export class MoovieDetailsComponent implements OnInit {
   }
 
   getMoovieService() {
-    this.db.list("meusFilmes").subscribe(r => {
-      r.map(m=>{
-        if (m.$key === this.filmeid + "_" + this.localUser.user_uid){
-          if (m.filmeId == this.filmeid) {
-            this.status = m.status;
-          }
-          if (this.status == "1") {
+    this.db
+      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
+      .subscribe(r => {
+        this.status = r.status;
 
-            this.clsJaVi           = "btn btn-sm btn-success";
-            this.clsQueroVer       = "btn btn-sm";
-            this.clsNaoMeInteressa = "btn btn-sm";
-
-            this.clsMostrarJaVi           = "bold";
-            this.clsMostrarQueroVer       = "normal";
-            this.clsMostrarNaoMeInteressa = "normal";
-
-          } else if (this.status == "2" ) {
-
-            this.clsJaVi           = "btn btn-sm";
-            this.clsQueroVer       = "btn btn-sm btn-warning";
-            this.clsNaoMeInteressa = "btn btn-sm";
-
-            this.clsMostrarJaVi           = "normal";
-            this.clsMostrarQueroVer       = "bold";
-            this.clsMostrarNaoMeInteressa = "normal";
-
-          } else if (this.status == "3") {
-
-            this.clsJaVi           = "btn btn-sm";
-            this.clsQueroVer       = "btn btn-sm";
-            this.clsNaoMeInteressa = "btn btn-sm btn-danger";
-
-            this.clsMostrarJaVi           = "normal";
-            this.clsMostrarQueroVer       = "normal";
-            this.clsMostrarNaoMeInteressa = "bold";
-
-          }
+        if (this.status == "1") {
+          this.clsJaVi = "btn btn-sm btn-success";
+          this.clsQueroVer = "btn btn-sm";
+          this.clsNaoMeInteressa = "btn btn-sm";
+          this.clsMostrarJaVi = "bold";
+          this.clsMostrarQueroVer = "normal";
+          this.clsMostrarNaoMeInteressa = "normal";
+        } else if (this.status == "2") {
+          this.clsJaVi = "btn btn-sm";
+          this.clsQueroVer = "btn btn-sm btn-warning";
+          this.clsNaoMeInteressa = "btn btn-sm";
+          this.clsMostrarJaVi = "normal";
+          this.clsMostrarQueroVer = "bold";
+          this.clsMostrarNaoMeInteressa = "normal";
+        } else if (this.status == "3") {
+          this.clsJaVi = "btn btn-sm";
+          this.clsQueroVer = "btn btn-sm";
+          this.clsNaoMeInteressa = "btn btn-sm btn-danger";
+          this.clsMostrarJaVi = "normal";
+          this.clsMostrarQueroVer = "normal";
+          this.clsMostrarNaoMeInteressa = "bold";
         }
       });
-    });
   }
 
   updateMoovieService(status) {
-    this.db.object("meusFilmes/" + this.filmeid + "_" + this.localUser.user_uid).set({
-      filmeId: this.filmeid,
-      usuarioId: this.localUser.user_uid,
-      status: status
-    }).then(r => {
-      this.status = status;
-      if (this.status == "1") {
-        this.clsJaVi           = "btn btn-sm btn-success";
-        this.clsQueroVer       = "btn btn-sm";
-        this.clsNaoMeInteressa = "btn btn-sm";
-      } else if (this.status == "2" ) {
-        this.clsJaVi           = "btn btn-sm";
-        this.clsQueroVer       = "btn btn-sm btn-warning";
-        this.clsNaoMeInteressa = "btn btn-sm";
-      } else if (this.status == "3") {
-        this.clsJaVi           = "btn btn-sm";
-        this.clsQueroVer       = "btn btn-sm";
-        this.clsNaoMeInteressa = "btn btn-sm btn-danger";
-      }
-    });
+    var data = new Date();
+    this.db
+      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
+      .set({
+        titulo: this.filmeTitulo,
+        lancamento: this.filmeAno,
+        poster: this.filmePoster,
+        sinopse: this.filmeSinopse,
+        marcado: this.now.getDate() + '/' + (this.now.getMonth() + 1) + '/' + this.now.getFullYear(),
+        status: status
+      })
+      .then(r => {
+        this.status = status;
+        if (this.status == "1") {
+          this.clsJaVi = "btn btn-sm btn-success";
+          this.clsQueroVer = "btn btn-sm";
+          this.clsNaoMeInteressa = "btn btn-sm";
+        } else if (this.status == "2") {
+          this.clsJaVi = "btn btn-sm";
+          this.clsQueroVer = "btn btn-sm btn-warning";
+          this.clsNaoMeInteressa = "btn btn-sm";
+        } else if (this.status == "3") {
+          this.clsJaVi = "btn btn-sm";
+          this.clsQueroVer = "btn btn-sm";
+          this.clsNaoMeInteressa = "btn btn-sm btn-danger";
+        }
+      });
   }
-
 }
