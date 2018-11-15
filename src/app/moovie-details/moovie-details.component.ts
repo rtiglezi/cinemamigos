@@ -3,6 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { MooviesService } from "app/providers/moovies.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "./../providers/auth.service";
+import swal from "sweetalert2";
+import { routerNgProbeToken } from "@angular/router/src/router_module";
 
 @Component({
   selector: "app-moovie-details",
@@ -33,6 +35,8 @@ export class MoovieDetailsComponent implements OnInit {
 
   public now = new Date();
 
+  public alert: boolean = false;
+
   id: string;
   origem: string;
   private sub: any;
@@ -46,7 +50,6 @@ export class MoovieDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.sub = this.route.queryParams.subscribe(qp => {
       this.id = qp["id"];
       this.origem = qp["origem"];
@@ -63,7 +66,6 @@ export class MoovieDetailsComponent implements OnInit {
       this.filmeAno = objeto_retorno.release_date;
       this.filmePoster = objeto_retorno.poster_path;
       this.filmeSinopse = objeto_retorno.overview;
-
     });
 
     this.getMoovieService();
@@ -113,7 +115,12 @@ export class MoovieDetailsComponent implements OnInit {
         lancamento: this.filmeAno,
         poster: this.filmePoster,
         sinopse: this.filmeSinopse,
-        marcado: this.now.getDate() + '/' + (this.now.getMonth() + 1) + '/' + this.now.getFullYear(),
+        marcado:
+          this.now.getDate() +
+          "/" +
+          (this.now.getMonth() + 1) +
+          "/" +
+          this.now.getFullYear(),
         status: status
       })
       .then(r => {
@@ -131,6 +138,24 @@ export class MoovieDetailsComponent implements OnInit {
           this.clsQueroVer = "btn btn-sm";
           this.clsNaoMeInteressa = "btn btn-sm btn-danger";
         }
+
+        swal({
+          title: "Classificação registrada!",
+          text: "Deseja ver o painel com todas as suas classificações atualizadas?",
+          type: "success",
+          showCancelButton: true,
+          confirmButtonColor: "orange",
+          cancelButtonColor: "grey",
+          confirmButtonText: "Sim",
+          cancelButtonText: "Não",
+          buttonsStyling: true
+        }).then(function(result) {
+          if (result.value) {
+            window.location.href = window.location.origin;
+          }
+        });
       });
+
+
   }
 }
