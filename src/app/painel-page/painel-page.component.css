@@ -56,3 +56,7 @@ i {
 .row-center {
   text-align: center;
 }
+
+#separador {
+  padding: 3px;
+}
