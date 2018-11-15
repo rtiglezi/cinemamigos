@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<div style="text-align: center; padding-top: 8px">
 
   <button type="button" class="btn btn-warning" (click)="getLastMoovies('top_rated')">
     <span class="glyphicon glyphicon-star" style="padding-right: 5px"></span>Aclamados
@@ -15,17 +15,17 @@
 </div>
 
 
-<div style=" text-align: center; font-weight: bold; padding-top: 20px; padding-bottom: 15px">{{ search }}</div>
+<div style=" text-align: center; font-weight: bold; padding-top: 5px; padding-bottom: 5px">{{ search }}</div>
 
-<div class="col-lg-4" *ngFor="let filme of lista_filmes">
+<div class="col-lg-3" *ngFor="let filme of lista_filmes">
 
-  <div class="box" style="background-color: #222222; color:#bbb">
+  <div class="box" style="background-color: rgb(157, 176, 185); color:rgb(0, 0, 0)">
 
     <div style='border-radius: 4px;
                     text-align: center;
                     font-weight: bolder;
                     padding-top: 5px;
-                    color: #ccc;'>{{
+                    color: rgb(0, 0, 0);'>{{
       filme.title }}</div>
 
     <div style='text-align: center'>

@@ -80,7 +80,7 @@ export class MoovieDetailsComponent implements OnInit {
         this.status = r.status;
 
         if (this.status == "1") {
-          this.clsJaVi = "btn btn-sm btn-success";
+          this.clsJaVi = "btn btn-sm btn-danger";
           this.clsQueroVer = "btn btn-sm";
           this.clsNaoMeInteressa = "btn btn-sm";
           this.clsMostrarJaVi = "bold";
@@ -88,7 +88,7 @@ export class MoovieDetailsComponent implements OnInit {
           this.clsMostrarNaoMeInteressa = "normal";
         } else if (this.status == "2") {
           this.clsJaVi = "btn btn-sm";
-          this.clsQueroVer = "btn btn-sm btn-warning";
+          this.clsQueroVer = "btn btn-sm btn-danger";
           this.clsNaoMeInteressa = "btn btn-sm";
           this.clsMostrarJaVi = "normal";
           this.clsMostrarQueroVer = "bold";
@@ -119,12 +119,12 @@ export class MoovieDetailsComponent implements OnInit {
       .then(r => {
         this.status = status;
         if (this.status == "1") {
-          this.clsJaVi = "btn btn-sm btn-success";
+          this.clsJaVi = "btn btn-sm btn-danger";
           this.clsQueroVer = "btn btn-sm";
           this.clsNaoMeInteressa = "btn btn-sm";
         } else if (this.status == "2") {
           this.clsJaVi = "btn btn-sm";
-          this.clsQueroVer = "btn btn-sm btn-warning";
+          this.clsQueroVer = "btn btn-sm btn-danger";
           this.clsNaoMeInteressa = "btn btn-sm";
         } else if (this.status == "3") {
           this.clsJaVi = "btn btn-sm";

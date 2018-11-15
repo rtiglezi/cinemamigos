@@ -10,13 +10,13 @@
           <!-- /.row -->
           <div class="row">
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: rgb(43, 204, 43)">
+              <div class="panel" style="background: #F0AD4E">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-ok-sign"
-                        style="color: rgb(224, 247, 205); font-size: 65px"
+                        style="color: rgb(255, 255, 255); font-size: 65px"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
@@ -27,7 +27,7 @@
                           ><span *ngIf="contadorJaVistos">{{
                             contadorJaVistos
                           }}</span>
-                          <span *ngIf="!contadorJaVistos">...</span></span
+                          <span *ngIf="!contadorJaVistos">0</span></span
                         >
                       </div>
                     </div>
@@ -37,13 +37,13 @@
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: orange">
+              <div class="panel" style="background: #C7B98C">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-screenshot"
-                        style="color: rgb(232, 233, 177); font-size: 65px"
+                        style="color: rgb(255, 255, 255); font-size: 65px"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
@@ -53,7 +53,7 @@
                           ><span *ngIf="contadorQuerVer">{{
                             contadorQuerVer
                           }}</span>
-                          <span *ngIf="!contadorQuerVer">...</span></span
+                          <span *ngIf="!contadorQuerVer">0</span></span
                         >
                       </div>
                     </div>
@@ -63,23 +63,23 @@
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: rgb(10, 153, 235)">
+              <div class="panel" style="background: rgb(66, 98, 117)">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-circle-arrow-left"
-                        style="color:rgb(169, 205, 226); font-size: 65px;"
+                        style="color:rgb(255, 255, 255); font-size: 65px;"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
                       <div class="huge">
                         filmes indicados<br /><strong>PARA VOCÊ!</strong
-                        ><br /><a href="" id="numero"
+                        ><br /><span class="numero"
                           ><span *ngIf="contadorIndicados">{{
                             contadorIndicados
                           }}</span>
-                          <span *ngIf="!contadorIndicados">...</span></a
+                          <span *ngIf="!contadorIndicados">0</span></span
                         >
                       </div>
                     </div>
@@ -89,24 +89,23 @@
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: #c42ff1">
+              <div class="panel" style="background: rgb(128, 150, 160)">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-circle-arrow-right"
-                        style="color: #ebbbe8; font-size: 65px"
+                        style="color: #ffffff; font-size: 65px"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
                       <div class="huge">
-                        filmes indicados<br /><strong>POR VOCÊ</strong><br /><a
-                          href=""
-                          id="numero"
+                        filmes indicados<br /><strong>POR VOCÊ</strong><br /><span
+                          class="numero"
                           ><span *ngIf="contadorIndiquei">{{
                             contadorIndiquei
                           }}</span>
-                          <span *ngIf="!contadorIndiquei">...</span></a
+                          <span *ngIf="!contadorIndiquei">0</span></span
                         >
                       </div>
                     </div>
