@@ -25,6 +25,8 @@ export class MoovieDetailsComponent implements OnInit {
 
   public status: string;
 
+  public searchParam: string;
+
   public filme = new Object();
 
   public filmeid;
@@ -53,6 +55,7 @@ export class MoovieDetailsComponent implements OnInit {
     this.sub = this.route.queryParams.subscribe(qp => {
       this.id = qp["id"];
       this.origem = qp["origem"];
+      this.searchParam = qp["searchParam"];
     });
 
     this.filmeid = this.id;
@@ -72,7 +75,11 @@ export class MoovieDetailsComponent implements OnInit {
   }
 
   backClicked() {
-    this.router.navigate([""], { queryParams: { origem: this.origem } });
+    if (this.origem) {
+      this.router.navigate([this.origem], {queryParams: {status: this.status, searchParam: this.searchParam}});
+    } else {
+      this.router.navigate([""]);
+    }
   }
 
   getMoovieService() {
@@ -139,23 +146,21 @@ export class MoovieDetailsComponent implements OnInit {
           this.clsNaoMeInteressa = "btn btn-sm btn-danger";
         }
 
-        swal({
-          title: "Classificação registrada!",
-          text: "Deseja ver o painel com todas as suas classificações atualizadas?",
-          type: "success",
-          showCancelButton: true,
-          confirmButtonColor: "orange",
-          cancelButtonColor: "grey",
-          confirmButtonText: "Sim",
-          cancelButtonText: "Não",
-          buttonsStyling: true
-        }).then(function(result) {
-          if (result.value) {
-            window.location.href = window.location.origin;
-          }
-        });
-      });
+        const swalWithBootstrapButtons = swal.mixin({
+          confirmButtonClass: 'btn btn-success',
+          cancelButtonClass: 'btn btn-danger',
+          buttonsStyling: false,
+        })
 
+        swal({
+          position: 'top',
+          type: 'success',
+          title: 'Classificação registrada com sucesso!',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+      });
 
   }
 }

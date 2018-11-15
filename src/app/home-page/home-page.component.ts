@@ -12,8 +12,10 @@ export class HomePageComponent implements OnInit {
 
   arrayMoovies = [];
   selectedValue = null;
-  origem = "";
+
   private sub: any;
+
+  public searchParam: String;
 
   public lista_filmes = new Array<any>();
   public search: String;
@@ -28,37 +30,34 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(qp => {
-      this.origem = qp["origem"];
+      this.getLastMoovies(qp["searchParam"]);
     });
-    this.getLastMoovies(this.origem);
   }
 
-  getLastMoovies(search="top_rated") {
-    if (search == "top_rated") {
+  getLastMoovies(searchParam="top_rated") {
+    if (searchParam == "top_rated") {
       this.search = "Filmes mais bem avaliados";
       this.colorTitle = "darkgoldenrod";
-    } else if (search == "upcoming") {
+    } else if (searchParam == "upcoming") {
       this.search = "Filmes estreiando";
       this.colorTitle = "darkgreen";
-    } else if (search == "popular") {
+    } else if (searchParam == "popular") {
       this.search = "Filmes mais populares";
       this.colorTitle = "darkred";
     }
 
-    this.origem = search;
+    this.searchParam = searchParam;
 
-    this.moviesService.getLatestMovies(search).subscribe(data => {
+    this.moviesService.getLatestMovies(searchParam).subscribe(data => {
       const response = data as any;
       const objeto_retorno = JSON.parse(response._body);
-      // console.log(objeto_retorno);
       this.lista_filmes = objeto_retorno.results;
     });
   }
 
   navigate(id) {
-    // console.log(id);
     this.router.navigate(["moovie"], {
-      queryParams: { id: id, origem: this.origem }
+      queryParams: { id: id, origem: "home", searchParam: this.searchParam }
     });
   }
 }

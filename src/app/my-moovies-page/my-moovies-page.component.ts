@@ -10,9 +10,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MyMooviesPageComponent implements OnInit {
   lista_filmes = new Array<any>();
+
   search: String;
 
+  searchParam: String;
+
   localUser = this.authService.getLocalUser();
+
+  status: string;
 
   private sub: any;
 
@@ -31,6 +36,8 @@ export class MyMooviesPageComponent implements OnInit {
       } else if (qp['status'] == '2') {
         this.search = 'Lista dos filmes que você quer ver!';
       }
+      this.status = qp['status'];
+      this.searchParam = qp['searchParam'];
     });
   }
 
@@ -54,7 +61,7 @@ export class MyMooviesPageComponent implements OnInit {
 
   navigate(id) {
     this.router.navigate(['moovie'], {
-      queryParams: { id: id, origem: 'painel' }
+      queryParams: { id: id, origem: 'mymoovies' }
     });
   }
 
