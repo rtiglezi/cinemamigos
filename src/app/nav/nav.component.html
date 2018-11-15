@@ -9,23 +9,23 @@
       aria-controls="navbar"
     >
       <span class="sr-only">Toggle navigation</span>
-      <span class="glyphicon glyphicon-menu-hamburger" style="font-size: 20px"></span>
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
     </button>
     <a class="navbar-brand" href="#">
-      <span style="color: #EA5252; font-size: 25px; font-weight: bold">Indica</span
-      ><span style="color:rgb(36, 45, 53); font-size: 25px; font-weight: bold">Moovies</span>
+      <span style="color: crimson; font-size: 25px; font-weight: bold">Indica</span
+      ><span style="color:darkslategrey; font-size: 25px; font-weight: bold">Moovies</span>
     </a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li>
         <a href=""
-          ><span class="glyphicon glyphicon-film" style="color: #555"></span> Meus filmes</a
+          ><span class="glyphicon glyphicon-film"></span> Meus dados</a
         >
       </li>
       <li>
         <a href="home"
-          ><span class="glyphicon glyphicon-bullhorn" style="color: #555"></span> Filmes sugeridos</a
+          ><span class="glyphicon glyphicon-bullhorn"></span> Filmes sugeridos</a
         >
       </li>
     </ul>
@@ -33,13 +33,13 @@
     <ul class="nav navbar-nav navbar-right" *ngIf="isLogged">
       <li>
         <a href="profile"
-          ><span class="glyphicon glyphicon-user" style="color: #555"></span>
+          ><span class="glyphicon glyphicon-user"></span>
           {{ localUser.user_displayName }}
         </a>
       </li>
       <li>
         <a href="#"
-          ><span class="glyphicon glyphicon-remove" style="color: #EA5252"></span>
+          ><span class="glyphicon glyphicon-remove"></span>
           <span (click)="logout()">Sair</span>
         </a>
       </li>
@@ -67,7 +67,7 @@
           </a>
         </div>
       </div>
-      <i class="glyphicon glyphicon-search form-control-feedback" style="color: #EA5252"></i>
+      <i id="i_search" class="glyphicon glyphicon-search form-control-feedback"></i>
     </div>
   </div>
 </nav>

@@ -1,104 +1,119 @@
+<div class="my-container">
+  <div class="col-lg-6 col-md-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="row row-center">
+          <div class="col-xs-3">
+            <img src="{{ localUser.user_photo }}" class="avatar" />
+          </div>
+          <div class="huge">
+            <strong>{{ localUser.user_displayName }}</strong> <br />
+            ({{ localUser.user_email }})
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="col-lg-6 col-md-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="row row-center">
+          <div class="huge">
+            <strong>Seus contatos</strong> <br />
+            Você ainda não tem nenhum amigo adicionado.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-          <!-- /.row -->
-          <div class="my-container">
-            <div class="col-lg-3 col-md-6">
-              <div class="panel">
-                <div class="panel-heading">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <i
-                        class="glyphicon glyphicon-ok-sign"
-                      ></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                      <div class="huge">
-                        filmes que <strong>VOCÊ JÁ VIU!</strong><br /><span
-                          class="numero"
-                          (click)="navigate(1)"
-                          ><span *ngIf="contadorJaVistos">{{
-                            contadorJaVistos
-                          }}</span>
-                          <span *ngIf="!contadorJaVistos">0</span></span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <div class="panel">
-                <div class="panel-heading">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <i
-                        class="glyphicon glyphicon-screenshot"
-                      ></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                      <div class="huge">
-                        filmes que você <strong>QUER VER!</strong
-                        ><br /><span (click)="navigate(2)" class="numero"
-                          ><span *ngIf="contadorQuerVer">{{
-                            contadorQuerVer
-                          }}</span>
-                          <span *ngIf="!contadorQuerVer">0</span></span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <div class="panel">
-                <div class="panel-heading">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <i
-                        class="glyphicon glyphicon-circle-arrow-left"
-                      ></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                      <div class="huge">
-                        filmes indicados <strong>PARA VOCÊ!</strong
-                        ><br /><span class="numero"
-                          ><span *ngIf="contadorIndicados">{{
-                            contadorIndicados
-                          }}</span>
-                          <span *ngIf="!contadorIndicados">0</span></span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-              <div class="panel">
-                <div class="panel-heading">
-                  <div class="row">
-                    <div class="col-xs-3">
-                      <i
-                        class="glyphicon glyphicon-circle-arrow-right"
-                      ></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                      <div class="huge">
-                        filmes indicados <strong>POR VOCÊ</strong><br /><span
-                          class="numero"
-                          ><span *ngIf="contadorIndiquei">{{
-                            contadorIndiquei
-                          }}</span>
-                          <span *ngIf="!contadorIndiquei">0</span></span
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i id="i_javiu" class="glyphicon glyphicon-ok-sign"></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge">
+                <strong>VOCÊ JÁ VIU:</strong><br /><span
+                class="numero"
+                (click)="navigate(1)"
+                ><span *ngIf="contadorJaVistos">{{ contadorJaVistos }}</span>
+                <span id="c_javiu" *ngIf="!contadorJaVistos">0</span></span
+              > filmes
             </div>
           </div>
-
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i id="i_querver" class="glyphicon glyphicon-screenshot"></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge">
+                <strong>VOCÊ QUER VER:</strong><br /><span
+                (click)="navigate(2)"
+                class="numero"
+                ><span *ngIf="contadorQuerVer">{{ contadorQuerVer }}</span>
+                <span *ngIf="!contadorQuerVer">0</span></span
+              > filmes
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i
+              id="i_paravoce"
+              class="glyphicon glyphicon-circle-arrow-left"
+            ></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge">
+                <strong>INDICARAM A VOCÊ:</strong><br /><span
+                class="numero"
+                ><span *ngIf="contadorIndicados">{{ contadorIndicados }}</span>
+                <span *ngIf="!contadorIndicados">0</span></span
+              > filmes
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="panel">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+            <i
+              id="i_porvoce"
+              class="glyphicon glyphicon-circle-arrow-right"
+            ></i>
+          </div>
+          <div class="col-xs-9 text-right">
+            <div class="huge">
+                <strong>VOCÊ INDICOU:</strong><br /><span
+                class="numero"
+                ><span *ngIf="contadorIndiquei">{{ contadorIndiquei }}</span>
+                <span *ngIf="!contadorIndiquei">0</span></span
+              > filmes
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

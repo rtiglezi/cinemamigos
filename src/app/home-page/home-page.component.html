@@ -1,58 +1,60 @@
 <div style="text-align: center; padding-top: 8px">
-
-  <button type="button" class="btn btn-warning" (click)="getLastMoovies('top_rated')">
-    <span class="glyphicon glyphicon-star" style="padding-right: 5px"></span>Aclamados
+  <button
+    type="button"
+    class="btn btn-warning"
+    (click)="getLastMoovies('top_rated')"
+  >
+    <i class="glyphicon glyphicon-star"></i>Aclamados
   </button>
 
-  <button type="button" class="btn btn-danger" (click)="getLastMoovies('popular')">
-    <span class="glyphicon glyphicon-fire" style="padding-right: 5px"></span>Populares
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="getLastMoovies('popular')"
+  >
+    <i class="glyphicon glyphicon-fire"></i>Populares
   </button>
 
-  <button type="button" class="btn btn-success" (click)="getLastMoovies('upcoming')">
-    <span class="glyphicon glyphicon-certificate" style="padding-right: 5px"></span>Estréias
+  <button
+    type="button"
+    class="btn btn-success"
+    (click)="getLastMoovies('upcoming')"
+  >
+    <i class="glyphicon glyphicon-certificate"></i>Estréias
   </button>
-
 </div>
 
-
-<div style=" text-align: center; font-weight: bold; padding-top: 10px; padding-bottom: 15px">{{ search }}</div>
+<div id="search">{{ search }}</div>
 
 <div class="col-lg-3" *ngFor="let filme of lista_filmes">
+  <div class="box">
+    <div id="titulo">{{ filme.title }}</div>
 
-  <div class="box" style="background-color: rgb(212, 212, 212); color:rgb(0, 0, 0)">
-
-    <div style='border-radius: 4px;
-                    text-align: center;
-                    font-weight: bolder;
-                    padding-top: 5px;
-                    color: rgb(0, 0, 0);'>{{
-      filme.title }}</div>
-
-    <div style='text-align: center'>
-      <span class="glyphicon glyphicon-star" style="padding-right: 3px; color:rgb(175, 117, 35);"></span>{{
-      filme.vote_average }}
-      |
-      <span class="glyphicon glyphicon-fire" style="padding-right: 3px; color: #C9302C;"></span>{{
-      filme.popularity }}
-      |
-      ({{ filme.release_date | date:'y' }})
+    <div style="text-align: center">
+      <span class="glyphicon glyphicon-star" id="star"></span
+      >{{ filme.vote_average }} |
+      <span class="glyphicon glyphicon-fire" id="fire"></span
+      >{{ filme.popularity }} | ({{ filme.release_date | date: "y" }})
     </div>
 
-
-    <div style="text-align: center; padding-top: 10px">
-      <img (click)="navigate(filme.id)" [src]="'https://image.tmdb.org/t/p/w300/' + filme.poster_path" class="img-fluid" style="cursor: pointer" height="360">
+    <div id="div_img">
+      <img
+        (click)="navigate(filme.id)"
+        [src]="'https://image.tmdb.org/t/p/w300/' + filme.poster_path"
+        class="img-fluid"
+        height="360"
+      />
     </div>
 
-    <div style="height: 120px; padding: 15px; font-size: 13px">
-      {{ filme.overview | slice:0:150 }} {{ filme.overview.length >= 150 ? '...' : ''}}
+    <div id="sinopse">
+      {{ filme.overview | slice: 0:150 }}
+      {{ filme.overview.length >= 150 ? "..." : "" }}
     </div>
 
-    <div style='text-align: center; cursor: pointer;' (click)="navigate(filme.id)">
+    <div id="mais_informacoes" (click)="navigate(filme.id)">
       Mais informações
     </div>
-
   </div>
 
   <br />
-
 </div>

@@ -80,14 +80,26 @@ input:focus {
 
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #EA5252;
+  color: grey;
+  font-size: 12px;
+  font-weight: normal;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: #EA5252;
+  color: grey;
+  font-size: 12px;
+  font-weight: normal;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: #EA5252;
+  color: grey;
+  font-size: 12px;
+  font-weight: normal;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: #EA5252;
+  color: grey;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#i_search {
+  color: crimson;
 }

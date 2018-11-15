@@ -1,38 +1,22 @@
-<div
-  style=" text-align: center; font-weight: bold;  padding-bottom: 15px"
->
-  {{ search }}
-</div>
+<div id="div_search">{{ search }}</div>
 
 <div class="col-lg-3" *ngFor="let filme of lista_filmes">
   <div class="box">
-    <div
-      style="border-radius: 4px;
-                    text-align: center;
-                    font-weight: bolder;
-                    padding-top: 5px;
-                    color: #EA5252;"
-    >
-      {{ filme.titulo }}
-    </div>
+    <div id="div_titulo">{{ filme.titulo }}</div>
 
-    <div class="col-lg-6 col-sm-6 col-xs-6" style="text-align: center; padding-top: 10px">
+    <div class="col-lg-6 col-sm-6 col-xs-6" id="div_poster">
       <img
         (click)="navigate(filme.id)"
         [src]="'https://image.tmdb.org/t/p/w92/' + filme.poster"
-        style="cursor: pointer"
       />
     </div>
 
-    <div class="col-lg-6 col-sm-6 col-xs-6" style="height: 120px; padding: 15px; font-size: 13px">
+    <div class="col-lg-6 col-sm-6 col-xs-6" id="div_sinopse">
       {{ filme.sinopse | slice: 0:65 }}
       {{ filme.sinopse.length >= 65 ? "..." : "" }}
     </div>
 
-    <div
-      style="text-align: center; cursor: pointer;"
-      (click)="navigate(filme.id)"
-    >
+    <div id="div_mais_informacoes" (click)="navigate(filme.id)">
       Mais informações
     </div>
   </div>
@@ -40,8 +24,10 @@
   <br />
 </div>
 
-<div class="container-fluid" (click)="backClicked()" style="text-align: center;">
-  <button class="btn btn-warning btn-block"><span class="glyphicon glyphicon-triangle-left" style="padding-right: 5px;">Voltar</span></button>
+<div class="container-fluid" (click)="backClicked()">
+  <button class="btn btn-warning btn-block">
+    <span class="glyphicon glyphicon-triangle-left">Voltar</span>
+  </button>
 </div>
 
 <br />

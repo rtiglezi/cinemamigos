@@ -7,7 +7,7 @@
 .numero {
   cursor: pointer;
   font-size: 38px;
-  color: #EA5252;
+  color: crimson;
   font-weight: bold;
 }
 
@@ -23,10 +23,36 @@
 
 
 i {
-  color: #EA5252;
+  color: crimson;
   font-size: 65px;
 }
 
 .my-container {
   margin: 5px;
+}
+
+#i_javiu {
+  color: olivedrab;
+}
+
+#i_querver {
+  color: orange;
+}
+
+#i_paravoce {
+  color: darkorange;
+}
+
+#i_porvoce {
+  color: darkcyan;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.row-center {
+  text-align: center;
 }
