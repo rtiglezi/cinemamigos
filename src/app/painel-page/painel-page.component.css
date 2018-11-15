@@ -1,12 +1,32 @@
 .huge {
-  font-size: 20px;
-  color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  padding-top: 5px;
+  font-size: 15px;
+  color: black;
 }
 
 .numero {
   cursor: pointer;
-  font-size: 50px;
-  color: white;
-  text-shadow: -1px 0 rgb(5, 5, 5), 0 1px rgb(5, 5, 5), 1px 0 rgb(5, 5, 5), 0 -1px rgb(5, 5, 5);
+  font-size: 38px;
+  color: #EA5252;
+  font-weight: bold;
+}
+
+
+.panel {
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgrey;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 3px rgba(0,0,0,.13), 1px 2px 2px rgba(0,0,0,.1), -1px -2px 2px rgba(0,0,0,.05);
+  height: 90px;
+}
+
+
+i {
+  color: #EA5252;
+  font-size: 65px;
+}
+
+.my-container {
+  margin: 5px;
 }

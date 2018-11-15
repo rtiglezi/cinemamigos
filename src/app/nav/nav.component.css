@@ -35,6 +35,10 @@ a {
   border-radius: 5px;
 }
 
+input:focus {
+  background-color: rgb(242, 243, 184);
+}
+
 .divBoxSearch {
   width: 100%;
   border-style: solid;
@@ -72,4 +76,18 @@ a {
   box-shadow: 0 2px 2px -1px #989898;
   -moz-box-shadow: 0 2px 2px -1px #989898;
   -webkit-box-shadow: 0 2px 2px -1px #989898;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #EA5252;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #EA5252;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #EA5252;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #EA5252;
 }

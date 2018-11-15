@@ -30,14 +30,10 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right" *ngIf="!isLogged">
-      <li><a href=""> carregando ... </a></li>
-    </ul>
-
     <ul class="nav navbar-nav navbar-right" *ngIf="isLogged">
       <li>
         <a href="profile"
-          ><span class="glyphicon glyphicon-user" style="color: #426275"></span>
+          ><span class="glyphicon glyphicon-user" style="color: #555"></span>
           {{ localUser.user_displayName }}
         </a>
       </li>
@@ -49,16 +45,16 @@
       </li>
     </ul>
   </div>
+
   <div
-    style="padding-left: 10px; padding-right: 10px; padding-bottom:5px"
-  >
+    style="padding-left: 10px; padding-right: 10px; padding-bottom:5px">
     <div class="form-group has-feedback">
       <input
         #srch
         (keyup)="searchMoovies(srch.value)"
         type="text"
         class="txtSearch"
-        placeholder="Buscar filmes..."
+        placeholder="Utilize este campo para buscar filmes..."
       />
       <div
         class="divBoxSearch"

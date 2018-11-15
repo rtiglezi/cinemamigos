@@ -1,27 +1,20 @@
-<div style="padding: 5px">
-  <div class="panel panel-default" style="padding:10px; background: white">
-    <div style="background: #eee; padding:10px">
-      <div style="padding-top:5px; padding-bottom:20px; text-align:center">
-        <b>PAINEL COM AS CLASSIFICAÇÕES DOS SEUS FILMES ATÉ O MOMENTO</b>
-      </div>
 
-      <div id="wrapper">
-        <div id="page-wrapper">
+
+
           <!-- /.row -->
-          <div class="row">
+          <div class="my-container">
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: #F0AD4E">
+              <div class="panel">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-ok-sign"
-                        style="color: rgb(255, 255, 255); font-size: 65px"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
                       <div class="huge">
-                        filmes que<br /><strong>VOCÊ JÁ VIU!</strong><br /><span
+                        filmes que <strong>VOCÊ JÁ VIU!</strong><br /><span
                           class="numero"
                           (click)="navigate(1)"
                           ><span *ngIf="contadorJaVistos">{{
@@ -33,22 +26,20 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel-footer"></div>
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: #C7B98C">
+              <div class="panel">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-screenshot"
-                        style="color: rgb(255, 255, 255); font-size: 65px"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
                       <div class="huge">
-                        filmes que você<br /><strong>QUER VER!</strong
+                        filmes que você <strong>QUER VER!</strong
                         ><br /><span (click)="navigate(2)" class="numero"
                           ><span *ngIf="contadorQuerVer">{{
                             contadorQuerVer
@@ -59,22 +50,20 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel-footer"></div>
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: rgb(66, 98, 117)">
+              <div class="panel">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-circle-arrow-left"
-                        style="color:rgb(255, 255, 255); font-size: 65px;"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
                       <div class="huge">
-                        filmes indicados<br /><strong>PARA VOCÊ!</strong
+                        filmes indicados <strong>PARA VOCÊ!</strong
                         ><br /><span class="numero"
                           ><span *ngIf="contadorIndicados">{{
                             contadorIndicados
@@ -85,22 +74,20 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel-footer"></div>
               </div>
             </div>
             <div class="col-lg-3 col-md-6">
-              <div class="panel" style="background: rgb(128, 150, 160)">
+              <div class="panel">
                 <div class="panel-heading">
                   <div class="row">
                     <div class="col-xs-3">
                       <i
                         class="glyphicon glyphicon-circle-arrow-right"
-                        style="color: #ffffff; font-size: 65px"
                       ></i>
                     </div>
                     <div class="col-xs-9 text-right">
                       <div class="huge">
-                        filmes indicados<br /><strong>POR VOCÊ</strong><br /><span
+                        filmes indicados <strong>POR VOCÊ</strong><br /><span
                           class="numero"
                           ><span *ngIf="contadorIndiquei">{{
                             contadorIndiquei
@@ -111,14 +98,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="panel-footer"></div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- /.col-lg-4 -->
-      </div>
-      <!-- /.row -->
-    </div>
-  </div>
-</div>
+
