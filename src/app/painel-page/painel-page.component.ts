@@ -3,7 +3,6 @@ import { AngularFireDatabase } from "angularfire2/database";
 import { AuthService } from "app/providers/auth.service";
 import { Router, ActivatedRoute } from "@angular/router";
 
-
 @Component({
   selector: "app-painel-page",
   templateUrl: "./painel-page.component.html",
@@ -12,10 +11,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class PainelPageComponent implements OnInit {
   localUser = this.authService.getLocalUser();
 
-  contadorJaVistos = 0;
-  contadorQuerVer = 0;
-  contadorTalvez = 0;
-  contadorDispensa = 0;
+  contadorJaVistos: any = 0;
+  contadorQuerVer: any = 0;
+  contadorTalvez: any = 0;
+  contadorDispensa: any = 0;
 
   constructor(
     private db: AngularFireDatabase,
@@ -24,14 +23,13 @@ export class PainelPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getMoovieService();
+    this.getMoovieService();;
   }
 
   getMoovieService() {
     this.db
       .list("usuarios/" + this.localUser.user_uid + "/filmes")
       .subscribe(r => {
-
         this.contadorJaVistos = 0;
         this.contadorQuerVer = 0;
         this.contadorTalvez = 0;
@@ -40,7 +38,6 @@ export class PainelPageComponent implements OnInit {
         r.map(m => {
           if (m.status == 1) {
             this.contadorJaVistos++;
-            console.log(m.titulo, this.contadorJaVistos)
           }
           if (m.status == 2) {
             this.contadorQuerVer++;
@@ -51,7 +48,14 @@ export class PainelPageComponent implements OnInit {
           if (m.status == 4) {
             this.contadorDispensa++;
           }
+
         });
+
+        this.contadorJaVistos = this.contadorJaVistos.toString();
+        this.contadorQuerVer = this.contadorQuerVer.toString();
+        this.contadorTalvez = this.contadorTalvez.toString();
+        this.contadorDispensa = this.contadorDispensa.toString();
+
       });
   }
 

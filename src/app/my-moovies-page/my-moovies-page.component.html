@@ -1,4 +1,9 @@
-<div id="div_search">{{ search }}<br />{{ lista_filmes.length}} filme(s)</div>
+<app-nav></app-nav>
+
+<div id="div_search">{{ search }}<br />
+<span *ngIf="!lista_filmes.length"><img src="../assets/loader-grey.gif" style="width: 15px; margin-bottom:3px"></span>
+<span *ngIf="lista_filmes.length">{{ lista_filmes.length}}</span>
+ filme(s)</div>
 
 <div class="col-lg-3" *ngFor="let filme of lista_filmes">
   <div class="box">
@@ -6,6 +11,7 @@
 
     <div class="col-lg-6 col-sm-6 col-xs-6" id="div_poster">
       <img
+        class="img-moovie"
         (click)="navigate(filme.id)"
         [src]="'https://image.tmdb.org/t/p/w92/' + filme.poster"
       />
@@ -24,7 +30,7 @@
   <br />
 </div>
 
-<div class="container-fluid" (click)="backClicked()">
+<div *ngIf="lista_filmes.length" class="container-fluid" (click)="backClicked()">
   <button class="btn btn-warning btn-block">
     <span class="glyphicon glyphicon-triangle-left">Voltar</span>
   </button>

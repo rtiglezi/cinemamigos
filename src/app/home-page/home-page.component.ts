@@ -39,7 +39,7 @@ export class HomePageComponent implements OnInit {
       this.search = "Filmes mais bem avaliados";
       this.colorTitle = "darkgoldenrod";
     } else if (searchParam == "upcoming") {
-      this.search = "Filmes estreiando";
+      this.search = "Filmes estreando";
       this.colorTitle = "darkgreen";
     } else if (searchParam == "popular") {
       this.search = "Filmes mais populares";

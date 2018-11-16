@@ -112,6 +112,7 @@ export class MoovieDetailsComponent implements OnInit {
   }
 
   updateMoovieService(status) {
+    let lista = "";
     this.db
       .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
       .update({
@@ -135,21 +136,25 @@ export class MoovieDetailsComponent implements OnInit {
           this.clsQueroVer = "btn btn-sm btn-default";
           this.clsTalvez = "btn btn-sm btn-default";
           this.clsNaoMeInteressa = "btn btn-sm btn-default";
+          lista = "Já vi"
         } else if (this.status == "2") {
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-success";
           this.clsTalvez = "btn btn-sm btn-default";
           this.clsNaoMeInteressa = "btn btn-sm btn-default";
+          lista = "Quero ver"
         } else if (this.status == "3") {
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-default";
           this.clsTalvez = "btn btn-sm btn-success";
           this.clsNaoMeInteressa = "btn btn-sm btn-default";
+          lista = "Talvez veja"
         } else if (this.status == "4") {
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-default";
           this.clsTalvez = "btn btn-sm btn-default";
           this.clsNaoMeInteressa = "btn btn-sm btn-success";
+          lista = "Dispenso"
         }
 
         const swalWithBootstrapButtons = swal.mixin({
@@ -161,7 +166,7 @@ export class MoovieDetailsComponent implements OnInit {
         swal({
           position: "top",
           type: "success",
-          title: "Classificação registrada com sucesso!",
+          title: "Filme inserido lista: " + lista,
           showConfirmButton: false,
           timer: 2000
         });
