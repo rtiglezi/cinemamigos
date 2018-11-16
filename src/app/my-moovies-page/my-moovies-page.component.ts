@@ -32,9 +32,13 @@ export class MyMooviesPageComponent implements OnInit {
     this.sub = this.route.queryParams.subscribe(qp => {
       this.getWatcheds(qp['status']);
       if (qp['status'] == '1') {
-        this.search = 'Lista dos filmes que você já viu!';
+        this.search = 'Lista dos filmes que você já viu';
       } else if (qp['status'] == '2') {
-        this.search = 'Lista dos filmes que você quer ver!';
+        this.search = 'Lista dos filmes que você quer ver';
+      } else if (qp['status'] == '3') {
+        this.search = 'Lista dos filmes que talvez você veja';
+      }else if (qp['status'] == '4') {
+        this.search = 'Lista dos filmes que talvez você dispesa';
       }
       this.status = qp['status'];
       this.searchParam = qp['searchParam'];
@@ -46,8 +50,7 @@ export class MyMooviesPageComponent implements OnInit {
     this.db
       .list('usuarios/' + this.localUser.user_uid + '/filmes', {
         query: {
-          orderByChild: 'marcado',
-          limitToLast: 15
+          orderByChild: 'marcado'
         }
       })
       .subscribe(r => {

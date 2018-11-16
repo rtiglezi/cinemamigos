@@ -72,49 +72,45 @@
     </div>
   </div>
   <div class="col-lg-3 col-md-6">
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-3">
-            <i
-              id="i_paravoce"
-              class="glyphicon glyphicon-circle-arrow-left"
-            ></i>
-          </div>
-          <div class="col-xs-9 text-right">
-            <div class="huge">
-                <strong>INDICARAM A VOCÊ:</strong><br /><span
-                class="numero"
-                ><span *ngIf="contadorIndicados">{{ contadorIndicados }}</span>
-                <span *ngIf="!contadorIndicados">0</span></span
-              > filmes
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i id="i_talvez" class="glyphicon glyphicon-hourglass"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <div class="huge">
+                  <strong>TALVEZ VEJA:</strong><br /><span
+                  (click)="navigate(3)"
+                  class="numero"
+                  ><span *ngIf="contadorTalvez">{{ contadorTalvez }}</span>
+                  <span *ngIf="!contadorTalvez">0</span></span
+                > filmes
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-3 col-md-6">
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-3">
-            <i
-              id="i_porvoce"
-              class="glyphicon glyphicon-circle-arrow-right"
-            ></i>
-          </div>
-          <div class="col-xs-9 text-right">
-            <div class="huge">
-                <strong>VOCÊ INDICOU:</strong><br /><span
-                class="numero"
-                ><span *ngIf="contadorIndiquei">{{ contadorIndiquei }}</span>
-                <span *ngIf="!contadorIndiquei">0</span></span
-              > filmes
+    <div class="col-lg-3 col-md-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+                <i id="i_dispensa" class="glyphicon glyphicon-send"></i>
+              </div>
+              <div class="col-xs-9 text-right">
+                <div class="huge">
+                    <strong>DISPENSA:</strong><br /><span
+                    (click)="navigate(4)"
+                    class="numero"
+                    ><span *ngIf="contadorDispensa">{{ contadorDispensa }}</span>
+                    <span *ngIf="!contadorDispensa">0</span></span
+                  > filmes
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </div>

@@ -15,13 +15,10 @@ import { routerNgProbeToken } from "@angular/router/src/router_module";
 export class MoovieDetailsComponent implements OnInit {
   localUser = this.authService.getLocalUser();
 
-  public clsJaVi = "btn btn-sm";
-  public clsQueroVer = "btn btn-sm";
-  public clsNaoMeInteressa = "btn btn-sm";
-
-  public clsMostrarJaVi = "";
-  public clsMostrarQueroVer = "";
-  public clsMostrarNaoMeInteressa = "";
+  public clsJaVi = "btn btn-sm btn-default";
+  public clsQueroVer = "btn btn-sm btn-default";
+  public clsTalvez = "btn btn-sm btn-default";
+  public clsNaoMeInteressa = "btn btn-sm btn-default";
 
   public status: string;
 
@@ -76,7 +73,9 @@ export class MoovieDetailsComponent implements OnInit {
 
   backClicked() {
     if (this.origem) {
-      this.router.navigate([this.origem], {queryParams: {status: this.status, searchParam: this.searchParam}});
+      this.router.navigate([this.origem], {
+        queryParams: { status: this.status, searchParam: this.searchParam }
+      });
     } else {
       this.router.navigate([""]);
     }
@@ -89,26 +88,25 @@ export class MoovieDetailsComponent implements OnInit {
         this.status = r.status;
 
         if (this.status == "1") {
-          this.clsJaVi = "btn btn-sm btn-danger";
-          this.clsQueroVer = "btn btn-sm";
-          this.clsNaoMeInteressa = "btn btn-sm";
-          this.clsMostrarJaVi = "bold";
-          this.clsMostrarQueroVer = "normal";
-          this.clsMostrarNaoMeInteressa = "normal";
+          this.clsJaVi = "btn btn-sm btn-success";
+          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsTalvez = "btn btn-sm btn-default";
+          this.clsNaoMeInteressa = "btn btn-sm btn-default";
         } else if (this.status == "2") {
-          this.clsJaVi = "btn btn-sm";
-          this.clsQueroVer = "btn btn-sm btn-danger";
-          this.clsNaoMeInteressa = "btn btn-sm";
-          this.clsMostrarJaVi = "normal";
-          this.clsMostrarQueroVer = "bold";
-          this.clsMostrarNaoMeInteressa = "normal";
+          this.clsJaVi = "btn btn-sm btn-default";
+          this.clsQueroVer = "btn btn-sm btn-success";
+          this.clsTalvez = "btn btn-sm btn-default";
+          this.clsNaoMeInteressa = "btn btn-sm btn-default";
         } else if (this.status == "3") {
-          this.clsJaVi = "btn btn-sm";
-          this.clsQueroVer = "btn btn-sm";
-          this.clsNaoMeInteressa = "btn btn-sm btn-danger";
-          this.clsMostrarJaVi = "normal";
-          this.clsMostrarQueroVer = "normal";
-          this.clsMostrarNaoMeInteressa = "bold";
+          this.clsJaVi = "btn btn-sm btn-default";
+          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsTalvez = "btn btn-sm btn-success";
+          this.clsNaoMeInteressa = "btn btn-sm btn-default";
+        } else if (this.status == "4") {
+          this.clsJaVi = "btn btn-sm btn-default";
+          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsTalvez = "btn btn-sm btn-default";
+          this.clsNaoMeInteressa = "btn btn-sm btn-success";
         }
       });
   }
@@ -133,34 +131,40 @@ export class MoovieDetailsComponent implements OnInit {
       .then(r => {
         this.status = status;
         if (this.status == "1") {
-          this.clsJaVi = "btn btn-sm btn-danger";
-          this.clsQueroVer = "btn btn-sm";
-          this.clsNaoMeInteressa = "btn btn-sm";
+          this.clsJaVi = "btn btn-sm btn-success";
+          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsTalvez = "btn btn-sm btn-default";
+          this.clsNaoMeInteressa = "btn btn-sm btn-default";
         } else if (this.status == "2") {
-          this.clsJaVi = "btn btn-sm";
-          this.clsQueroVer = "btn btn-sm btn-danger";
-          this.clsNaoMeInteressa = "btn btn-sm";
+          this.clsJaVi = "btn btn-sm btn-default";
+          this.clsQueroVer = "btn btn-sm btn-success";
+          this.clsTalvez = "btn btn-sm btn-default";
+          this.clsNaoMeInteressa = "btn btn-sm btn-default";
         } else if (this.status == "3") {
-          this.clsJaVi = "btn btn-sm";
-          this.clsQueroVer = "btn btn-sm";
-          this.clsNaoMeInteressa = "btn btn-sm btn-danger";
+          this.clsJaVi = "btn btn-sm btn-default";
+          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsTalvez = "btn btn-sm btn-success";
+          this.clsNaoMeInteressa = "btn btn-sm btn-default";
+        } else if (this.status == "4") {
+          this.clsJaVi = "btn btn-sm btn-default";
+          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsTalvez = "btn btn-sm btn-default";
+          this.clsNaoMeInteressa = "btn btn-sm btn-success";
         }
 
         const swalWithBootstrapButtons = swal.mixin({
-          confirmButtonClass: 'btn btn-success',
-          cancelButtonClass: 'btn btn-danger',
-          buttonsStyling: false,
-        })
+          confirmButtonClass: "btn btn-success",
+          cancelButtonClass: "btn btn-success",
+          buttonsStyling: false
+        });
 
         swal({
-          position: 'top',
-          type: 'success',
-          title: 'Classificação registrada com sucesso!',
+          position: "top",
+          type: "success",
+          title: "Classificação registrada com sucesso!",
           showConfirmButton: false,
           timer: 2000
         });
-
       });
-
   }
 }

@@ -21,14 +21,14 @@
   height: 90px;
 }
 
+.my-container {
+  margin: 5px;
+}
+
 
 i {
   color: crimson;
   font-size: 65px;
-}
-
-.my-container {
-  margin: 5px;
 }
 
 #i_javiu {
@@ -39,11 +39,11 @@ i {
   color: orange;
 }
 
-#i_paravoce {
+#i_talvez {
   color: darkorange;
 }
 
-#i_porvoce {
+#i_dispensa {
   color: darkcyan;
 }
 

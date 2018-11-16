@@ -9,34 +9,109 @@
       aria-controls="navbar"
     >
       <span class="sr-only">Toggle navigation</span>
-      <span class="glyphicon glyphicon-menu-hamburger"></span>
+      <span class="glyphicon glyphicon-menu-hamburger" style="font-size: 20px;"></span>
     </button>
     <a class="navbar-brand" href="#">
-      <span style="color: crimson; font-size: 25px; font-weight: bold">Indica</span
-      ><span style="color:darkslategrey; font-size: 25px; font-weight: bold">Moovies</span>
+      <span style="color: crimson; font-size: 25px; font-weight: bold"
+        >Indica</span
+      ><span style="color:darkslategrey; font-size: 25px; font-weight: bold"
+        >Moovies</span
+      >
     </a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li>
-        <a href=""
-          ><span class="glyphicon glyphicon-film"></span> Meus dados</a
-        >
+        <a href=""><span class="glyphicon glyphicon-th"></span> Painel</a>
       </li>
-      <li>
-        <a href="home"
-          ><span class="glyphicon glyphicon-bullhorn"></span> Filmes sugeridos</a
-        >
+    </ul>
+
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a data-toggle="dropdown" href="#"
+          ><span class="glyphicon glyphicon-list-alt"></span
+          ><span> Sua lista de filmes</span><span class="caret"></span
+        ></a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="mymoovies?status=1"
+              ><span
+                class="glyphicon glyphicon-indent-left"
+                style="margin-right:10px;color:red"
+              ></span
+              >Já vi</a
+            >
+          </li>
+          <li>
+            <a href="mymoovies?status=2"
+              ><span
+                class="glyphicon glyphicon-indent-left"
+                style="margin-right:10px;color:red"
+              ></span
+              >Quero ver</a
+            >
+          </li>
+          <li>
+              <a href="mymoovies?status=3"
+                ><span
+                  class="glyphicon glyphicon-indent-left"
+                  style="margin-right:10px;color:red"
+                ></span
+                >Talvez veja</a
+              >
+            </li>
+            <li>
+                <a href="mymoovies?status=4"
+                  ><span
+                    class="glyphicon glyphicon-indent-left"
+                    style="margin-right:10px;color:red"
+                  ></span
+                  >Dispenso</a
+                >
+              </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a data-toggle="dropdown" href="#"
+          ><span class="glyphicon glyphicon-film"></span
+          ><span> Filmes sugeridos</span><span class="caret"></span
+        ></a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="home?searchParam=top_rated"
+              ><span
+                class="glyphicon glyphicon-indent-left"
+                style="margin-right:10px;color:red"
+              ></span
+              >Aclamados</a
+            >
+          </li>
+          <li>
+            <a href="home?searchParam=popular"
+              ><span
+                class="glyphicon glyphicon-indent-left"
+                style="margin-right:10px;color:red"
+              ></span
+              >Populares</a
+            >
+          </li>
+          <li>
+            <a href="home?searchParam=upcoming"
+              ><span
+                class="glyphicon glyphicon-indent-left"
+                style="margin-right:10px;color:red"
+              ></span
+              >Estreiando</a
+            >
+          </li>
+        </ul>
       </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" *ngIf="isLogged">
-      <li>
-        <a href="profile"
-          ><span class="glyphicon glyphicon-user"></span>
-          {{ localUser.user_displayName }}
-        </a>
-      </li>
       <li>
         <a href="#"
           ><span class="glyphicon glyphicon-remove"></span>
@@ -46,8 +121,7 @@
     </ul>
   </div>
 
-  <div
-    style="padding-left: 10px; padding-right: 10px; padding-bottom:5px">
+  <div style="padding-left: 10px; padding-right: 10px;">
     <div class="form-group has-feedback">
       <input
         #srch
@@ -67,7 +141,10 @@
           </a>
         </div>
       </div>
-      <i id="i_search" class="glyphicon glyphicon-search form-control-feedback"></i>
+      <i
+        id="i_search"
+        class="glyphicon glyphicon-search form-control-feedback"
+      ></i>
     </div>
   </div>
 </nav>
