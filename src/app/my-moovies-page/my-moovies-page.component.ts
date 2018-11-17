@@ -105,6 +105,6 @@ export class MyMooviesPageComponent implements OnInit {
   }
 
   backClicked() {
-    this.router.navigate([""]);
+    window.history.back();
   }
 }
