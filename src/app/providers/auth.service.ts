@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { LocalUser } from '../models/local_user';
 import { STORAGE_KEYS } from 'app/config/storage_keys.config';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 export class AuthService {
@@ -24,6 +25,7 @@ export class AuthService {
   }
 
   logout() {
+    this.setLocalUser(null);
     return this.af.auth.logout();
   }
 

@@ -1,5 +1,29 @@
 <app-nav></app-nav>
 
+<div style="text-align: center">
+  <button class="{{btn1Class}}" (click)="go('top_rated')">
+    <span
+    class="glyphicon glyphicon-star"
+    style="margin-right:10px;color:darkgoldenrod"
+  ></span
+  >Aclamados
+  </button>
+  <button class="{{btn2Class}}" (click)="go('popular')">
+    <span
+    class="glyphicon glyphicon-fire"
+    style="margin-right:10px;color:crimson"
+  ></span
+  >Populares
+  </button>
+  <button class="{{btn3Class}}" (click)="go('upcoming')">
+    <span
+                class="glyphicon glyphicon-calendar"
+                style="margin-right:10px;color:darkgreen"
+              ></span
+              >Estreando
+  </button>
+</div>
+
 <div id="search">{{ search }}</div>
 
 <div class="col-lg-3" *ngFor="let filme of lista_filmes">
@@ -33,4 +57,14 @@
   </div>
 
   <br />
+
 </div>
+
+
+<div class="container-fluid" (click)="backClicked()">
+  <button class="btn btn-warning btn-block">
+    <span class="glyphicon glyphicon-triangle-left">Voltar</span>
+  </button>
+</div>
+
+<br />

@@ -3,12 +3,12 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { MooviesService } from "app/providers/moovies.service";
 
 @Component({
-  selector: "app-home-page",
-  templateUrl: "./home-page.component.html",
-  styleUrls: ["./home-page.component.css"],
+  selector: "app-sugestoes-page",
+  templateUrl: "./sugestoes-page.component.html",
+  styleUrls: ["./sugestoes-page.component.css"],
   providers: [MooviesService]
 })
-export class HomePageComponent implements OnInit {
+export class SugestoesPageComponent implements OnInit {
 
   arrayMoovies = [];
   selectedValue = null;
@@ -17,9 +17,12 @@ export class HomePageComponent implements OnInit {
 
   public searchParam: String;
 
+  btn1Class;
+  btn2Class;
+  btn3Class;
+
   public lista_filmes = new Array<any>();
   public search: String;
-  public colorTitle: String = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -36,14 +39,20 @@ export class HomePageComponent implements OnInit {
 
   getLastMoovies(searchParam="top_rated") {
     if (searchParam == "top_rated") {
-      this.search = "Filmes mais bem avaliados";
-      this.colorTitle = "darkgoldenrod";
+      this.search = "Estes são os filmes melhor avaliados até agora:";
+      this.btn1Class = "btn active btn-sm";
+      this.btn2Class = "btn btn-default btn-sm";
+      this.btn3Class = "btn btn-default btn-sm";
     } else if (searchParam == "upcoming") {
-      this.search = "Filmes estreando";
-      this.colorTitle = "darkgreen";
+      this.search = "Estes são os filmes que estão estreando:";
+      this.btn1Class = "btn btn-default btn-sm";
+      this.btn2Class = "btn btn-default btn-sm";
+      this.btn3Class = "btn active btn-sm";
     } else if (searchParam == "popular") {
-      this.search = "Filmes mais populares";
-      this.colorTitle = "darkred";
+      this.search = "Estes são os filmes com maior popularidade até agora:";
+      this.btn1Class = "btn btn-default btn-sm";
+      this.btn2Class = "btn active btn-sm";
+      this.btn3Class = "btn btn-default btn-sm";
     }
 
     this.searchParam = searchParam;
@@ -55,9 +64,19 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  go(searchParam) {
+    this.router.navigate(['sugestoes'], {
+      queryParams: { searchParam: searchParam }
+    });
+  }
+
   navigate(id) {
     this.router.navigate(["moovie"], {
-      queryParams: { id: id, origem: "home", searchParam: this.searchParam }
+      queryParams: { id: id, origem: "sugestoes", searchParam: this.searchParam }
     });
+  }
+
+  backClicked() {
+    this.router.navigate([""]);
   }
 }

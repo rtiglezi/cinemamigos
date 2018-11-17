@@ -10,7 +10,7 @@ import { AuthService } from "./providers/auth.service";
 })
 export class AppComponent {
 
-  public isLogged: boolean = false;
+  public isLogged: boolean;
 
   constructor(
     public authService: AuthService,

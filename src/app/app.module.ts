@@ -9,12 +9,14 @@ import { AngularFireModule } from "angularfire2";
 import { AppComponent } from "./app.component";
 import { AuthService } from "./providers/auth.service";
 import { LoginPageComponent } from "./login-page/login-page.component";
-import { HomePageComponent } from "./home-page/home-page.component";
+import { SugestoesPageComponent } from "./sugestoes-page/sugestoes-page.component";
 import { NavComponent } from "./nav/nav.component";
 import { ProfilePageComponent } from "./profile-page/profile-page.component";
-import { MoovieDetailsComponent } from "./moovie-details/moovie-details.component";
+import { MoovieDetailsPageComponent } from "./moovie-details-page/moovie-details-page.component";
 import { PainelPageComponent } from './painel-page/painel-page.component';
 import { MyMooviesPageComponent } from './my-moovies-page/my-moovies-page.component';
+import { SwitchComponent } from "./switch/switch.component";
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDamhy3gQqiMz0i_3nwoVJAyp4qU85AutM",
@@ -26,11 +28,13 @@ export const firebaseConfig = {
 };
 
 const routes: Routes = [
-  { path: "", component: PainelPageComponent},
-  { path: "home", component: HomePageComponent },
+  { path: "", component: SwitchComponent},
+  { path: "welcome", component: WelcomePageComponent},
+  { path: "painel", component: PainelPageComponent},
+  { path: "sugestoes", component: SugestoesPageComponent },
   { path: "login", component: LoginPageComponent },
   { path: "profile", component: ProfilePageComponent },
-  { path: "moovie", component: MoovieDetailsComponent },
+  { path: "moovie", component: MoovieDetailsPageComponent },
   { path: "mymoovies", component: MyMooviesPageComponent }
 ];
 
@@ -38,12 +42,14 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HomePageComponent,
+    SugestoesPageComponent,
     NavComponent,
     ProfilePageComponent,
-    MoovieDetailsComponent,
+    MoovieDetailsPageComponent,
     PainelPageComponent,
-    MyMooviesPageComponent
+    MyMooviesPageComponent,
+    SwitchComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,

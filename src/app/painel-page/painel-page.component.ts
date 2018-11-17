@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 import { AuthService } from "app/providers/auth.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-painel-page",
@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from "@angular/router";
   styleUrls: ["./painel-page.component.css"]
 })
 export class PainelPageComponent implements OnInit {
+
   localUser = this.authService.getLocalUser();
 
   contadorJaVistos: any = 0;

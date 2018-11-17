@@ -11,17 +11,12 @@ import { MooviesService } from "app/providers/moovies.service";
 })
 export class NavComponent {
 
-  public isLogged: boolean = false;
   arrayMoovies = [];
-  localUser = this.authService.getLocalUser();
+
+  public usuario;
 
   constructor(public authService: AuthService, private router: Router, public moviesService: MooviesService) {
-    this.authService.af.auth.subscribe(auth => {
-      if (auth != null) {
-        this.isLogged = true;
-      }
-    });
-
+    this.usuario = this.authService.getLocalUser().user_displayName;
   }
 
   logout() {
@@ -39,6 +34,11 @@ export class NavComponent {
 
   selectMoovie(id) {
     this.router.navigate(["moovie"], { queryParams: { id: id } });
+  }
+
+  go(pg) {
+    console.log(pg);
+    this.router.navigate([pg]);
   }
 
 }

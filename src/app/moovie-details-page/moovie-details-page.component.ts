@@ -2,17 +2,16 @@ import { AngularFireDatabase } from "angularfire2/database";
 import { Component, OnInit } from "@angular/core";
 import { MooviesService } from "app/providers/moovies.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AuthService } from "./../providers/auth.service";
+import { AuthService } from "../providers/auth.service";
 import swal from "sweetalert2";
-import { routerNgProbeToken } from "@angular/router/src/router_module";
 
 @Component({
   selector: "app-moovie-details",
-  templateUrl: "./moovie-details.component.html",
-  styleUrls: ["./moovie-details.component.css"],
+  templateUrl: "./moovie-details-page.component.html",
+  styleUrls: ["./moovie-details-page.component.css"],
   providers: [MooviesService]
 })
-export class MoovieDetailsComponent implements OnInit {
+export class MoovieDetailsPageComponent implements OnInit {
   localUser = this.authService.getLocalUser();
 
   public clsJaVi = "btn btn-sm btn-default";
