@@ -1,5 +1,5 @@
 import { AngularFireDatabase } from "angularfire2/database";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { MooviesService } from "app/providers/moovies.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AuthService } from "../providers/auth.service";
@@ -13,6 +13,16 @@ import swal from "sweetalert2";
 })
 export class MoovieDetailsPageComponent implements OnInit {
   localUser = this.authService.getLocalUser();
+
+  public starChecked: number = 0;
+
+  public isWatched: boolean = false;
+
+  public star1Checked: boolean;
+  public star2Checked: boolean;
+  public star3Checked: boolean;
+  public star4Checked: boolean;
+  public star5Checked: boolean;
 
   public clsJaVi = "btn btn-sm btn-default";
   public clsQueroVer = "btn btn-sm btn-default";
@@ -91,6 +101,19 @@ export class MoovieDetailsPageComponent implements OnInit {
           this.clsQueroVer = "btn btn-sm btn-default";
           this.clsTalvez = "btn btn-sm btn-default";
           this.clsNaoMeInteressa = "btn btn-sm btn-default";
+          this.isWatched = true;
+          this.starChecked = r.rate;
+          if (this.starChecked == 1) {
+            this.star1Checked = true;
+          } else if (this.starChecked == 2) {
+            this.star2Checked = true;
+          } else if (this.starChecked == 3) {
+            this.star3Checked = true;
+          } else if (this.starChecked == 4) {
+            this.star4Checked = true;
+          } else if (this.starChecked == 5) {
+            this.star5Checked = true;
+          }
         } else if (this.status == "2") {
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-success";
@@ -126,7 +149,8 @@ export class MoovieDetailsPageComponent implements OnInit {
           (this.now.getMonth() + 1) +
           "/" +
           this.now.getFullYear(),
-        status: status
+        status: status,
+        rate: this.starChecked
       })
       .then(r => {
         this.status = status;
@@ -136,24 +160,28 @@ export class MoovieDetailsPageComponent implements OnInit {
           this.clsTalvez = "btn btn-sm btn-default";
           this.clsNaoMeInteressa = "btn btn-sm btn-default";
           lista = "Já vi"
+          this.isWatched = true;
         } else if (this.status == "2") {
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-success";
           this.clsTalvez = "btn btn-sm btn-default";
           this.clsNaoMeInteressa = "btn btn-sm btn-default";
           lista = "Quero ver"
+          this.isWatched = false;
         } else if (this.status == "3") {
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-default";
           this.clsTalvez = "btn btn-sm btn-success";
           this.clsNaoMeInteressa = "btn btn-sm btn-default";
-          lista = "Talvez veja"
+          lista = "Talvez veja";
+          this.isWatched = false;
         } else if (this.status == "4") {
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-default";
           this.clsTalvez = "btn btn-sm btn-default";
           this.clsNaoMeInteressa = "btn btn-sm btn-success";
-          lista = "Dispenso"
+          lista = "Dispenso";
+          this.isWatched = false;
         }
 
         const swalWithBootstrapButtons = swal.mixin({
@@ -162,13 +190,20 @@ export class MoovieDetailsPageComponent implements OnInit {
           buttonsStyling: false
         });
 
-        swal({
-          position: "top",
-          type: "success",
-          title: "Filme inserido lista: " + lista,
-          showConfirmButton: false,
-          timer: 2000
-        });
+        // swal({
+        //   position: "top",
+        //   type: "success",
+        //   title: "Filme inserido lista: " + lista,
+        //   showConfirmButton: false,
+        //   timer: 2000
+        // });
+
       });
   }
+
+  mostraValor(val) {
+    this.starChecked = parseInt(val);
+    this.updateMoovieService(1);
+  }
+
 }

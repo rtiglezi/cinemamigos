@@ -1,4 +1,4 @@
-import { AuthService } from './../providers/auth.service';
+import { AuthService } from "./../providers/auth.service";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { MooviesService } from "app/providers/moovies.service";
@@ -10,12 +10,15 @@ import { MooviesService } from "app/providers/moovies.service";
   providers: [MooviesService]
 })
 export class NavComponent {
-
   arrayMoovies = [];
 
   public usuario;
 
-  constructor(public authService: AuthService, private router: Router, public moviesService: MooviesService) {
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+    public moviesService: MooviesService
+  ) {
     this.usuario = this.authService.getLocalUser().user_displayName;
   }
 
@@ -37,8 +40,6 @@ export class NavComponent {
   }
 
   go(pg) {
-    console.log(pg);
     this.router.navigate([pg]);
   }
-
 }

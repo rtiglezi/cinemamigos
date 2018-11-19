@@ -94,10 +94,12 @@
         class="divBoxSearch"
         *ngIf="arrayMoovies.length > 0 && srch.value != ''"
       >
-        <div class="divBoxSearchInternal" *ngFor="let am of arrayMoovies">
+        <div class="divHover divBoxSearchInternal" *ngFor="let am of arrayMoovies">
           <a style="color:rgb(37, 37, 37)" href="/moovie?id={{am.id}}">
+            <div >
             <span class="glyphicon glyphicon-film spanSearchItems"></span
             >{{ am.title }} - ({{ am.release_date | date: "y" }})
+          </div>
           </a>
         </div>
       </div>

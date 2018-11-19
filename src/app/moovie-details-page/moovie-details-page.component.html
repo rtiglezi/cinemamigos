@@ -37,7 +37,8 @@
         <img src="../assets/loader-grey.gif" style="width:25px;"><br />Carregando...
     </div>
 
-    <hr />
+
+    <div>.........................................................................</div>
 
     <div style="font-size: 12px; padding-left: 5px">Gêneros:</div>
 
@@ -48,9 +49,9 @@
       {{ genre.name }}
     </span>
 
-    <hr />
+    <div>.........................................................................</div>
 
-    <div style="font-size: 12px; padding-left: 5px; margin-bottom: 3px;">Selecione uma lista pra adicionar este filme:</div>
+    <div style="font-size: 12px; padding-left: 5px; margin-top:5px; margin-bottom: 3px;">Selecione uma lista pra adicionar este filme:</div>
 
     <span (click)="updateMoovieService(1)">
       <button #marcarJaVi type="button" [class]="clsJaVi">Já vi</button> </span
@@ -67,10 +68,30 @@
         Dispenso
       </button>
     </span>
-    <hr />
+
+    <br /><br />
+
+          <div class="stars" *ngIf="isWatched">
+            <div style="font-size: 12px; padding-left: 5px; margin-bottom: 3px;">O que achou de ter assistido?
+          </div>
+            <form #frm action="" (change)="mostraValor($event.target.value)">
+              <input [checked]="star5Checked" class="star star-5" id="star-5" type="radio" value="5" name="star"/>
+              <label id="label-5" class="star far fa-grin-stars" for="star-5"><div class="label-legenda">Foi incrível!</div></label>
+              <input [checked]="star4Checked" class="star star-4" id="star-4" type="radio" value="4" name="star"/>
+              <label id="label-4" class="star far fa-grin-alt" for="star-4"><div class="label-legenda">Valeu<br />muito!</div></label>
+              <input [checked]="star3Checked" class="star star-3" id="star-3" type="radio" value="3" name="star"/>
+              <label id="label-3" class="star far fa-smile" for="star-3"><div class="label-legenda">Valeu<br/>a pena</div></label>
+              <input [checked]="star2Checked" class="star star-2" id="star-2" type="radio" value="2" name="star"/>
+              <label id="label-2" class="star far fa-meh" for="star-2"><div class="label-legenda">Perdi tempo</div></label>
+              <input [checked]="star1Checked" class="star star-1" id="star-1" type="radio" value="1" name="star"/>
+              <label id="label-1" class="star far fa-tired" for="star-1"><div class="label-legenda">Me judiei</div></label>
+            </form>
+          </div>
+
+
 
   </div>
-
+  <br />
   <div *ngIf="filme.overview" class="col-lg-12" style="padding-bottom: 10px; text-align: justify">
     {{ filme.overview }}
   </div>
