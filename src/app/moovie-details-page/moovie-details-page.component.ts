@@ -14,9 +14,9 @@ import swal from "sweetalert2";
 export class MoovieDetailsPageComponent implements OnInit {
   localUser = this.authService.getLocalUser();
 
-  public starChecked: number = 0;
-
   public isWatched: boolean = false;
+
+  public starChecked: number = 0;
 
   public star1Checked: boolean;
   public star2Checked: boolean;
@@ -45,9 +45,17 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   public alert: boolean = false;
 
+  public arraySensacoes = [];
+
+  public arraySensacoesBanco = [];
+
+  public arrayClass = [];
+
   id: string;
   origem: string;
   private sub: any;
+
+  public isThereSelection: boolean = false;
 
   constructor(
     public authService: AuthService,
@@ -94,43 +102,88 @@ export class MoovieDetailsPageComponent implements OnInit {
     this.db
       .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
       .subscribe(r => {
-        this.status = r.status;
+        if (r.status) {
 
-        if (this.status == "1") {
-          this.clsJaVi = "btn btn-sm btn-success";
-          this.clsQueroVer = "btn btn-sm btn-default";
-          this.clsTalvez = "btn btn-sm btn-default";
-          this.clsNaoMeInteressa = "btn btn-sm btn-default";
-          this.isWatched = true;
-          this.starChecked = r.rate;
-          if (this.starChecked == 1) {
-            this.star1Checked = true;
-          } else if (this.starChecked == 2) {
-            this.star2Checked = true;
-          } else if (this.starChecked == 3) {
-            this.star3Checked = true;
-          } else if (this.starChecked == 4) {
-            this.star4Checked = true;
-          } else if (this.starChecked == 5) {
-            this.star5Checked = true;
+          this.status = r.status;
+          this.isThereSelection = true;
+
+          if (this.status == "1") {
+            this.clsJaVi = "btn btn-sm btn-success";
+            this.clsQueroVer = "btn btn-sm btn-default";
+            this.isWatched = true;
+            this.starChecked = r.rate;
+            if (this.starChecked == 1) {
+              this.star1Checked = true;
+            } else if (this.starChecked == 2) {
+              this.star2Checked = true;
+            } else if (this.starChecked == 3) {
+              this.star3Checked = true;
+            } else if (this.starChecked == 4) {
+              this.star4Checked = true;
+            } else if (this.starChecked == 5) {
+              this.star5Checked = true;
+            }
+          } else if (this.status == "2") {
+            this.clsJaVi = "btn btn-sm btn-default";
+            this.clsQueroVer = "btn btn-sm btn-success";
           }
-        } else if (this.status == "2") {
-          this.clsJaVi = "btn btn-sm btn-default";
-          this.clsQueroVer = "btn btn-sm btn-success";
-          this.clsTalvez = "btn btn-sm btn-default";
-          this.clsNaoMeInteressa = "btn btn-sm btn-default";
-        } else if (this.status == "3") {
+        } else {
+
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-default";
-          this.clsTalvez = "btn btn-sm btn-success";
-          this.clsNaoMeInteressa = "btn btn-sm btn-default";
-        } else if (this.status == "4") {
-          this.clsJaVi = "btn btn-sm btn-default";
-          this.clsQueroVer = "btn btn-sm btn-default";
-          this.clsTalvez = "btn btn-sm btn-default";
-          this.clsNaoMeInteressa = "btn btn-sm btn-success";
+          this.isWatched = false;
+
         }
       });
+  }
+
+  deleteMoovie() {
+    const swalWithBootstrapButtons = swal.mixin({
+      confirmButtonClass: "btn btn-success",
+      cancelButtonClass: "btn btn-danger",
+      buttonsStyling: false
+    });
+
+    swalWithBootstrapButtons({
+      title: "Limpar a seleção atual e excluir o filme da sua lista?",
+      //text: "Este filme será excluído de sua lista.",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sim",
+      confirmButtonColor: "red",
+      cancelButtonText: "Cancelar",
+      buttonsStyling: true,
+      reverseButtons: false,
+    }).then(result => {
+      if (result.value) {
+        this.deleteMoovieService().then(() => {
+          swalWithBootstrapButtons("O filme foi excluído de sua lista.", "", "success");
+          this.starChecked = 0;
+          this.star2Checked = false;
+          this.star3Checked = false;
+          this.star4Checked = false;
+          this.star5Checked = false;
+          this.isThereSelection = false;
+          this.getMoovieService();
+        });
+      }
+      // else if (
+      //   // Read more about handling dismissals
+      //   result.dismiss === swal.DismissReason.cancel
+      // ) {
+      //   swalWithBootstrapButtons(
+      //     'Cancelled',
+      //     'Your imaginary file is safe :)',
+      //     'error'
+      //   )
+      // }
+    });
+  }
+
+  deleteMoovieService() {
+    return this.db
+      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
+      .remove();
   }
 
   updateMoovieService(status) {
@@ -153,36 +206,6 @@ export class MoovieDetailsPageComponent implements OnInit {
         rate: this.starChecked
       })
       .then(r => {
-        this.status = status;
-        if (this.status == "1") {
-          this.clsJaVi = "btn btn-sm btn-success";
-          this.clsQueroVer = "btn btn-sm btn-default";
-          this.clsTalvez = "btn btn-sm btn-default";
-          this.clsNaoMeInteressa = "btn btn-sm btn-default";
-          lista = "Já vi"
-          this.isWatched = true;
-        } else if (this.status == "2") {
-          this.clsJaVi = "btn btn-sm btn-default";
-          this.clsQueroVer = "btn btn-sm btn-success";
-          this.clsTalvez = "btn btn-sm btn-default";
-          this.clsNaoMeInteressa = "btn btn-sm btn-default";
-          lista = "Quero ver"
-          this.isWatched = false;
-        } else if (this.status == "3") {
-          this.clsJaVi = "btn btn-sm btn-default";
-          this.clsQueroVer = "btn btn-sm btn-default";
-          this.clsTalvez = "btn btn-sm btn-success";
-          this.clsNaoMeInteressa = "btn btn-sm btn-default";
-          lista = "Talvez veja";
-          this.isWatched = false;
-        } else if (this.status == "4") {
-          this.clsJaVi = "btn btn-sm btn-default";
-          this.clsQueroVer = "btn btn-sm btn-default";
-          this.clsTalvez = "btn btn-sm btn-default";
-          this.clsNaoMeInteressa = "btn btn-sm btn-success";
-          lista = "Dispenso";
-          this.isWatched = false;
-        }
 
         const swalWithBootstrapButtons = swal.mixin({
           confirmButtonClass: "btn btn-success",
@@ -190,13 +213,27 @@ export class MoovieDetailsPageComponent implements OnInit {
           buttonsStyling: false
         });
 
-        // swal({
-        //   position: "top",
-        //   type: "success",
-        //   title: "Filme inserido lista: " + lista,
-        //   showConfirmButton: false,
-        //   timer: 2000
-        // });
+        swal({
+          position: "top",
+          type: "success",
+          title: "Informação registrada!",
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+        this.status = status;
+        this.isThereSelection = true;
+        if (this.status == "1") {
+          this.clsJaVi = "btn btn-sm btn-success";
+          this.clsQueroVer = "btn btn-sm btn-default";
+          lista = "Já vi";
+          this.isWatched = true;
+        } else if (this.status == "2") {
+          this.clsJaVi = "btn btn-sm btn-default";
+          this.clsQueroVer = "btn btn-sm btn-success";
+          lista = "Quero ver";
+          this.isWatched = false;
+        }
 
       });
   }
@@ -205,5 +242,4 @@ export class MoovieDetailsPageComponent implements OnInit {
     this.starChecked = parseInt(val);
     this.updateMoovieService(1);
   }
-
 }

@@ -17,8 +17,6 @@ export class MyMooviesPageComponent implements OnInit {
 
   btn1Class;
   btn2Class;
-  btn3Class;
-  btn4Class;
 
   resultado: any;
 
@@ -45,26 +43,11 @@ export class MyMooviesPageComponent implements OnInit {
         this.search = "Filmes que você já viu";
         this.btn1Class = "btn active btn-sm";
         this.btn2Class = "btn btn-default btn-sm";
-        this.btn3Class = "btn btn-default btn-sm";
-        this.btn4Class = "btn btn-default btn-sm";
       } else if (status == "2") {
         this.search = "Filmes que você quer ver";
         this.btn1Class = "btn btn-default btn-sm";
         this.btn2Class = "btn active btn-sm";
-        this.btn3Class = "btn btn-default btn-sm";
-        this.btn4Class = "btn btn-default btn-sm";
-      } else if (status == "3") {
-        this.search = "Filmes que você talvez veja";
-        this.btn1Class = "btn btn-default btn-sm";
-        this.btn2Class = "btn btn-default btn-sm";
-        this.btn3Class = "btn active btn-sm";
-        this.btn4Class = "btn btn-default btn-sm";
-      } else if (status == "4") {
-        this.search = "Filmes que você dispensou";
-        this.btn1Class = "btn btn-default btn-sm";
-        this.btn2Class = "btn btn-default btn-sm";
-        this.btn3Class = "btn btn-default btn-sm";
-        this.btn4Class = "btn active btn-sm";
+
       }
       this.status = status;
       this.searchParam = qp["searchParam"];

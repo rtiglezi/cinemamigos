@@ -31,6 +31,7 @@ export class NavComponent {
     this.moviesService.getMovies(query).subscribe(data => {
       const response = data as any;
       const objeto_retorno = JSON.parse(response._body);
+      console.log(objeto_retorno.results);
       this.arrayMoovies = objeto_retorno.results;
     });
   }

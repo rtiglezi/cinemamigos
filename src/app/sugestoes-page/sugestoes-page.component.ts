@@ -37,7 +37,7 @@ export class SugestoesPageComponent implements OnInit {
     });
   }
 
-  getLastMoovies(searchParam="top_rated") {
+  getLastMoovies(searchParam="popular") {
     if (searchParam == "top_rated") {
       this.search = "Estes são os filmes melhor avaliados até agora:";
       this.btn1Class = "btn active btn-sm";

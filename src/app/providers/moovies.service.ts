@@ -21,7 +21,7 @@ export class MooviesService {
     }
   }
 
-  getLatestMovies(search = "top_rated", page = 1) {
+  getLatestMovies(search = "popular", page = 1) {
     return this.http.get(
       this.baseApiPath +
         `/movie/${search}?page=${page}&api_key=` +

@@ -17,26 +17,12 @@
     </div>
   </div>
 
-  <div class="col-lg-6 col-md-6">
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="row row-center">
-          <div class="huge">
-            <strong>Você ainda não adiciou nenhum amigo</strong>
-            <div id="separador"></div>
-            <button class="btn btn-sm btn-danger">Localizar e <strong>adicionar</strong> amigos agora</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div (click)="navigate(1)" class="col-lg-3 col-md-6">
     <div class="panel">
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-3">
-            <i id="i_javiu" class="glyphicon glyphicon-ok-sign"></i>
+            <i id="i_javiu" class="fas fa-check-double"></i>
           </div>
           <div class="col-xs-9 text-right">
             <div class="huge">
@@ -56,7 +42,7 @@
       <div class="panel-heading">
         <div class="row">
           <div class="col-xs-3">
-            <i id="i_querver" class="glyphicon glyphicon-screenshot"></i>
+            <i id="i_querver" class="fas fa-check"></i>
           </div>
           <div class="col-xs-9 text-right">
             <div class="huge">
@@ -71,44 +57,3 @@
       </div>
     </div>
   </div>
-  <div (click)="navigate(3)" class="col-lg-3 col-md-6">
-      <div class="panel">
-        <div class="panel-heading">
-          <div class="row">
-            <div class="col-xs-3">
-              <i id="i_talvez" class="glyphicon glyphicon-hourglass"></i>
-            </div>
-            <div class="col-xs-9 text-right">
-              <div class="huge">
-                  <strong>TALVEZ VEJA:</strong><br /><span
-                  class="numero"
-                  ><span *ngIf="contadorTalvez">{{ contadorTalvez }}</span>
-                  <span *ngIf="!contadorTalvez"><img src="../assets/loader-red.gif" style="margin-bottom:10px; margin-right: 5px;"></span></span
-                > filme(s)
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div (click)="navigate(4)" class="col-lg-3 col-md-6">
-        <div class="panel">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-xs-3">
-                <i id="i_dispensa" class="glyphicon glyphicon-send"></i>
-              </div>
-              <div class="col-xs-9 text-right">
-                <div class="huge">
-                    <strong>DISPENSOU:</strong><br /><span
-                    class="numero"
-                    ><span *ngIf="contadorDispensa">{{ contadorDispensa }}</span>
-                    <span *ngIf="!contadorDispensa"><img src="../assets/loader-red.gif" style="margin-bottom:10px; margin-right: 5px;"></span></span
-                  > filme(s)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-</div>

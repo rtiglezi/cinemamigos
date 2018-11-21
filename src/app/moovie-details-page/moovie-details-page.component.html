@@ -1,113 +1,152 @@
 <app-nav></app-nav>
 
-<div style="margin-left: 15px; margin-right: 15px">
-<div class="box container" style="padding-top: 20px; padding-bottom: 20px">
-  <div class="col-lg-12">
-
-
-    <div
-      *ngIf="filme.backdrop_path"
-      class="col-lg-6"
-      style="padding-bottom: 15px"
-    >
+<div style="margin: 0px 5px 0px 5px">
+  <div class="box container" style="padding-top: 10px; padding-bottom: 10px;">
+    <div *ngIf="filme.backdrop_path" class="col-lg-6">
       <img
         [src]="'https://image.tmdb.org/t/p/w500' + filme.backdrop_path"
         class="img-fluid img-backdrop"
+        style="margin: 0px 0px 5px 0px"
       />
     </div>
 
+    <div style="padding: 0px 15px 0px 15px">
+      <div style="font-weight: bolder;" *ngIf="filme.backdrop_path">
+        {{ filme.title }} ({{ filme.release_date | date: "y" }})
+        <div>
 
-    <div style="font-weight: bolder;" *ngIf="filme.backdrop_path">
-      {{ filme.title }} ({{ filme.release_date | date: "y" }})
-      <div>
-        <span
-          class="glyphicon glyphicon-star"
-          style="padding-right: 3px; color:#fdc306da;"
-        ></span
-        >{{ filme.vote_average }} |
-        <span
-          class="glyphicon glyphicon-fire"
-          style="padding-right: 3px; color: #b6311fda;"
-        ></span
-        >{{ filme.popularity }}
+          <span
+            class="glyphicon glyphicon-fire"
+            style="padding-right: 3px; color: #b6311fda;"
+          ></span
+          >{{ filme.popularity }} | <span
+            class="glyphicon glyphicon-star"
+            style="padding-right: 3px; color:#fdc306da;"
+          ></span
+          >{{ filme.vote_average }}
+        </div>
+      </div>
+
+      <div *ngIf="!filme.title" style="text-align: center;">
+        <img
+          src="../assets/loader-grey.gif"
+          style="width:25px;"
+        /><br />Carregando...
+      </div>
+
+      <hr />
+
+      <div style="font-size: 12px;">Gêneros:</div>
+
+      <span
+        *ngFor="let genre of filme.genres"
+        style="font-size: 12px; color: #222222; background-color: #DDAC0A; margin: 2px; border-radius: 3px; padding: 2px 5px 2px 5px;"
+      >
+        {{ genre.name }}
+      </span>
+
+      <hr />
+
+      <div style="font-size: 12px; margin-bottom: 3px;">
+        Selecione uma lista pra adicionar este filme:
+      </div>
+
+      <span (click)="updateMoovieService(1)">
+        <button #marcarJaVi type="button" [class]="clsJaVi">
+          Já vi
+        </button> </span
+      ><span (click)="updateMoovieService(2)">
+        <button #marcarQueroVer type="button" [class]="clsQueroVer">
+          Quero ver
+        </button> </span
+      ><span (click)="deleteMoovie()">
+        <button *ngIf="isThereSelection" type="button" class="btn btn-xs btn-secondary">
+          <i class="fas fa-undo" style="color: red"></i> Limpar seleção
+        </button>
+      </span>
+
+      <hr *ngIf="isWatched" />
+
+      <div class="stars" *ngIf="isWatched">
+        <div style="font-size: 12px; margin-bottom: 3px;">
+          Como você avalia este filme?
+        </div>
+        <form #frm action="" (change)="mostraValor($event.target.value)">
+          <input
+            [checked]="star5Checked"
+            class="star star-5"
+            id="star-5"
+            type="radio"
+            value="5"
+            name="star"
+          />
+          <label id="label-5" class="star far fa-grin-stars" for="star-5"
+            ><div class="label-legenda">Memo-<br />rável!</div></label
+          >
+          <input
+            [checked]="star4Checked"
+            class="star star-4"
+            id="star-4"
+            type="radio"
+            value="4"
+            name="star"
+          />
+          <label id="label-4" class="star far fa-grin-alt" for="star-4"
+            ><div class="label-legenda">Muito bom</div></label
+          >
+          <input
+            [checked]="star3Checked"
+            class="star star-3"
+            id="star-3"
+            type="radio"
+            value="3"
+            name="star"
+          />
+          <label id="label-3" class="star far fa-smile" for="star-3"
+            ><div class="label-legenda">Bom</div></label
+          >
+          <input
+            [checked]="star2Checked"
+            class="star star-2"
+            id="star-2"
+            type="radio"
+            value="2"
+            name="star"
+          />
+          <label id="label-2" class="star far fa-meh" for="star-2"
+            ><div class="label-legenda">Medi-<br />ano</div></label
+          >
+          <input
+            [checked]="star1Checked"
+            class="star star-1"
+            id="star-1"
+            type="radio"
+            value="1"
+            name="star"
+          />
+          <label id="label-1" class="star far fa-tired" for="star-1"
+            ><div class="label-legenda">Ruim</div></label
+          >
+        </form>
+      </div>
+
+      <hr />
+
+      <div
+        *ngIf="filme.overview"
+        style="padding-bottom: 10px; text-align: justify"
+      >
+        {{ filme.overview }}
+      </div>
+
+      <hr />
+
+      <div (click)="backClicked()">
+        <button class="btn btn-warning btn-block">
+          <span class="glyphicon glyphicon-triangle-left">Voltar</span>
+        </button>
       </div>
     </div>
-
-    <div *ngIf="!filme.title" style="text-align: center;">
-        <img src="../assets/loader-grey.gif" style="width:25px;"><br />Carregando...
-    </div>
-
-
-    <div>.........................................................................</div>
-
-    <div style="font-size: 12px; padding-left: 5px">Gêneros:</div>
-
-    <span
-      *ngFor="let genre of filme.genres"
-      style="font-size: 12px; color: #222222; background-color: #DDAC0A; margin: 2px; border-radius: 3px; padding: 2px 5px 2px 5px;"
-    >
-      {{ genre.name }}
-    </span>
-
-    <div>.........................................................................</div>
-
-    <div style="font-size: 12px; padding-left: 5px; margin-top:5px; margin-bottom: 3px;">Selecione uma lista pra adicionar este filme:</div>
-
-    <span (click)="updateMoovieService(1)">
-      <button #marcarJaVi type="button" [class]="clsJaVi">Já vi</button> </span
-    ><span (click)="updateMoovieService(2)">
-      <button #marcarQueroVer type="button" [class]="clsQueroVer">
-        Quero ver
-      </button> </span
-    ><span (click)="updateMoovieService(3)">
-      <button #marcarTalvez type="button" [class]="clsTalvez">
-        Talvez veja
-      </button> </span
-    ><span (click)="updateMoovieService(4)">
-      <button #marcarNaoMeInteressa type="button" [class]="clsNaoMeInteressa">
-        Dispenso
-      </button>
-    </span>
-
-    <br /><br />
-
-          <div class="stars" *ngIf="isWatched">
-            <div style="font-size: 12px; padding-left: 5px; margin-bottom: 3px;">O que achou de ter assistido?
-          </div>
-            <form #frm action="" (change)="mostraValor($event.target.value)">
-              <input [checked]="star5Checked" class="star star-5" id="star-5" type="radio" value="5" name="star"/>
-              <label id="label-5" class="star far fa-grin-stars" for="star-5"><div class="label-legenda">Foi incrível!</div></label>
-              <input [checked]="star4Checked" class="star star-4" id="star-4" type="radio" value="4" name="star"/>
-              <label id="label-4" class="star far fa-grin-alt" for="star-4"><div class="label-legenda">Valeu<br />muito!</div></label>
-              <input [checked]="star3Checked" class="star star-3" id="star-3" type="radio" value="3" name="star"/>
-              <label id="label-3" class="star far fa-smile" for="star-3"><div class="label-legenda">Valeu<br/>a pena</div></label>
-              <input [checked]="star2Checked" class="star star-2" id="star-2" type="radio" value="2" name="star"/>
-              <label id="label-2" class="star far fa-meh" for="star-2"><div class="label-legenda">Perdi tempo</div></label>
-              <input [checked]="star1Checked" class="star star-1" id="star-1" type="radio" value="1" name="star"/>
-              <label id="label-1" class="star far fa-tired" for="star-1"><div class="label-legenda">Me judiei</div></label>
-            </form>
-          </div>
-
-
-
   </div>
-  <br />
-  <div *ngIf="filme.overview" class="col-lg-12" style="padding-bottom: 10px; text-align: justify">
-    {{ filme.overview }}
-  </div>
-
-  <br />
-  <div style="padding: 3px"></div>
-
-  <div class="container-fluid" (click)="backClicked()">
-    <button class="btn btn-warning btn-block">
-      <span
-        class="glyphicon glyphicon-triangle-left"
-        style="padding-right: 5px;"
-        >Voltar</span
-      >
-    </button>
-  </div>
-</div>
 </div>
 <br />
