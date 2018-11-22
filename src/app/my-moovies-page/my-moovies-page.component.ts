@@ -40,14 +40,13 @@ export class MyMooviesPageComponent implements OnInit {
       }
       this.getWatcheds(status);
       if (status == "1") {
-        this.search = "Filmes que você já viu";
+        this.search = "Filmes na minha lista dos já vistos";
         this.btn1Class = "btn active btn-sm";
         this.btn2Class = "btn btn-default btn-sm";
       } else if (status == "2") {
-        this.search = "Filmes que você quer ver";
+        this.search = "Filmes na minha lista para ver";
         this.btn1Class = "btn btn-default btn-sm";
         this.btn2Class = "btn active btn-sm";
-
       }
       this.status = status;
       this.searchParam = qp["searchParam"];
@@ -90,4 +89,5 @@ export class MyMooviesPageComponent implements OnInit {
   backClicked() {
     window.history.back();
   }
+
 }

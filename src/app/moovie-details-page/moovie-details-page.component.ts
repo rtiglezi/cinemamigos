@@ -1,3 +1,4 @@
+import { NavComponent } from './../nav/nav.component';
 import { AngularFireDatabase } from "angularfire2/database";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { MooviesService } from "app/providers/moovies.service";
@@ -57,6 +58,10 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   public isThereSelection: boolean = false;
 
+  @ViewChild("snackbar") toast: ElementRef;
+  @ViewChild("marcarJaVi") jaVi: ElementRef;
+  @ViewChild("marcarQueroVer") queroVer: ElementRef;
+
   constructor(
     public authService: AuthService,
     private route: ActivatedRoute,
@@ -103,7 +108,6 @@ export class MoovieDetailsPageComponent implements OnInit {
       .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
       .subscribe(r => {
         if (r.status) {
-
           this.status = r.status;
           this.isThereSelection = true;
 
@@ -128,11 +132,9 @@ export class MoovieDetailsPageComponent implements OnInit {
             this.clsQueroVer = "btn btn-sm btn-success";
           }
         } else {
-
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-default";
           this.isWatched = false;
-
         }
       });
   }
@@ -153,11 +155,15 @@ export class MoovieDetailsPageComponent implements OnInit {
       confirmButtonColor: "red",
       cancelButtonText: "Cancelar",
       buttonsStyling: true,
-      reverseButtons: false,
+      reverseButtons: false
     }).then(result => {
       if (result.value) {
         this.deleteMoovieService().then(() => {
-          swalWithBootstrapButtons("O filme foi excluído de sua lista.", "", "success");
+          swalWithBootstrapButtons(
+            "O filme foi excluído de sua lista.",
+            "",
+            "success"
+          );
           this.starChecked = 0;
           this.star2Checked = false;
           this.star3Checked = false;
@@ -187,7 +193,23 @@ export class MoovieDetailsPageComponent implements OnInit {
   }
 
   updateMoovieService(status) {
+    if (status == 1) {
+      this.jaVi.nativeElement.innerHTML = "registrando ...";
+    } else if (status ==2 ) {
+      this.queroVer.nativeElement.innerHTML = "registrando...";
+    }
     let lista = "";
+
+    var dia = (this.now.getDate() < 10) ? '0' + this.now.getDate() : this.now.getDate();
+    var mes = ((this.now.getMonth() + 1) < 10) ? '0' + this.now.getMonth() : this.now.getMonth();
+    var ano = this.now.getFullYear();
+
+    var hora = (this.now.getHours() < 10) ? '0' + this.now.getHours() : this.now.getHours();
+    var minuto = (this.now.getMinutes() < 10) ? '0' + this.now.getMinutes() : this.now.getMinutes();
+    var segundo = (this.now.getSeconds() < 10) ? '0' + this.now.getSeconds() : this.now.getSeconds();
+
+    var marcado = ano + "/" + mes + "/" + dia + " " + hora + ":" + minuto + ":" + segundo;
+
     this.db
       .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
       .update({
@@ -196,50 +218,66 @@ export class MoovieDetailsPageComponent implements OnInit {
         lancamento: this.filmeAno,
         poster: this.filmePoster,
         sinopse: this.filmeSinopse,
-        marcado:
-          this.now.getDate() +
-          "/" +
-          (this.now.getMonth() + 1) +
-          "/" +
-          this.now.getFullYear(),
+        marcado: marcado,
         status: status,
         rate: this.starChecked
       })
       .then(r => {
+        // const swalWithBootstrapButtons = swal.mixin({
+        //   confirmButtonClass: "btn btn-success",
+        //   cancelButtonClass: "btn btn-success",
+        //   buttonsStyling: false
+        // });
 
-        const swalWithBootstrapButtons = swal.mixin({
-          confirmButtonClass: "btn btn-success",
-          cancelButtonClass: "btn btn-success",
-          buttonsStyling: false
-        });
+        // swal({
+        //   position: "top",
+        //   type: "success",
+        //   title: "Informação registrada!",
+        //   showConfirmButton: false,
+        //   timer: 2000
+        // });
 
-        swal({
-          position: "top",
-          type: "success",
-          title: "Informação registrada!",
-          showConfirmButton: false,
-          timer: 2000
-        });
+        // this.showToast('Informação registrada.');
 
         this.status = status;
         this.isThereSelection = true;
         if (this.status == "1") {
+          this.jaVi.nativeElement.innerHTML = "Ja Vi";
           this.clsJaVi = "btn btn-sm btn-success";
           this.clsQueroVer = "btn btn-sm btn-default";
           lista = "Já vi";
           this.isWatched = true;
         } else if (this.status == "2") {
+          this.queroVer.nativeElement.innerHTML = "Quero Ver";
           this.clsJaVi = "btn btn-sm btn-default";
           this.clsQueroVer = "btn btn-sm btn-success";
           lista = "Quero ver";
           this.isWatched = false;
+          this.starChecked = 0;
+          this.star1Checked = false;
+          this.star2Checked = false;
+          this.star3Checked = false;
+          this.star4Checked = false;
+          this.star5Checked = false;
         }
-
       });
   }
 
   mostraValor(val) {
     this.starChecked = parseInt(val);
     this.updateMoovieService(1);
+  }
+
+  showToast(msg) {
+    // Get the snackbar DIV
+    var x = this.toast;
+    // Add the "show" class to DIV
+    x.nativeElement.className = "show";
+    x.nativeElement.innerHTML = msg;
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function() {
+      x.nativeElement.className = x.nativeElement.className.replace("show", "");
+    }, 3000);
   }
 }

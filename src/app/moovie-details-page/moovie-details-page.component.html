@@ -14,12 +14,12 @@
       <div style="font-weight: bolder;" *ngIf="filme.backdrop_path">
         {{ filme.title }} ({{ filme.release_date | date: "y" }})
         <div>
-
           <span
             class="glyphicon glyphicon-fire"
             style="padding-right: 3px; color: #b6311fda;"
           ></span
-          >{{ filme.popularity }} | <span
+          >{{ filme.popularity }} |
+          <span
             class="glyphicon glyphicon-star"
             style="padding-right: 3px; color:#fdc306da;"
           ></span
@@ -52,15 +52,19 @@
       </div>
 
       <span (click)="updateMoovieService(1)">
-        <button #marcarJaVi type="button" [class]="clsJaVi">
+        <button name="marcarJaVi" id="marcarJaVi" #marcarJaVi type="button" [class]="clsJaVi">
           Já vi
         </button> </span
       ><span (click)="updateMoovieService(2)">
-        <button #marcarQueroVer type="button" [class]="clsQueroVer">
+        <button name="marcarQueroVer" id="marcarQueroVer" #marcarQueroVer type="button" [class]="clsQueroVer">
           Quero ver
         </button> </span
       ><span (click)="deleteMoovie()">
-        <button *ngIf="isThereSelection" type="button" class="btn btn-xs btn-secondary">
+        <button
+          *ngIf="isThereSelection"
+          type="button"
+          class="btn btn-xs btn-secondary"
+        >
           <i class="fas fa-undo" style="color: red"></i> Limpar seleção
         </button>
       </span>
@@ -140,6 +144,9 @@
       </div>
 
       <hr />
+
+      <!-- The actual snackbar -->
+      <div name="snackbar" #snackbar id="snackbar"></div>
 
       <div (click)="backClicked()">
         <button class="btn btn-warning btn-block">

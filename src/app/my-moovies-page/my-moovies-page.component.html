@@ -19,9 +19,74 @@
   /></span>
   <span *ngIf="resultado">{{ resultado }}</span> resultados(s).
 </div>
+
+<hr *ngIf="isWatched" />
+
+<div class="stars" *ngIf="isWatched">
+  <div style="font-size: 12px; margin-bottom: 3px;">
+    Como você avalia este filme?
+  </div>
+  <form #frm action="" (change)="mostraValor($event.target.value)">
+    <input
+      [checked]="star5Checked"
+      class="star star-5"
+      id="star-5"
+      type="radio"
+      value="5"
+      name="star"
+    />
+    <label id="label-5" class="star far fa-grin-stars" for="star-5"
+      ><div class="label-legenda">Memo-<br />rável!</div></label
+    >
+    <input
+      [checked]="star4Checked"
+      class="star star-4"
+      id="star-4"
+      type="radio"
+      value="4"
+      name="star"
+    />
+    <label id="label-4" class="star far fa-grin-alt" for="star-4"
+      ><div class="label-legenda">Muito bom</div></label
+    >
+    <input
+      [checked]="star3Checked"
+      class="star star-3"
+      id="star-3"
+      type="radio"
+      value="3"
+      name="star"
+    />
+    <label id="label-3" class="star far fa-smile" for="star-3"
+      ><div class="label-legenda">Bom</div></label
+    >
+    <input
+      [checked]="star2Checked"
+      class="star star-2"
+      id="star-2"
+      type="radio"
+      value="2"
+      name="star"
+    />
+    <label id="label-2" class="star far fa-meh" for="star-2"
+      ><div class="label-legenda">Medi-<br />ano</div></label
+    >
+    <input
+      [checked]="star1Checked"
+      class="star star-1"
+      id="star-1"
+      type="radio"
+      value="1"
+      name="star"
+    />
+    <label id="label-1" class="star far fa-tired" for="star-1"
+      ><div class="label-legenda">Ruim</div></label
+    >
+  </form>
+</div>
 <br />
 
-<div class="col-lg-3" *ngFor="let filme of lista_filmes">
+<div class="col-lg-3" *ngFor="let filme of (lista_filmes)?.slice().reverse()">
   <div class="box">
     <div id="div_titulo">{{ filme.titulo }}</div>
 
