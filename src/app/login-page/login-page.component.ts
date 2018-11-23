@@ -49,6 +49,34 @@ export class LoginPageComponent {
     });
   }
 
+  dataAtualFormatadaUS(): string {
+    var data = new Date(),
+      dia = data.getDate().toString(),
+      diaF = dia.length == 1 ? "0" + dia : dia,
+      mes = (data.getMonth() + 1).toString(),
+      mesF = mes.length == 1 ? "0" + mes : mes,
+      anoF = data.getFullYear(),
+      hora = data.getHours().toString(),
+      horaF = hora.length == 1 ? "0" + hora : hora,
+      minuto = data.getMinutes().toString(),
+      minutoF = minuto.length == 1 ? "0" + minuto : minuto,
+      segundo = data.getSeconds().toString(),
+      segundoF = segundo.length == 1 ? "0" + segundo : segundo;
+    return (
+      anoF +
+      "/" +
+      mesF +
+      "/" +
+      diaF +
+      " " +
+      horaF +
+      ":" +
+      minutoF +
+      ":" +
+      segundoF
+    );
+  }
+
 
   registerLogin(user) {
     this.db
@@ -58,15 +86,7 @@ export class LoginPageComponent {
         nome: user.user_displayName,
         email: user.user_email,
         foto: user.user_photo,
-        ultimoAcesso: this.now.getDate()
-                      + '/'
-                      + (this.now.getMonth() + 1)
-                      + '/'
-                      + this.now.getFullYear()
-                      + ' '
-                      + this.now.getHours()
-                      + ':'
-                      + this.now.getMinutes()
+        ultimoAcesso: this.dataAtualFormatadaUS()
       })
       .then(r => { });
   }

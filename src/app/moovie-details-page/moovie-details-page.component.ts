@@ -1,4 +1,4 @@
-import { NavComponent } from './../nav/nav.component';
+import { NavComponent } from "./../nav/nav.component";
 import { AngularFireDatabase } from "angularfire2/database";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { MooviesService } from "app/providers/moovies.service";
@@ -192,23 +192,44 @@ export class MoovieDetailsPageComponent implements OnInit {
       .remove();
   }
 
+  dataAtualFormatadaUS(): string {
+    var data = new Date(),
+      dia = data.getDate().toString(),
+      diaF = dia.length == 1 ? "0" + dia : dia,
+      mes = (data.getMonth() + 1).toString(),
+      mesF = mes.length == 1 ? "0" + mes : mes,
+      anoF = data.getFullYear(),
+      hora = data.getHours().toString(),
+      horaF = hora.length == 1 ? "0" + hora : hora,
+      minuto = data.getMinutes().toString(),
+      minutoF = minuto.length == 1 ? "0" + minuto : minuto,
+      segundo = data.getSeconds().toString(),
+      segundoF = segundo.length == 1 ? "0" + segundo : segundo;
+    return (
+      anoF +
+      "/" +
+      mesF +
+      "/" +
+      diaF +
+      " " +
+      horaF +
+      ":" +
+      minutoF +
+      ":" +
+      segundoF
+    );
+  }
+
+
   updateMoovieService(status) {
     if (status == 1) {
       this.jaVi.nativeElement.innerHTML = "registrando ...";
-    } else if (status ==2 ) {
+    } else if (status == 2) {
       this.queroVer.nativeElement.innerHTML = "registrando...";
     }
     let lista = "";
 
-    var dia = (this.now.getDate() < 10) ? '0' + this.now.getDate() : this.now.getDate();
-    var mes = ((this.now.getMonth() + 1) < 10) ? '0' + this.now.getMonth() : this.now.getMonth();
-    var ano = this.now.getFullYear();
-
-    var hora = (this.now.getHours() < 10) ? '0' + this.now.getHours() : this.now.getHours();
-    var minuto = (this.now.getMinutes() < 10) ? '0' + this.now.getMinutes() : this.now.getMinutes();
-    var segundo = (this.now.getSeconds() < 10) ? '0' + this.now.getSeconds() : this.now.getSeconds();
-
-    var marcado = ano + "/" + mes + "/" + dia + " " + hora + ":" + minuto + ":" + segundo;
+    var marcado = this.dataAtualFormatadaUS();
 
     this.db
       .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
