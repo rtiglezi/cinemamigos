@@ -10,7 +10,14 @@
           </div>
           <div class="huge">
             <strong>{{ localUser.user_displayName }}</strong> <br />
-            ({{ localUser.user_email }})
+            ({{ localUser.user_email }})<br />
+            <a href="#"
+            ><span
+              class="glyphicon glyphicon-remove"
+              style="color: red"
+            ></span>
+            <span (click)="logout()">Sair</span>
+          </a>
           </div>
         </div>
       </div>
@@ -57,3 +64,6 @@
       </div>
     </div>
   </div>
+
+  <app-footer></app-footer>
+

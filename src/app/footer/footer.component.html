@@ -1,0 +1,75 @@
+<div
+  class="modal fade bd-example-modal-lg"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Busca de filmes</h4>
+      </div>
+      <div class="modal-body">
+        <p>Informe o nome ou parte do nome do filme:</p>
+
+        <!-- início conteúdo modal -->
+        <div class="form-group has-feedback">
+          <input
+            #srch
+            (keyup)="searchMoovies(srch.value)"
+            type="text"
+            class="txtSearch"
+            placeholder="Faça sua busca  ..."
+          />
+          <div
+            class="divBoxSearch"
+            *ngIf="arrayMoovies.length > 0 && srch.value != ''"
+          >
+            <div
+              class="divHover divBoxSearchInternal"
+              *ngFor="let am of arrayMoovies"
+            >
+              <a style="color:rgb(37, 37, 37)" href="/moovie?id={{am.id}}">
+                <div>
+                  <span class="glyphicon glyphicon-film spanSearchItems"></span
+                  >{{ am.title }} - ({{ am.release_date | date: "y" }})
+                </div>
+              </a>
+            </div>
+          </div>
+          <i
+            id="i_search"
+            class="glyphicon glyphicon-search form-control-feedback"
+          ></i>
+        </div>
+      </div>
+      <br />
+      <!-- fim conteúdo modal -->
+    </div>
+  </div>
+</div>
+
+<span id="footer" class="footer navbar-fixed-bottom visible-xs">
+  <i class="fas fa-exclamation-circle" (click)="navigate('sugestoes')"
+    ><br /><span class="footer-text">dicas filmes</span></i
+  >
+  <i class="fas fa-th-list" (click)="navigate('mymoovies')"
+    ><br /><span class="footer-text">minha lista</span></i
+  >
+  <i
+    class="fas fa-search"
+    data-toggle="modal"
+    data-target=".bd-example-modal-lg"
+    ><br /><span class="footer-text">buscar filmes</span></i
+  >
+  <i class="fas fa-user" (click)="navigate('painel')"
+    ><br /><span class="footer-text">meu perfil</span></i
+  >
+  <i class="fas fa-home" (click)="navigate('')"
+    ><br /><span class="footer-text">tela inicial</span></i
+  >
+</span>

@@ -1,27 +1,13 @@
 <nav class="nav-bar">
   <div class="navbar-header">
-    <button
-      type="button"
-      class="navbar-toggle collapsed"
-      data-toggle="collapse"
-      data-target="#navbar"
-      aria-expanded="false"
-      aria-controls="navbar"
-    >
-      <span class="sr-only">Toggle navigation</span>
-      <span
-        class="glyphicon glyphicon-menu-hamburger"
-        style="font-size: 20px;"
-      ></span>
-    </button>
     <a class="navbar-brand" href="#">
       <span style="color: crimson; font-size: 18px; font-weight: bold"
         >nome</span
       ><span style="color:darkorange; font-size: 18px; font-weight: bold"
         >do</span
       ><span style="color:olivedrab; font-size: 18px; font-weight: bold"
-      >filme</span
-    >.com
+        >filme</span
+      >.com
     </a>
   </div>
   <div id="navbar" class="navbar-collapse collapse">
@@ -29,7 +15,8 @@
       <li>
         <a href="sugestoes"
           ><span class="glyphicon glyphicon-film" style="color: crimson"></span
-          ><span> Filmes sugeridos</span></a>
+          ><span> Filmes sugeridos</span></a
+        >
       </li>
     </ul>
 
@@ -37,13 +24,25 @@
       <li>
         <a href="mymoovies"
           ><span
-          class="glyphicon glyphicon-list-alt"
-          style="color: darkorange"
-        ></span
-        ><span> Minha lista de filmes</span></a>
+            class="glyphicon glyphicon-list-alt"
+            style="color: orange"
+          ></span
+          ><span> Minha lista de filmes</span></a
+        >
       </li>
     </ul>
 
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="" data-toggle="modal" data-target=".bd-example-modal-lg"
+          ><span
+            class="glyphicon glyphicon-search"
+            style="color: red"
+          ></span
+          ><span> Buscar filmes</span></a
+        >
+      </li>
+    </ul>
 
 
     <ul class="nav navbar-nav navbar-right">
@@ -63,7 +62,7 @@
                 class="	glyphicon glyphicon-th"
                 style="color: darkorange"
               ></span>
-              Painel de Controle</a
+               Painel de Controle</a
             >
           </li>
           <li></li>
@@ -81,35 +80,6 @@
 
       <ul class="nav navbar-nav"></ul>
     </ul>
-  </div>
-
-  <div style="padding-left: 10px; padding-right: 10px;">
-    <div class="form-group has-feedback">
-      <input
-        #srch
-        (keyup)="searchMoovies(srch.value)"
-        type="text"
-        class="txtSearch"
-        placeholder="Utilize este campo para buscar filmes..."
-      />
-      <div
-        class="divBoxSearch"
-        *ngIf="arrayMoovies.length > 0 && srch.value != ''"
-      >
-        <div class="divHover divBoxSearchInternal" *ngFor="let am of arrayMoovies">
-          <a style="color:rgb(37, 37, 37)" href="/moovie?id={{am.id}}">
-            <div >
-            <span class="glyphicon glyphicon-film spanSearchItems"></span
-            >{{ am.title }} - ({{ am.release_date | date: "y" }})
-          </div>
-          </a>
-        </div>
-      </div>
-      <i
-        id="i_search"
-        class="glyphicon glyphicon-search form-control-feedback"
-      ></i>
-    </div>
   </div>
 </nav>
 <br />

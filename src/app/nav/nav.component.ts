@@ -10,7 +10,6 @@ import { MooviesService } from "app/providers/moovies.service";
   providers: [MooviesService]
 })
 export class NavComponent {
-  arrayMoovies = [];
 
   public usuario;
 
@@ -25,19 +24,6 @@ export class NavComponent {
   logout() {
     this.authService.logout();
     this.router.navigate(["login"]);
-  }
-
-  searchMoovies(query) {
-    this.moviesService.getMovies(query).subscribe(data => {
-      const response = data as any;
-      const objeto_retorno = JSON.parse(response._body);
-      console.log(objeto_retorno.results);
-      this.arrayMoovies = objeto_retorno.results;
-    });
-  }
-
-  selectMoovie(id) {
-    this.router.navigate(["moovie"], { queryParams: { id: id } });
   }
 
   go(pg) {

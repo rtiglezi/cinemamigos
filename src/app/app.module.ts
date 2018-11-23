@@ -17,6 +17,7 @@ import { PainelPageComponent } from './painel-page/painel-page.component';
 import { MyMooviesPageComponent } from './my-moovies-page/my-moovies-page.component';
 import { SwitchComponent } from "./switch/switch.component";
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { FooterComponent } from './footer/footer.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDamhy3gQqiMz0i_3nwoVJAyp4qU85AutM",
@@ -49,7 +50,8 @@ const routes: Routes = [
     PainelPageComponent,
     MyMooviesPageComponent,
     SwitchComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
