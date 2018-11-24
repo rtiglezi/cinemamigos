@@ -41,11 +41,6 @@ a {
 }
 
 
-#i_search {
-  color: crimson;
-  font-size: 20px;
-}
-
 #i_javiu {
   color: olivedrab;
 }
@@ -83,4 +78,68 @@ a {
 .divHover:hover {
   background-color: yellow;
 }
+
+
+
+.txtSearch {
+  padding: 5px;
+  color: rgb(78, 77, 76);
+  background-color: #eee;
+  font-style: italic;
+  font-size: 15px;
+  width: 100%;
+  height: 35px;
+  border-style: solid;
+  border-color: rgb(158, 163, 165);
+  border-width: 1px;
+  border-radius: 5px;
+}
+
+input:focus {
+  background-color: rgb(242, 243, 184);
+}
+
+.divBoxSearch {
+  width: 100%;
+  border-style: solid;
+  border-color: darkgrey;
+  border-width: 0.5px;
+  background-color: white;
+  padding: 15px 15px 15px 15px;
+  z-index: 1000;
+  position: absolute;
+}
+
+.divBoxSearchInternal {
+  text-align: left;
+  cursor: pointer;
+}
+
+.spanSearchItems {
+  padding: 3px;
+  color: darkorange;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: grey;
+  font-size: 13px;
+  font-weight: normal;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: grey;
+  font-size: 13px;
+  font-weight: normal;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: grey;
+  font-size: 13px;
+  font-weight: normal;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: grey;
+  font-size: 13px;
+  font-weight: normal;
+}
+
 
