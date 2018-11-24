@@ -2,12 +2,11 @@
 
 <div style="text-align: center">
   <button class="{{btn1Class}}" (click)="go(1)">
-    <span><i id="i_javiu" class="fas fa-check-double"></i> Já vi</span>
+    <span><i id="i_javiu" class="fas fa-check-double"></i> Já assistidos</span>
   </button>
   <button class="{{btn2Class}}" (click)="go(2)">
     <span
-      ><i id="i_querver" class="fas fa-check"></i> Quero
-      ver</span
+      ><i id="i_querver" class="fas fa-check"></i> Para assistir</span
     >
   </button>
  </div>
@@ -88,7 +87,7 @@
 
 <div class="col-lg-3" *ngFor="let filme of (lista_filmes)?.slice().reverse()">
   <div class="box">
-    <div id="div_titulo">{{ filme.titulo }}</div>
+    <div id="div_titulo">{{ filme.titulo }} ({{ filme.lancamento | date: "y" }})</div>
 
     <div class="col-lg-6 col-sm-6 col-xs-6" id="div_poster">
       <img

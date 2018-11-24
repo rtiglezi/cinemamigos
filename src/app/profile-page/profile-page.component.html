@@ -1,11 +1,106 @@
 <app-nav></app-nav>
-<div class="container">
-    <div class="jumbotron text-center">
-    <img src='{{ localUser.user_photo }}' class="avatar">
-    <br><br>
-    <div>({{ localUser.user_uid }})</div>
-    <div><strong>{{ localUser.user_displayName }}</strong></div>
-    <div>({{ localUser.user_email }})</div>
+<div class="container text-center">
+  <div class="row">
+    <div class="col-lg-6" style="margin-bottom:10px">
+      <div class="box">
+        <div>
+          <strong>{{ localUser.user_displayName }}</strong>
+        </div>
+
+        <img
+          class="img-border avatar"
+          src="{{ localUser.user_photo }}"
+        />
+        <div>Participante desde: {{ primeiroAceso | date: "dd/MM/yyyy" }}</div>
+        <div style="padding-top: 5px;">
+          <a href="#"
+            ><span class="glyphicon glyphicon-remove" style="color: red"></span>
+            <span (click)="logout()">Fazer Log-Off</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6" style="margin-bottom:1px">
+      <div *ngFor="let filme of lista_filmes">
+        <div class="box">
+          <div class="col-lg-4 col-sm-4 col-xs-4" id="div_poster">
+            <img
+              class="img-border"
+              (click)="navigate(filme.id)"
+              [src]="'https://image.tmdb.org/t/p/w92/' + filme.poster"
+            />
+          </div>
+
+          <div class="col-lg-8 col-sm-8 col-xs-8">
+            <br />Último filme que assistiu:
+            <hr />
+            <div id="div_titulo">
+              {{ filme.titulo }} ({{ filme.lancamento | date: "y" }})
+            </div>
+            <hr />
+            Assistiu em {{ filme.marcado | date: "d" }}
+            {{ filme.marcado | date: "MMM" }}
+            {{ filme.marcado | date: "y" }} <br />
+            <div>
+              <i [style.color]="colorAvaliacao" [class]="classAvaliacao"></i
+              >
+            </div>
+            <div>Achou {{ nomeAvaliacao }}</div>
+            <hr />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6" style="margin-top:10px">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i id="i_javiu" class="fas fa-check-double"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <div class="huge">
+                 Já assitiu a:<br /><span class="numero"
+                  ><span *ngIf="contadorJaVistos">{{ contadorJaVistos }}</span>
+                  <span id="c_javiu" *ngIf="!contadorJaVistos"
+                    ><img
+                      src="../assets/loader-red.gif"
+                      style="margin-bottom:10px; margin-right: 5px;"/></span
+                ></span> filme(s).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6" style="margin-top: 10px">
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+              <i id="i_querver" class="fas fa-check"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+              <div class="huge">
+                Seleciou para assistir:<br /><span class="numero"
+                  ><span *ngIf="contadorQuerVer">{{ contadorQuerVer }}</span>
+                  <span *ngIf="!contadorQuerVer"
+                    ><img
+                      src="../assets/loader-red.gif"
+                      style="margin-bottom:10px; margin-right: 5px;"/></span
+                ></span> filme(s).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+<br />
+<br />
+<br />
 <app-footer></app-footer>

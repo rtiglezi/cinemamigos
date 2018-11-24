@@ -18,6 +18,7 @@ import { MyMooviesPageComponent } from './my-moovies-page/my-moovies-page.compon
 import { SwitchComponent } from "./switch/switch.component";
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { FooterComponent } from './footer/footer.component';
+import { BuscaPageComponent } from './busca-page/busca-page.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDamhy3gQqiMz0i_3nwoVJAyp4qU85AutM",
@@ -36,7 +37,9 @@ const routes: Routes = [
   { path: "login", component: LoginPageComponent },
   { path: "profile", component: ProfilePageComponent },
   { path: "moovie", component: MoovieDetailsPageComponent },
-  { path: "mymoovies", component: MyMooviesPageComponent }
+  { path: "mymoovies", component: MyMooviesPageComponent },
+  { path: "busca", component: BuscaPageComponent }
+
 ];
 
 @NgModule({
@@ -51,7 +54,8 @@ const routes: Routes = [
     MyMooviesPageComponent,
     SwitchComponent,
     WelcomePageComponent,
-    FooterComponent
+    FooterComponent,
+    BuscaPageComponent
   ],
   imports: [
     BrowserModule,

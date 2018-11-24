@@ -1,15 +1,3 @@
-.huge {
-  padding-top: 5px;
-  font-size: 15px;
-  color: black;
-}
-
-.numero {
-  cursor: pointer;
-  font-size: 38px;
-  color: crimson;
-  font-weight: bold;
-}
 
 
 .panel {
@@ -31,6 +19,10 @@ i {
   font-size: 65px;
 }
 
+#i_indicados {
+  color: gold;
+}
+
 #i_javiu {
   color: olivedrab;
 }
@@ -47,8 +39,26 @@ i {
   color: darkorange;
 }
 
-#i_dispensa {
-  color: darkcyan;
+#i_amigos {
+  color: blue;
+}
+
+#i_privado {
+  color: #C9302C;
+}
+
+.texto-privado {
+  color: #C9302C;
+  font-weight: bold;
+}
+
+#i_publico {
+  color: #449D44;
+}
+
+.texto-publico {
+  color: #449D44;
+  font-weight: bold;
 }
 
 .avatar {

@@ -1,3 +1,4 @@
+import { firebaseConfig } from './../app.module';
 import { AngularFireDatabase } from "angularfire2/database";
 
 import { Component } from "@angular/core";
@@ -43,9 +44,9 @@ export class LoginPageComponent {
         user_email: data.auth.email,
         user_photo: data.auth.photoURL
       };
+      this.registerLogin(user);
       this.authService.setLocalUser(user);
       this.router.navigate([""]);
-      this.registerLogin(user);
     });
   }
 
@@ -79,16 +80,28 @@ export class LoginPageComponent {
 
 
   registerLogin(user) {
+
+    this.db.object("usuarios/" + user.user_uid).subscribe(r=>{
+      if(!r.dados.Id){
+        this.db.object("usuarios/" + user.user_uid + "/dados")
+        .update({
+          Id: user.user_uid,
+          nome: user.user_displayName,
+          email: user.user_email,
+          foto: user.user_photo,
+          primeiroAcesso: this.dataAtualFormatadaUS(),
+          ultimoAcesso: this.dataAtualFormatadaUS()
+        })
+        .then(() => {});
+      }
+    });
+
     this.db
       .object("usuarios/" + user.user_uid + "/dados")
       .update({
-        Id: user.user_uid,
-        nome: user.user_displayName,
-        email: user.user_email,
-        foto: user.user_photo,
         ultimoAcesso: this.dataAtualFormatadaUS()
       })
-      .then(r => { });
+      .then(() => { });
   }
 
 

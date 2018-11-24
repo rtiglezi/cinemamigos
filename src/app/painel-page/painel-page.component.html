@@ -1,69 +1,129 @@
 <app-nav></app-nav>
 
+<div
+  class="modal fade bd-example-modal-lg-painel"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myLargeModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+        <h4 class="modal-title">Modo de Privacidade</h4>
+      </div>
+      <div class="modal-body">
+        <!-- início conteúdo modal -->
+
+        <div *ngIf="!privado">
+          <p><i id="i_publico" class="fas fa-child"></i></p>
+          <p>
+            Seu nível de privacidade atual é
+            <span class="texto-publico">PÚBLICO</span>, o que significa que você
+            pode ver o perfil de outros usuários e também pode ter seu perfil
+            visto por eles. Este é o nível de privacidade padrão do sistema.
+          </p>
+          <p>
+            Somente com o nível público você poderá indicar e receber
+            indicações de filmes, portanto a alteração para o perfil privado
+            fará com que essas funções estejam inabilitadas.
+          </p>
+          <p>
+            <button (click)="setPrivacidade(true)" class="btn btn-danger">
+              Alternar para PRIVADO
+            </button>
+            <button class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </p>
+        </div>
+
+        <div *ngIf="privado">
+          <p><i id="i_privado" class="fas fa-user-secret"></i></p>
+          <p>
+            Seu nível de privacidade atual é
+            <span class="texto-privado">PRIVADO</span>, o que significa que você
+            não pode ver o perfil de outros usuários e também não pode ter seu
+            perfil visto por eles.
+          </p>
+          <p>
+            Somente com o nível público você poderá indicar e receber
+            indicações de filmes, portanto a alteração para o perfil público
+            fará com que essas funções sejam habilitadas.
+          </p>
+
+          <p>
+            <button class="btn btn-success" (click)="setPrivacidade(false)">
+              Altenar para PÚBLICO
+            </button>
+            <button class="btn btn-default" data-dismiss="modal">Fechar</button>
+          </p>
+
+        </div>
+
+        <!-- fim conteúdo modal -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="my-container">
-  <div class="col-lg-6 col-md-6">
+
+  <div class="col-lg-3 col-md-6" *ngIf="!privado">
     <div class="panel">
       <div class="panel-heading">
-        <div class="row row-center">
-          <div class="col-xs-3">
-            <img src="{{ localUser.user_photo }}" class="avatar" />
+        <div class="row">
+          <div class="col-xs-2">
+            <i id="i_publico" class="fas fa-child"></i>
           </div>
-          <div class="huge">
-            <strong>{{ localUser.user_displayName }}</strong> <br />
-            ({{ localUser.user_email }})<br />
-            <a href="#"
-            ><span
-              class="glyphicon glyphicon-remove"
-              style="color: red"
-            ></span>
-            <span (click)="logout()">Sair</span>
-          </a>
+          <div class="col-xs-10 text-right">
+            <div class="huge">
+              Seu nível atual de privacidade é<br /><span class="texto-publico">PÚBLICO</span
+              ><br />
+              <a
+                href="#"
+                data-toggle="modal"
+                data-target=".bd-example-modal-lg-painel"
+                ><span class="fas fa-fingerprint" style="color: red"></span>
+                <span>Alterar nível de privacidade</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div (click)="navigate(1)" class="col-lg-3 col-md-6">
+  <div class="col-lg-3 col-md-6" *ngIf="privado">
     <div class="panel">
       <div class="panel-heading">
         <div class="row">
-          <div class="col-xs-3">
-            <i id="i_javiu" class="fas fa-check-double"></i>
+          <div class="col-xs-2">
+            <i id="i_privado" class="fas fa-user-secret"></i>
           </div>
-          <div class="col-xs-9 text-right">
+          <div class="col-xs-10 text-right">
             <div class="huge">
-                <strong>JÁ VISTOS:</strong><br /><span
-                class="numero"
-                ><span *ngIf="contadorJaVistos">{{ contadorJaVistos }}</span>
-                <span id="c_javiu" *ngIf="!contadorJaVistos"><img src="../assets/loader-red.gif" style="margin-bottom:10px; margin-right: 5px;"></span></span
-              > filme(s)
+              Seu perfil atual é<br /><span class="texto-privado">PRIVADO</span
+              ><br />
+              <a
+                href="#"
+                data-toggle="modal"
+                data-target=".bd-example-modal-lg-painel"
+                ><span class="fas fa-fingerprint" style="color: red"></span>
+                <span>Alterar modo de privacidade</span>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div (click)="navigate(2)" class="col-lg-3 col-md-6">
-    <div class="panel">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-3">
-            <i id="i_querver" class="fas fa-check"></i>
-          </div>
-          <div class="col-xs-9 text-right">
-            <div class="huge">
-                <strong>PARA VER</strong><br /><span
-                class="numero"
-                ><span *ngIf="contadorQuerVer">{{ contadorQuerVer }}</span>
-                <span *ngIf="!contadorQuerVer"><img src="../assets/loader-red.gif" style="margin-bottom:10px; margin-right: 5px;"></span></span
-              > filme(s)
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+
+
+  <br />
+  <br />
 
   <app-footer></app-footer>
-
+</div>

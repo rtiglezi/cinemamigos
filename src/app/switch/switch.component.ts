@@ -36,9 +36,7 @@ export class SwitchComponent implements OnInit {
             queryParams: { msg: "1" }
           });
         } else {
-          this.router.navigate(["welcome"], {
-            queryParams: { msg: "2" }
-          });
+          this.router.navigate(["profile"]);
         }
       });
   }

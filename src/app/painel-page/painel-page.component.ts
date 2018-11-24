@@ -12,10 +12,8 @@ export class PainelPageComponent implements OnInit {
 
   localUser = this.authService.getLocalUser();
 
-  contadorJaVistos: any = 0;
-  contadorQuerVer: any = 0;
-  contadorTalvez: any = 0;
-  contadorDispensa: any = 0;
+  privado: boolean;
+
 
   constructor(
     private db: AngularFireDatabase,
@@ -24,41 +22,25 @@ export class PainelPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getMoovieService();;
+    this.getPrivacidade();
   }
 
-  getMoovieService() {
-    this.db
-      .list("usuarios/" + this.localUser.user_uid + "/filmes")
-      .subscribe(r => {
-        this.contadorJaVistos = 0;
-        this.contadorQuerVer = 0;
-        this.contadorTalvez = 0;
-        this.contadorDispensa = 0;
-
-        r.map(m => {
-          if (m.status == 1) {
-            this.contadorJaVistos++;
-          }
-          if (m.status == 2) {
-            this.contadorQuerVer++;
-          }
-          if (m.status == 3) {
-            this.contadorTalvez++;
-          }
-          if (m.status == 4) {
-            this.contadorDispensa++;
-          }
-
-        });
-
-        this.contadorJaVistos = this.contadorJaVistos.toString();
-        this.contadorQuerVer = this.contadorQuerVer.toString();
-        this.contadorTalvez = this.contadorTalvez.toString();
-        this.contadorDispensa = this.contadorDispensa.toString();
-
-      });
+  setPrivacidade(privacidade) {
+    this.db.object("usuarios/" + this.localUser.user_uid + "/dados")
+    .update({
+      privado: privacidade
+    }).then(r=>{
+      this.privado = privacidade;
+    })
   }
+
+  getPrivacidade() {
+    this.db.object("usuarios/" + this.localUser.user_uid + "/dados")
+    .subscribe(r => {
+      this.privado = r.privado;
+    })
+  }
+
 
   navigate(status) {
     this.router.navigate(["mymoovies"], {

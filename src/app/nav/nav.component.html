@@ -1,61 +1,3 @@
-<div
-  class="modal fade bd-example-modal-lg-nav"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myLargeModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">
-          &times;
-        </button>
-        <h4 class="modal-title">Busca de filmes</h4>
-      </div>
-      <div class="modal-body">
-        <p>Informe o nome ou parte do nome do filme:</p>
-
-        <!-- início conteúdo modal -->
-        <div class="form-group has-feedback">
-          <input
-            #srchNav
-            (keyup)="searchMoovies(srchNav.value)"
-            type="text"
-            class="txtSearch"
-            placeholder="Faça sua busca  ..."
-          />
-          <div
-            class="divBoxSearch"
-            *ngIf="arrayMoovies.length > 0 && srchNav.value != ''"
-          >
-            <div
-              class="divHover divBoxSearchInternal"
-              *ngFor="let am of arrayMoovies"
-            >
-              <a style="color:rgb(37, 37, 37)" href="/moovie?id={{am.id}}">
-                <div>
-                  <span class="glyphicon glyphicon-film spanSearchItems"></span
-                  >{{ am.title }} - ({{ am.release_date | date: "y" }})
-                </div>
-              </a>
-            </div>
-          </div>
-          <span #srchIconNav>
-            <i
-              class="glyphicon glyphicon-search form-control-feedback"
-            ></i>
-          </span>
-        </div>
-      </div>
-      <br />
-      <!-- fim conteúdo modal -->
-    </div>
-  </div>
-</div>
-
-
-
 <nav class="nav-bar">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">
@@ -73,7 +15,7 @@
       <li>
         <a href="sugestoes"
           ><span class="glyphicon glyphicon-film" style="color: crimson"></span
-          ><span> Filmes sugeridos</span></a
+          ><span> Dicas de filmes</span></a
         >
       </li>
     </ul>
@@ -85,7 +27,7 @@
             class="glyphicon glyphicon-list-alt"
             style="color: orange"
           ></span
-          ><span> Minha lista de filmes</span></a
+          ><span> Meus filmes</span></a
         >
       </li>
     </ul>
@@ -93,7 +35,7 @@
     <ul class="nav navbar-nav">
       <li>
         <a (click)="setFocus()"
-        href="" data-toggle="modal" data-target=".bd-example-modal-lg-nav"
+        href="busca"
           ><span
             class="glyphicon glyphicon-search"
             style="color: red"
@@ -116,16 +58,24 @@
         ></a>
         <ul class="dropdown-menu">
           <li>
-            <a href="painel"
+            <a href="profile"
               ><span
-                class="	glyphicon glyphicon-th"
+                class="fas fa-user"
                 style="color: darkorange"
               ></span>
-               Painel de Controle</a
+               Perfil</a
             >
           </li>
-          <li></li>
           <li>
+              <a href="painel"
+                ><span
+                  class="fas fa-cog"
+                  style="color: rgb(54, 53, 53)"
+                ></span>
+                 Configurações.</a
+              >
+            </li>
+             <li>
             <a href="#"
               ><span
                 class="glyphicon glyphicon-remove"
