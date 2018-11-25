@@ -18,13 +18,11 @@
     cursor: pointer;
   }
 
-  i:hover {
-    color: crimson;
+
+  a:hover {
+    color: orange;
   }
 
-  i:active {
-    color: crimson;
-  }
 
   .footer-text {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

@@ -1,4 +1,3 @@
-import { firebaseConfig } from './../app.module';
 import { AngularFireDatabase } from "angularfire2/database";
 
 import { Component } from "@angular/core";

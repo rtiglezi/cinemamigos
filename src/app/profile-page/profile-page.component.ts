@@ -123,19 +123,7 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
-  go(status) {
-    this.router.navigate(["mymoovies"], {
-      queryParams: { status: status }
-    });
-  }
-
-  navigate(id) {
-    this.router.navigate(["moovie"], {
-      queryParams: { id: id, origem: "mymoovies" }
-    });
-  }
-
-  logout() {
+    logout() {
     this.authService.logout();
     this.router.navigate(["login"]);
   }

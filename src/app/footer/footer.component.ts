@@ -11,11 +11,36 @@ import { MooviesService } from "app/providers/moovies.service";
 export class FooterComponent implements OnInit {
   arrayMoovies = [];
 
+  colorSugestoes: string;
+  colorMyMoovies: string;
+  colorBusca: string;
+  colorProfile: string;
+  colorPainel: string;
+
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
 
-  navigate(destino) {
+    var pathName = window.location.pathname;
+    if (pathName=='/sugestoes') {
+      this.colorSugestoes = 'red';
+    }
+    if (pathName=='/mymoovies') {
+      this.colorMyMoovies = 'red';
+    }
+    if (pathName=='/busca') {
+      this.colorBusca = 'red';
+    }
+    if (pathName=='/profile') {
+      this.colorProfile = 'red';
+    }
+    if (pathName=='/painel') {
+      this.colorPainel = 'red';
+    }
+
+  }
+
+  navigate2(destino) {
     this.router.navigate([destino]);
   }
 

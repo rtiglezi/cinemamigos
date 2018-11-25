@@ -13,7 +13,7 @@
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li>
-        <a href="sugestoes"
+        <a routerLink="" (click)="go('sugestoes')"
           ><span class="glyphicon glyphicon-film" style="color: crimson"></span
           ><span> Dicas de filmes</span></a
         >
@@ -22,7 +22,7 @@
 
     <ul class="nav navbar-nav">
       <li>
-        <a href="mymoovies"
+        <a routerLink="" (click)="go('mymoovies')"
           ><span
             class="glyphicon glyphicon-list-alt"
             style="color: orange"
@@ -34,8 +34,7 @@
 
     <ul class="nav navbar-nav">
       <li>
-        <a (click)="setFocus()"
-        href="busca"
+        <a routerLink="" (click)="go('busca')"
           ><span
             class="glyphicon glyphicon-search"
             style="color: red"
@@ -48,17 +47,17 @@
 
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-        <a data-toggle="dropdown" href="#"
+        <a data-toggle="dropdown"  href="#"
           ><span
-            class="glyphicon glyphicon-user"
+            class="fas fa-user-circle"
             style="color: olivedrab"
           ></span
-          ><span> {{ usuario }}</span
+          ><span> Meus dados </span
           ><span class="caret"></span
         ></a>
         <ul class="dropdown-menu">
           <li>
-            <a href="profile"
+            <a routerLink="" (click)="go('profile')"
               ><span
                 class="fas fa-user"
                 style="color: darkorange"
@@ -67,7 +66,7 @@
             >
           </li>
           <li>
-              <a href="painel"
+              <a routerLink="" (click)="go('painel')"
                 ><span
                   class="fas fa-cog"
                   style="color: rgb(54, 53, 53)"
@@ -76,7 +75,7 @@
               >
             </li>
              <li>
-            <a href="#"
+            <a routerLink=""
               ><span
                 class="glyphicon glyphicon-remove"
                 style="color: red"

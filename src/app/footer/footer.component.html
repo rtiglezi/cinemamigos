@@ -1,20 +1,30 @@
 
 <span id="footer" class="footer navbar-fixed-bottom visible-xs">
-  <i class="fas fa-exclamation-circle" (click)="navigate('sugestoes')"
+
+  <a routerLink="" (click)="navigate2('sugestoes')" [style.color]="colorSugestoes">
+  <i class="fas fa-exclamation-circle"
     ><br /><span class="footer-text">dicas filmes</span></i
-  >
-  <i class="fas fa-th-list" (click)="navigate('mymoovies')"
+  ></a>
+
+  <a routerLink="" (click)="navigate2('mymoovies')" [style.color]="colorMyMoovies">
+  <i class="fas fa-th-list"
     ><br /><span class="footer-text">meus filmes</span></i
-  >
+  ></a>
+
+  <a routerLink="" (click)="navigate2('busca')"  [style.color]="colorBusca">
   <i
-    (click)="navigate('busca')"
     class="fas fa-search"
     ><br /><span class="footer-text">buscar filmes</span></i
-  >
-  <i class="fas fa-user" (click)="navigate('profile')"
+  ></a>
+
+  <a routerLink="" (click)="navigate2('profile')"  [style.color]="colorProfile">
+  <i class="fas fa-user"
     ><br /><span class="footer-text">meu perfil</span></i
-  >
-  <i class="fas fa-cog" (click)="navigate('painel')"
+  ></a>
+
+  <a routerLink="" (click)="navigate2('painel')" [style.color]="colorPainel">
+  <i class="fas fa-cog"
     ><br /><span class="footer-text">minhas configs.</span></i
-  >
+  ></a>
+
 </span>
