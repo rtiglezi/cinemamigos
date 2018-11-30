@@ -1,3 +1,18 @@
+.titulo-pagina {
+  color: crimson;
+  font-weight: bold;
+  text-align: center;
+}
+
+hr {
+  border-top: 1px dashed rgb(194, 192, 192);
+  color: #fff;
+  background-color: #fff;
+  height: 0px;
+  margin: 5px 0px 5px 0px;
+}
+
+
 .img-moovie {
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -9,13 +24,15 @@
 
 .box {
   border-style: solid;
+  color:white;
   border-width: 1px;
   border-color: darkgrey;
-  background-color: rgb(255, 255, 255);
+  background-color: #3E3E3E;
   padding: 5px;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1),
     -1px -2px 2px rgba(0, 0, 0, 0.05);
   height: 210px;
+  border-radius: 10px;
 }
 
 #div_search {
@@ -29,7 +46,7 @@
   text-align: center;
   font-weight: bolder;
   padding-top: 5px;
-  color: crimson;
+  color: orange;
 }
 
 #div_poster {
@@ -49,17 +66,12 @@
 }
 
 #i_javiu {
-  color: olivedrab;
 }
 
 #i_querver {
-  color: orange;
 }
 
-#i_talvez {
-  color: darkorange;
-}
-
-#i_dispensa {
-  color: darkcyan;
+.btn-dark {
+  background-color: #555;
+  color: white;
 }

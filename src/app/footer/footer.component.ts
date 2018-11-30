@@ -23,19 +23,19 @@ export class FooterComponent implements OnInit {
 
     var pathName = window.location.pathname;
     if (pathName=='/sugestoes') {
-      this.colorSugestoes = 'red';
+      this.colorSugestoes = 'orange';
     }
     if (pathName=='/mymoovies') {
-      this.colorMyMoovies = 'red';
+      this.colorMyMoovies = 'orange';
     }
     if (pathName=='/busca') {
-      this.colorBusca = 'red';
+      this.colorBusca = 'orange';
     }
     if (pathName=='/profile') {
-      this.colorProfile = 'red';
+      this.colorProfile = 'orange';
     }
     if (pathName=='/painel') {
-      this.colorPainel = 'red';
+      this.colorPainel = 'orange';
     }
 
   }

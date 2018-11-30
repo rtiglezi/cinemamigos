@@ -8,12 +8,14 @@
 .box {
   border-style: solid;
   border-width: 1px;
-  border-color: darkgrey;
-  background-color: rgb(255, 255, 255);
+  border-color: white;
+  background-color: rgba(62, 62, 62, 0.945);
   padding: 5px;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1),
     -1px -2px 2px rgba(0, 0, 0, 0.05);
   height: 100%;
+  color: white;
+  border-radius: 10px;
 }
 
 .btn-circle {
@@ -65,7 +67,7 @@ label.star {
   float: right;
   padding: 1px;
   font-size: 35px;
-  color: #ccc;
+  color: #888;
   transition: all .2s;
   text-align: center;
 }
@@ -75,16 +77,16 @@ input.star:checked {
   transition: all .25s;
 }
 
-input.star-1:checked ~ #label-1:before { color: rgb(248, 120, 66); }
-input.star-2:checked ~ #label-2:before { color: rgb(255, 141, 34); }
-input.star-3:checked ~ #label-3:before { color: rgb(224, 193, 12); }
-input.star-4:checked ~ #label-4:before { color: rgb(163, 202, 20); }
-input.star-5:checked ~ #label-5:before { color: rgb(73, 156, 6); }
+input.star-1:checked ~ #label-1:before { color: red }
+input.star-2:checked ~ #label-2:before { color: darkorange }
+input.star-3:checked ~ #label-3:before { color: orange }
+input.star-4:checked ~ #label-4:before { color: yellow }
+input.star-5:checked ~ #label-5:before { color: greenyellow }
 
 label.star:hover { transform: rotate(-10deg) scale(1.3) }
 
 .label-legenda {
-  color: #aaa;
+  color: white;
   font-size: 15px;
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -92,9 +94,9 @@ label.star:hover { transform: rotate(-10deg) scale(1.3) }
 }
 
 hr {
-  border-top: 1px dashed rgb(194, 192, 192);
-  color: #fff;
-  background-color: #fff;
+  border-top: 1px dashed rgb(90, 87, 87);
+  color: #bbb;
+  background-color: #bbb;
   height: 0px;
   margin: 17px 0px 10px 0px;
 }
@@ -141,4 +143,29 @@ hr {
   from {bottom: 30px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
+
+
+.btn-white {
+  background-color: white;
+  color: black;
+}
+
+.btn-red {
+  background-color: red;
+  color: white;
+}
+
+.btn-black {
+  background-color: black;
+  color: white;
+}
+
+.titulo {
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bolder;
+  padding-top: 5px;
+  color: orange;
+}
+
 

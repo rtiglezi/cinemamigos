@@ -1,4 +1,3 @@
-import { NavComponent } from "./../nav/nav.component";
 import { AngularFireDatabase } from "angularfire2/database";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { MooviesService } from "app/providers/moovies.service";
@@ -25,10 +24,10 @@ export class MoovieDetailsPageComponent implements OnInit {
   public star4Checked: boolean;
   public star5Checked: boolean;
 
-  public clsJaVi = "btn btn-sm btn-default";
-  public clsQueroVer = "btn btn-sm btn-default";
-  public clsTalvez = "btn btn-sm btn-default";
-  public clsNaoMeInteressa = "btn btn-sm btn-default";
+  public clsJaVi = "btn btn-sm btn-white";
+  public clsQueroVer = "btn btn-sm btn-white";
+  public clsTalvez = "btn btn-sm btn-white";
+  public clsNaoMeInteressa = "btn btn-sm btn-white";
 
   public status: string;
 
@@ -112,8 +111,8 @@ export class MoovieDetailsPageComponent implements OnInit {
           this.isThereSelection = true;
 
           if (this.status == "1") {
-            this.clsJaVi = "btn btn-sm btn-success";
-            this.clsQueroVer = "btn btn-sm btn-default";
+            this.clsJaVi = "btn btn-sm btn-red";
+            this.clsQueroVer = "btn btn-sm btn-white";
             this.isWatched = true;
             this.starChecked = r.rate;
             if (this.starChecked == 1) {
@@ -128,12 +127,12 @@ export class MoovieDetailsPageComponent implements OnInit {
               this.star5Checked = true;
             }
           } else if (this.status == "2") {
-            this.clsJaVi = "btn btn-sm btn-default";
-            this.clsQueroVer = "btn btn-sm btn-success";
+            this.clsJaVi = "btn btn-sm btn-white";
+            this.clsQueroVer = "btn btn-sm btn-red";
           }
         } else {
-          this.clsJaVi = "btn btn-sm btn-default";
-          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsJaVi = "btn btn-sm btn-white";
+          this.clsQueroVer = "btn btn-sm btn-white";
           this.isWatched = false;
         }
       });
@@ -141,8 +140,8 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   deleteMoovie() {
     const swalWithBootstrapButtons = swal.mixin({
-      confirmButtonClass: "btn btn-success",
-      cancelButtonClass: "btn btn-danger",
+      confirmButtonClass: "btn btn-red",
+      cancelButtonClass: "btn btn-red",
       buttonsStyling: false
     });
 
@@ -245,8 +244,8 @@ export class MoovieDetailsPageComponent implements OnInit {
       })
       .then(r => {
         // const swalWithBootstrapButtons = swal.mixin({
-        //   confirmButtonClass: "btn btn-success",
-        //   cancelButtonClass: "btn btn-success",
+        //   confirmButtonClass: "btn btn-red",
+        //   cancelButtonClass: "btn btn-red",
         //   buttonsStyling: false
         // });
 
@@ -264,14 +263,14 @@ export class MoovieDetailsPageComponent implements OnInit {
         this.isThereSelection = true;
         if (this.status == "1") {
           this.jaVi.nativeElement.innerHTML = "Ja Vi";
-          this.clsJaVi = "btn btn-sm btn-success";
-          this.clsQueroVer = "btn btn-sm btn-default";
+          this.clsJaVi = "btn btn-sm btn-red";
+          this.clsQueroVer = "btn btn-sm btn-white";
           lista = "Já vi";
           this.isWatched = true;
         } else if (this.status == "2") {
           this.queroVer.nativeElement.innerHTML = "Quero Ver";
-          this.clsJaVi = "btn btn-sm btn-default";
-          this.clsQueroVer = "btn btn-sm btn-success";
+          this.clsJaVi = "btn btn-sm btn-white";
+          this.clsQueroVer = "btn btn-sm btn-red";
           lista = "Quero ver";
           this.isWatched = false;
           this.starChecked = 0;

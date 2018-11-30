@@ -1,59 +1,87 @@
 /* unvisited link */
 a:link {
-  color: grey;
+  color: white;
+  font-size: 15px;
 }
 
 /* visited link */
 a:visited {
-  color: grey;
 }
 
 /* mouse over link */
 a:hover {
-  color: black;
 }
 
 /* selected link */
 a:active {
-  color: grey;
 }
 
 a {
   text-decoration: none;
 }
 
-.avatar {
-  vertical-align: middle;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border-style: solid;
-  border-width: 1px;
-  border-color: white;
-}
 
 .nav-bar {
-  background: #ffffff;
+  background-image: url("https://images.unsplash.com/photo-1530482817083-29ae4b92ff15?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=44f4aebbd1e1371d5bf7dc22016c5d29&auto=format&fit=crop&w=1502&q=80");
   border: 1px solid #e0e0e0;
   box-shadow: 0 2px 2px -1px #989898;
   -moz-box-shadow: 0 2px 2px -1px #989898;
   -webkit-box-shadow: 0 2px 2px -1px #989898;
 }
 
-
-#i_javiu {
-  color: olivedrab;
+.topo-mobile {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 2px -1px #989898;
+  -moz-box-shadow: 0 2px 2px -1px #989898;
+  -webkit-box-shadow: 0 2px 2px -1px #989898;
+  padding:15px;
 }
 
-#i_querver {
-  color: orange;
+
+.column {
+  float: left;
+  width: 33.33%;
 }
 
-#i_talvez {
-  color: darkorange;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-#i_dispensa {
-  color: darkcyan;
+
+.nav-mobile {
+  background-image: url("https://images.unsplash.com/photo-1530482817083-29ae4b92ff15?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=44f4aebbd1e1371d5bf7dc22016c5d29&auto=format&fit=crop&w=1502&q=80");
+  height: 50px;
+  text-align: center;
+  padding-top: 5px;
+  color: grey;
+  border: 1px #ddd solid;
+  -webkit-box-shadow: 0px 0px 1px 0px red;
+  box-shadow: 0px 0px 5px 0px grey;
+  display: inline-block;
 }
 
+
+.nav-mobile-text {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: normal;
+}
+
+div {
+  font-size: 15px;
+}
+
+span {
+  font-size: 15px;
+}
+
+hr {
+  border-top: 1px dashed rgb(194, 192, 192);
+  color: #fff;
+  background-color: #fff;
+  height: 0px;
+  margin: 5px 0px 3px 0px;
+}

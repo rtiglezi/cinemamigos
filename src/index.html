@@ -24,12 +24,38 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        position: relative;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        min-height: 100%;
+      }
+      body::after {
+        content: "";
+        background: url("http://www.mulierchile.com/data/28/wallpapers/121/WDF_1639342.jpg");
+        background-size: cover;
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;
+        -webkit-filter: grayscale(1); /* Old WebKit */
+        filter: grayscale(1);
+      }
+    </style>
   </head>
-  <body style="padding-top: 0px; background-color: #f5f5f5">
+  <body style="padding-top: 0px;">
     <app-root>
       <div
         class="container"
-        style="text-align: center; width: 100%; margin-top: 150px;"
+        style="text-align: center; width: 100%; padding-top: 150px;"
       >
         <span style="color: crimson; font-size: 18px; font-weight: bold"
           >nome</span
@@ -54,6 +80,5 @@
       integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
       crossorigin="anonymous"
     ></script>
-
   </body>
 </html>

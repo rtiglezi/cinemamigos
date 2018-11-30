@@ -1,11 +1,13 @@
 <app-nav></app-nav>
 
+<div class="visible-xs" style="height: 40px"></div>
+
 <div style="text-align: center">
 
     <button class="{{btn2Class}}" (click)="go('popular')">
         <span
         class="glyphicon glyphicon-fire"
-        style="margin-right:10px;color:crimson"
+        style="margin-right:10px;"
       ></span
       >Populares
       </button>
@@ -13,7 +15,7 @@
   <button class="{{btn1Class}}" (click)="go('top_rated')">
     <span
     class="glyphicon glyphicon-star"
-    style="margin-right:10px;color:darkgoldenrod"
+    style="margin-right:10px;"
   ></span
   >Aclamados
   </button>
@@ -21,7 +23,7 @@
   <button class="{{btn3Class}}" (click)="go('upcoming')">
     <span
                 class="glyphicon glyphicon-calendar"
-                style="margin-right:10px;color:darkgreen"
+                style="margin-right:10px;"
               ></span
               >Estreando
   </button>
@@ -31,9 +33,15 @@
 
 <div class="col-lg-3" *ngFor="let filme of lista_filmes">
   <div class="box">
-    <div id="titulo">{{ filme.title }}</div>
+    <div id="titulo" style="margin: 3px 0px 3px 0px;
+    overflow: hidden; padding: 3px;
+    white-space: nowrap; width: 100%;
+    background-color: rgb(32, 30, 30); color:rgb(230, 229, 228)">
+        {{ filme.title | slice: 0:35 }}
+        {{ filme.title.length >= 35 ? "..." : "" }}
+    </div>
 
-    <div style="text-align: center">
+    <div style="text-align: center; margin: 3px 0px 3px 0px;">
         <span class="glyphicon glyphicon-fire" id="fire"></span
           >{{ filme.popularity }} |
       <span class="glyphicon glyphicon-star" id="star"></span
@@ -54,9 +62,10 @@
       {{ filme.overview.length >= 150 ? "..." : "" }}
     </div>
 
-    <div id="mais_informacoes" (click)="navigate(filme.id)">
-      Mais informações
+    <div style="text-align: center">
+    <button style="color: black; width: 90%; margin-bottom: 10px" class="btn btn-warning" (click)="navigate(filme.id)">Mais informações...</button>
     </div>
+
   </div>
 
   <br />

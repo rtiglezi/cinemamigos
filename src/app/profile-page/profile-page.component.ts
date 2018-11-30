@@ -127,4 +127,8 @@ export class ProfilePageComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(["login"]);
   }
+
+  navigate(destino) {
+    this.router.navigate([destino]);
+  }
 }

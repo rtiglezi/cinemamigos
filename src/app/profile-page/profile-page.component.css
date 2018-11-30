@@ -1,19 +1,68 @@
+@keyframes fa-blink {
+
+  0% { opacity: 1; }
+  20% { opacity: 0.7 }
+  40% { opacity: 0.5 }
+  60% { opacity: 0.2 }
+  80% { opacity: 0.5; }
+  90% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+.fa-blink {
+-webkit-animation: fa-blink 2s linear infinite;
+-moz-animation: fa-blink 2s linear infinite;
+-ms-animation: fa-blink 2s linear infinite;
+-o-animation: fa-blink 2s linear infinite;
+animation: fa-blink 2s linear infinite;
+}
+
 .avatar {
   vertical-align: middle;
   width: 150px;
   height: 150px;
   border-radius: 5%;
+  margin: 5px 5px 5px 5px;
 }
+
+.box-avatar {
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgrey;
+  background-color: rgba(7, 94, 85, 0.925);
+  padding: 5px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1),
+    -1px -2px 2px rgba(0, 0, 0, 0.05);
+  height: 230px;
+  color:white;
+  border-radius: 10px;
+}
+
 
 .box {
   border-style: solid;
   border-width: 1px;
   border-color: darkgrey;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(62, 62, 62, 0.911);
   padding: 5px;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1),
     -1px -2px 2px rgba(0, 0, 0, 0.05);
   height: 230px;
+  color:white;
+  border-radius: 10px;
+}
+
+.box-status {
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgrey;
+  background-color: rgb(253, 253, 253);
+  padding: 5px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13), 1px 2px 2px rgba(0, 0, 0, 0.1),
+    -1px -2px 2px rgba(0, 0, 0, 0.05);
+  color:grey;
+  border-radius: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 #div_titulo {
@@ -21,7 +70,7 @@
   text-align: center;
   font-weight: bolder;
   padding-top: 5px;
-  color: crimson;
+  color: orange;
 }
 
 #div_poster {
@@ -49,7 +98,7 @@
 
 
 i {
-  font-size: 48px;
+  font-size: 38px;
 }
 
 
@@ -57,18 +106,26 @@ i {
   border-style: solid;
   border-width: 1px;
   border-color: darkgrey;
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.932);
   box-shadow: 0px 2px 3px rgba(0,0,0,.13), 1px 2px 2px rgba(0,0,0,.1), -1px -2px 2px rgba(0,0,0,.05);
-  height: 90px;
+  height: 60px;
+  border-radius: 10px;
+  color: white;
 }
 
+#i_amigos {
+  color: #075E55;
+  padding: 0px;
+  margin-top: 0px;
+}
 
-#i_indicados {
-  color: gold;
+#i_requisicoes {
+  color: rgb(255, 0, 0);
+  font-size: 18px;
 }
 
 #i_javiu {
-  color: olivedrab;
+  color: green;
 }
 
 #c_javiu {
@@ -78,33 +135,6 @@ i {
 #i_querver {
   color: orange;
 }
-
-#i_talvez {
-  color: darkorange;
-}
-
-#i_amigos {
-  color: blue;
-}
-
-#i_privado {
-  color: #C9302C;
-}
-
-.texto-privado {
-  color: #C9302C;
-  font-weight: bold;
-}
-
-#i_publico {
-  color: #449D44;
-}
-
-.texto-publico {
-  color: #449D44;
-  font-weight: bold;
-}
-
 
 .huge {
   padding-top: 5px;
@@ -120,9 +150,9 @@ i {
 
 
 hr {
-  border-top: 1px dashed rgb(194, 192, 192);
-  color: #fff;
-  background-color: #fff;
+  border-top: 1px dashed #aaa;
+  color: #aaa;
+  background-color: #aaa;
   height: 0px;
   margin: 5px 0px 3px 0px;
 }

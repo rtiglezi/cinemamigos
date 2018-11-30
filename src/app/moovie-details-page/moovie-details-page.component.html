@@ -1,5 +1,7 @@
 <app-nav></app-nav>
 
+<div class="visible-xs" style="height: 40px"></div>
+
 <div style="margin: 0px 5px 0px 5px">
   <div class="box container" style="padding-top: 10px; padding-bottom: 10px;">
     <div *ngIf="filme.backdrop_path" class="col-lg-6">
@@ -11,8 +13,8 @@
     </div>
 
     <div style="padding: 0px 15px 0px 15px">
-      <div style="font-weight: bolder;" *ngIf="filme.backdrop_path">
-        {{ filme.title }} ({{ filme.release_date | date: "y" }})
+      <div *ngIf="filme.backdrop_path">
+        <span class="titulo">{{ filme.title }} ({{ filme.release_date | date: "y" }})</span>
         <div>
           <span
             class="glyphicon glyphicon-fire"
@@ -63,7 +65,8 @@
         <button
           *ngIf="isThereSelection"
           type="button"
-          class="btn btn-xs btn-secondary"
+          class="btn btn-xs"
+          style="background-color: rgba(255, 255, 255, 0); color:white"
         >
           <i class="fas fa-undo" style="color: red"></i> Limpar seleção
         </button>
@@ -149,7 +152,7 @@
       <div name="snackbar" #snackbar id="snackbar"></div>
 
       <div (click)="backClicked()">
-        <button class="btn btn-warning btn-block">
+        <button class="btn btn-default btn-block">
           <span class="glyphicon glyphicon-triangle-left">Voltar</span>
         </button>
       </div>

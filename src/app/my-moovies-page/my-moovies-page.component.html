@@ -1,93 +1,35 @@
 <app-nav></app-nav>
+<div class="visible-xs" style="height: 40px"></div>
 
 <div style="text-align: center">
+  <span class="titulo-pagina"> Meus filmes: </span>
+
   <button class="{{btn1Class}}" (click)="go(1)">
     <span><i id="i_javiu" class="fas fa-check-double"></i> Já assistidos</span>
   </button>
   <button class="{{btn2Class}}" (click)="go(2)">
-    <span
-      ><i id="i_querver" class="fas fa-check"></i> Para assistir</span
-    >
+    <span><i id="i_querver" class="fas fa-check"></i> Para assistir</span>
   </button>
- </div>
-
-<br />
-<div id="search" style="text-align: center">
-  {{ search }}: <span *ngIf="!resultado"
-    ><img src="../assets/loader-grey.gif" style="width: 15px"
-  /></span>
-  <span *ngIf="resultado">{{ resultado }}</span> resultados(s).
 </div>
 
-<hr *ngIf="isWatched" />
+<hr />
 
-<div class="stars" *ngIf="isWatched">
-  <div style="font-size: 12px; margin-bottom: 3px;">
-    Como você avalia este filme?
-  </div>
-  <form #frm action="" (change)="mostraValor($event.target.value)">
-    <input
-      [checked]="star5Checked"
-      class="star star-5"
-      id="star-5"
-      type="radio"
-      value="5"
-      name="star"
-    />
-    <label id="label-5" class="star far fa-grin-stars" for="star-5"
-      ><div class="label-legenda">Memo-<br />rável!</div></label
-    >
-    <input
-      [checked]="star4Checked"
-      class="star star-4"
-      id="star-4"
-      type="radio"
-      value="4"
-      name="star"
-    />
-    <label id="label-4" class="star far fa-grin-alt" for="star-4"
-      ><div class="label-legenda">Muito bom</div></label
-    >
-    <input
-      [checked]="star3Checked"
-      class="star star-3"
-      id="star-3"
-      type="radio"
-      value="3"
-      name="star"
-    />
-    <label id="label-3" class="star far fa-smile" for="star-3"
-      ><div class="label-legenda">Bom</div></label
-    >
-    <input
-      [checked]="star2Checked"
-      class="star star-2"
-      id="star-2"
-      type="radio"
-      value="2"
-      name="star"
-    />
-    <label id="label-2" class="star far fa-meh" for="star-2"
-      ><div class="label-legenda">Medi-<br />ano</div></label
-    >
-    <input
-      [checked]="star1Checked"
-      class="star star-1"
-      id="star-1"
-      type="radio"
-      value="1"
-      name="star"
-    />
-    <label id="label-1" class="star far fa-tired" for="star-1"
-      ><div class="label-legenda">Ruim</div></label
-    >
-  </form>
-</div>
-<br />
-
-<div class="col-lg-3" *ngFor="let filme of (lista_filmes)?.slice().reverse()">
+<div class="col-lg-3" *ngFor="let filme of lista_filmes?.slice().reverse()">
   <div class="box">
-    <div id="div_titulo">{{ filme.titulo }} ({{ filme.lancamento | date: "y" }})</div>
+    <div
+      id="titulo"
+      style="margin: 3px 0px 3px 0px;
+    overflow: hidden; padding: 3px;
+    white-space: nowrap; width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(32, 30, 30); color:rgb(230, 229, 228)"
+    >
+      {{ filme.titulo | slice: 0:30 }}
+      {{ filme.titulo.length >= 30 ? "..." : "" }} ({{
+        filme.lancamento | date: "y"
+      }})
+    </div>
 
     <div class="col-lg-6 col-sm-6 col-xs-6" id="div_poster">
       <img
@@ -102,8 +44,14 @@
       {{ filme.sinopse.length >= 65 ? "..." : "" }}
     </div>
 
-    <div id="div_mais_informacoes" (click)="navigate(filme.id)">
-      Mais informações
+    <div style="text-align: center">
+      <button
+        style="color: black; margin-right: 0px"
+        class="btn btn-warning"
+        (click)="navigate(filme.id)"
+      >
+        + informações...
+      </button>
     </div>
   </div>
 
@@ -121,5 +69,3 @@
 <br />
 <br />
 <app-footer></app-footer>
-
-

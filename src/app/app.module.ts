@@ -19,6 +19,7 @@ import { SwitchComponent } from "./switch/switch.component";
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { BuscaPageComponent } from './busca-page/busca-page.component';
+import { AmigosPageComponent } from './amigos-page/amigos-page.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDamhy3gQqiMz0i_3nwoVJAyp4qU85AutM",
@@ -37,7 +38,9 @@ const routes: Routes = [
   { path: "profile", component: ProfilePageComponent },
   { path: "moovie", component: MoovieDetailsPageComponent },
   { path: "mymoovies", component: MyMooviesPageComponent },
-  { path: "busca", component: BuscaPageComponent }
+  { path: "busca", component: BuscaPageComponent },
+  { path: "amigos", component: AmigosPageComponent }
+
 
 ];
 
@@ -54,7 +57,8 @@ const routes: Routes = [
     SwitchComponent,
     WelcomePageComponent,
     FooterComponent,
-    BuscaPageComponent
+    BuscaPageComponent,
+    AmigosPageComponent
   ],
   imports: [
     BrowserModule,

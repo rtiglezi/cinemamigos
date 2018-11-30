@@ -22,21 +22,29 @@ export class MooviesService {
   }
 
   getLatestMovies(search = "popular", page = 1) {
-    return this.http.get(
-      this.baseApiPath +
-        `/movie/${search}?page=${page}&api_key=` +
-        this.getApiKey() +
-        "&language=pt-BR"
-    );
+    try {
+      return this.http.get(
+        this.baseApiPath +
+          `/movie/${search}?page=${page}&api_key=` +
+          this.getApiKey() +
+          "&language=pt-BR"
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   getMovieDetails(filmeid) {
-    return this.http.get(
-      this.baseApiPath +
-        `/movie/${filmeid}?api_key=` +
-        this.getApiKey() +
-        "&language=pt-BR"
-    );
+    try {
+      return this.http.get(
+        this.baseApiPath +
+          `/movie/${filmeid}?api_key=` +
+          this.getApiKey() +
+          "&language=pt-BR"
+      );
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   getApiKey(): string {

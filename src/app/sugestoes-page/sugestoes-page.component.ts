@@ -39,20 +39,20 @@ export class SugestoesPageComponent implements OnInit {
 
   getLastMoovies(searchParam="popular") {
     if (searchParam == "top_rated") {
-      this.search = "Estes são os filmes melhor avaliados até agora:";
-      this.btn1Class = "btn active btn-sm";
-      this.btn2Class = "btn btn-default btn-sm";
-      this.btn3Class = "btn btn-default btn-sm";
+      this.search = "Filmes melhor avaliados até agora";
+      this.btn1Class = "btn btn-sm btn-danger";
+      this.btn2Class = "btn btn-dark btn-sm";
+      this.btn3Class = "btn btn-dark btn-sm";
     } else if (searchParam == "upcoming") {
-      this.search = "Estes são os filmes que estão estreando:";
-      this.btn1Class = "btn btn-default btn-sm";
-      this.btn2Class = "btn btn-default btn-sm";
-      this.btn3Class = "btn active btn-sm";
+      this.search = "Filmes em estreia";
+      this.btn1Class = "btn btn-dark btn-sm";
+      this.btn2Class = "btn btn-dark btn-sm";
+      this.btn3Class = "btn btn-danger btn-sm";
     } else if (searchParam == "popular") {
-      this.search = "Estes são os filmes com maior popularidade até agora:";
-      this.btn1Class = "btn btn-default btn-sm";
-      this.btn2Class = "btn active btn-sm";
-      this.btn3Class = "btn btn-default btn-sm";
+      this.search = "Filmes com maior popularidade até agora";
+      this.btn1Class = "btn btn-dark btn-sm";
+      this.btn2Class = "btn btn-danger btn-sm";
+      this.btn3Class = "btn btn-dark btn-sm";
     }
 
     this.searchParam = searchParam;

@@ -1,21 +1,20 @@
-<nav class="nav-bar">
+<nav class="nav-bar navbar-inverse navbar-collapse collapse">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">
-      <span style="color: crimson; font-size: 18px; font-weight: bold"
-        >nome</span
-      ><span style="color:darkorange; font-size: 18px; font-weight: bold"
-        >do</span
-      ><span style="color:olivedrab; font-size: 18px; font-weight: bold"
-        >filme</span
-      >.com
-    </a>
+      <span style="color: white; font-weight: bold; font-size: 20px">nome</span
+        ><span style="color:white; font-weight: bold; font-size: 20px">do</span
+        ><span style="color:white; font-weight: bold; font-size: 20px"
+          >filme</span
+        >.com
+        </a>
   </div>
+
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
       <li>
-        <a routerLink="" (click)="go('sugestoes')"
-          ><span class="glyphicon glyphicon-film" style="color: crimson"></span
-          ><span> Dicas de filmes</span></a
+        <a routerLink="" (click)="go('profile')"
+          ><span class="fas fa-user" style="color: darkorange"></span> Meu
+          Perfil</a
         >
       </li>
     </ul>
@@ -23,10 +22,7 @@
     <ul class="nav navbar-nav">
       <li>
         <a routerLink="" (click)="go('mymoovies')"
-          ><span
-            class="glyphicon glyphicon-list-alt"
-            style="color: orange"
-          ></span
+          ><span class="fas fa-th-list" style="color: orange"></span
           ><span> Meus filmes</span></a
         >
       </li>
@@ -34,47 +30,36 @@
 
     <ul class="nav navbar-nav">
       <li>
-        <a routerLink="" (click)="go('busca')"
-          ><span
-            class="glyphicon glyphicon-search"
-            style="color: red"
-          ></span
-          ><span> Buscar filmes</span></a
+        <a routerLink="" (click)="go('sugestoes')"
+          ><span class="fas fa-exclamation-circle" style="color: crimson"></span
+          ><span> Dica de filmes</span></a
         >
       </li>
     </ul>
 
+    <ul class="nav navbar-nav">
+      <li>
+        <a routerLink="" (click)="go('busca')"
+          ><span class="fas fa-search" style="color: red"></span
+          ><span> Buscar filme</span></a
+        >
+      </li>
+    </ul>
 
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-        <a data-toggle="dropdown"  href="#"
-          ><span
-            class="fas fa-user-circle"
-            style="color: olivedrab"
-          ></span
-          ><span> Meus dados </span
-          ><span class="caret"></span
+        <a data-toggle="dropdown" href="#"
+          ><span class="fas fa-user-circle"></span
+          ><span> Meus dados </span><span class="caret"></span
         ></a>
         <ul class="dropdown-menu">
           <li>
-            <a routerLink="" (click)="go('profile')"
-              ><span
-                class="fas fa-user"
-                style="color: darkorange"
-              ></span>
-               Perfil</a
+            <a routerLink="" (click)="go('painel')"
+              ><span class="fas fa-cog" style="color: rgb(54, 53, 53)"></span>
+              Configurações</a
             >
           </li>
           <li>
-              <a routerLink="" (click)="go('painel')"
-                ><span
-                  class="fas fa-cog"
-                  style="color: rgb(54, 53, 53)"
-                ></span>
-                 Configurações.</a
-              >
-            </li>
-             <li>
             <a routerLink=""
               ><span
                 class="glyphicon glyphicon-remove"
@@ -85,9 +70,41 @@
           </li>
         </ul>
       </li>
-
-      <ul class="nav navbar-nav"></ul>
     </ul>
   </div>
 </nav>
+
+<span class="nav-mobile navbar-inverse navbar-fixed-top visible-xs">
+  <div class="col-xs-6" style="text-align: left; padding-top: 6px">
+    <span style="color: white; font-weight: bold; font-size: 20px">nome</span
+    ><span style="color:white; font-weight: bold; font-size: 20px">do</span
+    ><span style="color:white; font-weight: bold; font-size: 20px"
+      >filme</span
+    >.com
+  </div>
+  <div class="col-xs-6" style="text-align: right; padding-top:10px;">
+    <span class="dropdown">
+      <a data-toggle="dropdown" style="color: white" href="#"
+        ><span class="fas fa-user-circle"></span
+        ><span> Meus dados </span><span class="caret"></span
+      ></a>
+      <ul class="dropdown-menu">
+        <li>
+          <a routerLink="" (click)="go('painel')"
+            ><span class="fas fa-cog" style="color: rgb(54, 53, 53)"></span>
+            Configs.</a
+          >
+        </li>
+        <hr />
+        <li>
+          <a routerLink=""
+            ><span class="glyphicon glyphicon-remove" style="color: red"></span>
+            <span (click)="logout()">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </span>
+  </div>
+</span>
+
 <br />

@@ -1,0 +1,39 @@
+<app-nav></app-nav>
+<div class="visible-xs" style="height: 40px"></div>
+
+<div class="container">
+
+  <span class="titulo-pagina">Encontrar pessoa:</span>
+  <div class="form-group has-feedback">
+    <input
+      #srch
+      autofocus
+      (keyup)="getAmigos(srch.value)"
+      type="text"
+      class="txtSearch"
+      placeholder="Digite o nome ou parte do nome da pessoa"
+    />
+    <div
+      class="divBoxSearch"
+      *ngIf="arrayAmigos.length > 0"
+    >
+      <div class="divHover divBoxSearchInternal" *ngFor="let am of arrayAmigos">
+
+           <img class="img avatar" src="{{ am.foto }}" align="left" />
+              {{ am.nome }}<br>
+              {{ am.email }}
+              <hr>
+
+      </div>
+    </div>
+    <span #srchIcon>
+      <i class="glyphicon glyphicon-search form-control-feedback"></i>
+    </span>
+  </div>
+</div>
+
+
+<br />
+<br />
+<br />
+<app-footer></app-footer>
