@@ -55,6 +55,9 @@ export class MoovieDetailsPageComponent implements OnInit {
   origem: string;
   private sub: any;
 
+  usuarioId: string;
+  fluxo: string;
+
   public isThereSelection: boolean = false;
 
   classAvaliacao: string;
@@ -75,6 +78,8 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(qp => {
+      this.usuarioId = qp["usuarioId"];
+      this.fluxo = qp["fluxo"];
       this.id = qp["id"];
       this.origem = qp["origem"];
       this.searchParam = qp["searchParam"];
@@ -99,7 +104,13 @@ export class MoovieDetailsPageComponent implements OnInit {
   backClicked() {
     if (this.origem) {
       this.router.navigate([this.origem], {
-        queryParams: { status: this.status, searchParam: this.searchParam }
+        queryParams: {
+          status: this.status,
+          searchParam: this.searchParam,
+          usuarioId: this.usuarioId,
+          fluxo: this.fluxo,
+          origem: this.origem
+         }
       });
     } else {
       this.router.navigate([""]);

@@ -20,6 +20,7 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { BuscaPageComponent } from './busca-page/busca-page.component';
 import { AmigosPageComponent } from './amigos-page/amigos-page.component';
+import { IndicacoesPageComponent } from './indicacoes-page/indicacoes-page.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDamhy3gQqiMz0i_3nwoVJAyp4qU85AutM",
@@ -39,7 +40,8 @@ const routes: Routes = [
   { path: "moovie", component: MoovieDetailsPageComponent },
   { path: "mymoovies", component: MyMooviesPageComponent },
   { path: "busca", component: BuscaPageComponent },
-  { path: "amigos", component: AmigosPageComponent }
+  { path: "amigos", component: AmigosPageComponent },
+  { path: "indicacoes", component: IndicacoesPageComponent }
 
 
 ];
@@ -58,7 +60,8 @@ const routes: Routes = [
     WelcomePageComponent,
     FooterComponent,
     BuscaPageComponent,
-    AmigosPageComponent
+    AmigosPageComponent,
+    IndicacoesPageComponent
   ],
   imports: [
     BrowserModule,

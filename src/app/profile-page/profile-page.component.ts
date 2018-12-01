@@ -26,8 +26,11 @@ export class ProfilePageComponent implements OnInit {
   contadorDispensa: any = 0;
 
   contadorIndicacoesRecebidas: any = 0;
+  contadorIndicacoesEnviadas: any = 0;
+
   haIndicacaoNaoLida: boolean = false;
 
+  @ViewChild("snackbar") toast: ElementRef;
 
   constructor(
     private db: AngularFireDatabase,
@@ -41,7 +44,8 @@ export class ProfilePageComponent implements OnInit {
       this.getLastWatched(1);
       this.getCreation();
       this.getMoovieService();
-      this.getIndicacoes();
+      this.getIndicacoesRecebidas();
+      this.getIndicacoesEnviadas();
   }
 
   getCreation() {
@@ -50,30 +54,42 @@ export class ProfilePageComponent implements OnInit {
     })
   }
 
-  getIndicacoes() {
+  getIndicacoesRecebidas() {
     this.db
     .list("indicacoes", {query: {
       orderByChild: "amigoEscolhidoId",
       equalTo: this.localUser.user_uid
     }})
     .subscribe(r => {
-
       this.contadorIndicacoesRecebidas = r.length;
-
       r.map(m => {
         if (m.lida == false) {
           this.haIndicacaoNaoLida = true;
         }
       });
-
-      this.contadorJaVistos = this.contadorJaVistos.toString();
-      this.contadorQuerVer = this.contadorQuerVer.toString();
-      this.contadorTalvez = this.contadorTalvez.toString();
-      this.contadorDispensa = this.contadorDispensa.toString();
-
     });
   }
 
+  getIndicacoesEnviadas() {
+    this.db
+    .list("indicacoes", {query: {
+      orderByChild: "usuarioId",
+      equalTo: this.localUser.user_uid
+    }})
+    .subscribe(r => {
+      this.contadorIndicacoesEnviadas = r.length;
+    });
+  }
+
+  verIndicacoes(fluxo) {
+    this.router.navigate(["indicacoes"], {
+      queryParams: {
+        usuarioId: this.localUser.user_uid,
+        fluxo: fluxo,
+        origem: "profile"
+      }
+    });
+  }
 
   getMoovieService() {
     this.db
@@ -159,4 +175,18 @@ export class ProfilePageComponent implements OnInit {
   navigate(destino) {
     this.router.navigate([destino]);
   }
+
+  showToast(msg) {
+    // Get the snackbar DIV
+    var x = this.toast;
+    // Add the "show" class to DIV
+    x.nativeElement.className = "show";
+    x.nativeElement.innerHTML = msg;
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function() {
+      x.nativeElement.className = x.nativeElement.className.replace("show", "");
+    }, 3000);
+  }
+
 }

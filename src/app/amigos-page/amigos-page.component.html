@@ -27,7 +27,7 @@
 
     <div class="panel form-group has-feedback" style="margin-top: 5px">
       <span class="titulo-pagina"
-        >Localize um amigo para indicar este filme:</span
+        >Localize um amigo no sistema:</span
       >
       <div class="form-group has-feedback">
         <input
@@ -49,7 +49,6 @@
             {{ am.nome }}<br />
             {{ am.email }}
             </span>
-            <hr />
           </div>
         </div>
         <span #srchIcon>
@@ -65,7 +64,7 @@
         {{ amigoEscolhidoEmail }}
         <hr >
         Diga a seu amigo porque você acha que ele irá gostar desse filme:
-        <textarea #msg style="width: 100%; height: 50px;"></textarea>
+        <textarea maxlength="180" #msg style="width: 100%; height: 50px;"></textarea>
         <button #btnEnviar (click)="confirmarEnvioIndicacao(msg.value)" class="btn btn-danger">Enviar a indicação</button>
         <button #btnFechar style="display: none" class="btn btn-default">Fechar</button>
       </div>

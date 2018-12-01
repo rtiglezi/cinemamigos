@@ -1,0 +1,82 @@
+<app-nav></app-nav>
+<div class="visible-xs" style="height: 40px"></div>
+
+<div class="container">
+  <div>
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          Indicações
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="col-lg-4"
+    *ngFor="let indicacao of arrayIndicacoesRecebidas.slice().reverse()"
+  >
+
+
+    <div class="box">
+
+        <div class="panel col-lg-12">
+            Quem lhe indicou este filme:
+            <hr />
+
+            <img class="img avatar" src="{{ indicacao.usuarioFoto }}" align="left" />
+            {{ indicacao.usuarioNome }}<br />
+            {{ indicacao.usuarioEmail }}
+          </div>
+
+      <div
+        id="titulo"
+        style="
+      overflow: hidden; padding: 3px;
+      white-space: nowrap; width: 100%;
+      text-align: center;
+      border-radius: 0px;
+      background-color: black; color:white;"
+      >
+        {{ indicacao.filmeTitulo | slice: 0:30 }}
+        {{ indicacao.filmeTitulo.length >= 30 ? "..." : "" }} ({{
+          indicacao.filmeAno | date: "y"
+        }})
+        <span *ngIf="!indicacao.lida" style="color: orange;">nova!!!</span>
+      </div>
+
+      <div class="col-lg-5 col-sm-5 col-xs-5" id="div_poster">
+        <img
+          class="img-moovie"
+          (click)="navigate(indicacao.filmeId, indicacao.usuarioId, indicacao.amigoEscolhidoId)"
+          [src]="'https://image.tmdb.org/t/p/w92/' + indicacao.filmePoster"
+        />
+      </div>
+
+      <div class="col-lg-7 col-sm-7 col-xs-7" id="div_sinopse">
+          {{ indicacao.mensagem | slice: 0:180 }}
+          {{ indicacao.mensagem >= 180 ? "..." : "" }}
+      </div>
+
+      <div style="text-align: center">
+          <button
+            style="color: black; width: 100%; margin-bottom:10px"
+            class="btn btn-xs btn-warning"
+            (click)="navigate(indicacao.filmeId, indicacao.usuarioId, indicacao.amigoEscolhidoId)"
+          >
+            + informações...
+          </button>
+        </div>
+
+    </div>
+
+
+
+    <br />
+  </div>
+</div>
+
+<br />
+<br />
+<br />
+<app-footer></app-footer>

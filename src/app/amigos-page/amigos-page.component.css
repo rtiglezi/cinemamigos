@@ -100,14 +100,12 @@ input:focus {
 }
 
 .divBoxSearch {
+  background-color: white;
   width: 90%;
   border-style: solid;
   border-color: darkgrey;
   border-width: 0.5px;
-  background-color: white;
   padding: 15px 15px 15px 15px;
-  z-index: 1000;
-  position: absolute;
   color: black;
 }
 
