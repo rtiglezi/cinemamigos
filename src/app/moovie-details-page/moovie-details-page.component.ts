@@ -352,7 +352,8 @@ export class MoovieDetailsPageComponent implements OnInit {
         colorAvaliacao: this.colorAvaliacao,
         classAvaliacao: this.classAvaliacao,
         nomeAvaliacao: this.nomeAvaliacao,
-        origem: "moovie" }
+        origem: "moovie"
+      }
     });
   }
 

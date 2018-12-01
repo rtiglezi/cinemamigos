@@ -168,8 +168,11 @@ export class AmigosPageComponent implements OnInit {
 
   backClicked() {
     if (this.origem) {
-      this.router.navigate([this.origem]);
+      this.router.navigate([this.origem], {
+        queryParams: {
+          id: this.filmeId
+        }
+      });
     }
   }
-
 }
