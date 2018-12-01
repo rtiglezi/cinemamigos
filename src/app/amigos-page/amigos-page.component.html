@@ -5,29 +5,23 @@
 
   <div class="col-lg-12" style="margin-bottom:1px">
     <div class="box">
-      <div class="col-lg-2 col-sm-3 col-xs-5" id="div_poster">
-        <img
-          class="img-border"
-          [src]="'https://image.tmdb.org/t/p/w92/' + filmePoster"
-        />
-      </div>
-
-      <div class="col-lg-10 col-sm-9 col-xs-7">
+      <div class="col-lg-12 col-sm-12 col-xs-12"  style="text-align: center">
         <div id="div_titulo">
           {{ filmeTitulo }} ({{ filmeAno | date: "y" }})
         </div>
         <hr />
         <div>
           <i id="i_avaliacao" [style.color]="colorAvaliacao" [class]="classAvaliacao"></i>
+          <br>Você achou {{ nomeAvaliacao }}
         </div>
-        <div>Você achou {{ nomeAvaliacao }}</div>
+        <div></div>
         <hr />
       </div>
     </div>
 
     <div class="panel form-group has-feedback" style="margin-top: 5px">
       <span class="titulo-pagina"
-        >Localize um amigo no sistema:</span
+        >Localize o(a) amigo(a):</span
       >
       <div class="form-group has-feedback">
         <input
@@ -36,7 +30,7 @@
           (keyup)="getAmigos(srch.value)"
           type="text"
           class="txtSearch"
-          placeholder="Nome ou parte do nome do amigo..."
+          placeholder="Nome ou parte do nome do(a) amigo(a)..."
         />
 
         <div class="divBoxSearch" *ngFor="let am of arrayAmigos"
@@ -59,17 +53,27 @@
 
     <div *ngIf="amigoEscolhido" class="panel-indicacao">
         <img class="img avatar-escolhido" src="{{ amigoEscolhidoFoto }}" align="left" />
-        Amigo escolhido:<br />
+        Amigo(a) escolhido(a):<br />
         {{ amigoEscolhidoNome }}<br />
         {{ amigoEscolhidoEmail }}
         <hr >
-        Diga a seu amigo porque você acha que ele irá gostar desse filme:
-        <textarea maxlength="180" #msg style="width: 100%; height: 50px;"></textarea>
-        <button #btnEnviar (click)="confirmarEnvioIndicacao(msg.value)" class="btn btn-danger">Enviar a indicação</button>
+        Escreva algo a seu amigo(a):
+        <textarea maxlength="150" #msg style="width: 100%; height: 50px;"></textarea>
+        <button [disabled]="!msg.value" #btnEnviar (click)="confirmarEnvioIndicacao(msg.value)" class="btn btn-danger">Enviar a indicação</button>
         <button #btnFechar style="display: none" class="btn btn-default">Fechar</button>
       </div>
 
+      <br>
+
+      <div (click)="backClicked()">
+          <button class="btn btn-warning btn-block">
+            <span class="glyphicon glyphicon-triangle-left">Voltar</span>
+          </button>
+        </div>
+
   </div>
+
+
 
   <br />
   <br />

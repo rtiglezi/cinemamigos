@@ -6,35 +6,32 @@
 
 <div class="container text-center">
   <div class="row">
-    <div  *ngIf="haIndicacaoNaoLida" class="col-12 box-status" style="margin-bottom:20px">
-
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-              <div
-                class="col-md-6 col-xs-6"
-                style="padding:0; margin-left: 0; cursor: pointer;"
-                (click)="verIndicacoes('recebidas')"
-              >
-
-                <i id="i_nova_indicacao" class="fas fa-comment fa-blink"></i><br>
-                Nova indicação<br>de filme!
-
-              </div>
-              <div
-                class="col-md-6 col-xs-6"
-                style="padding:0; margin-left: 0"
-              >
-
-              <!--<i  id="i_novo_comentario" class="fas fa-comment fa-blink"></i> novo comentário-->
-
-              </div>
-            </div>
+    <div
+      *ngIf="haIndicacaoNaoLida"
+      class="col-12 box-status"
+      style="margin-bottom:20px"
+    >
+      <div class="row">
+        <div class="col-md-12 col-xs-12">
+          <div
+            class="col-md-6 col-xs-6"
+            style="padding:0; margin-left: 0; cursor: pointer;"
+            (click)="verIndicacoes('recebidas')"
+          >
+            <i id="i_nova_indicacao" class="fas fa-comment fa-blink"></i><br />
+            Nova indicação<br />de filme!
           </div>
-
+          <div class="col-md-6 col-xs-6" style="padding:0; margin-left: 0">
+            <!--
+              <i  id="i_novo_comentario" class="fas fa-comment fa-blink"></i> novo comentário
+            -->
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="col-lg-6 col-md-6" style="margin-bottom:10px">
-      <div class="box-avatar">
+    <div class="col-lg-6 col-md-6" style="margin-bottom:10px;">
+      <div class="box-avatar" style="cursor: pointer" (click)="navigate('painel')">
         <div>
           <strong>{{ localUser.user_displayName }}</strong>
         </div>
@@ -47,7 +44,7 @@
         <div class="panel">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-md-12 col-xs-12">
+              <div class="col-md-12 col-xs-12" style="cursor: pointer"  (click)="verIndicacoes('enviadas')">
                 <div
                   class="col-md-4 col-xs-4"
                   style="padding:0; margin-left: 0"
@@ -58,7 +55,16 @@
                   class="col-md-8 col-xs-8"
                   style="color: black; text-align: left; padding:0; margin-left: 0"
                 >
-                    Voce já indicou {{ contadorIndicacoesEnviadas }} filmes<br>a seus amigos.
+                  <span *ngIf="!contadorIndicacoesEnviadas"
+                    >Você ainda não indicou nenhum filme a nenhum amigo.</span
+                  >
+                  <span *ngIf="contadorIndicacoesEnviadas == 1"
+                    >Você já fez uma indicação de filme a um amigo.</span
+                  >
+                  <span *ngIf="contadorIndicacoesEnviadas > 1"
+                    >Você já indicou {{ contadorIndicacoesEnviadas }} filmes
+                    seus amigos.</span
+                  >
                 </div>
               </div>
             </div>
@@ -66,32 +72,37 @@
         </div>
       </div>
 
-
-        <div class="panel">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-md-12 col-xs-12">
-                <div
-                  class="col-md-4 col-xs-4"
-                  style="padding:0; margin-left: 0"
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12 col-xs-12" style="cursor: pointer" (click)="verIndicacoes('recebidas')">
+              <div class="col-md-4 col-xs-4" style="padding:0; margin-left: 0">
+                <i id="i_indicaram" class="far fa-comment"></i>
+              </div>
+              <div
+                class="col-md-8 col-xs-8"
+                style="color: black; text-align: left; padding:0; margin-left: 0"
+              >
+                <span *ngIf="!contadorIndicacoesRecebidas"
+                  >Você ainda não teve indicação de filme de nenhum amigo.</span
                 >
-                  <i id="i_indicaram" class="far fa-comment"></i>
-                </div>
-                <div
-                  class="col-md-8 col-xs-8"
-                  style="color: black; text-align: left; padding:0; margin-left: 0"
+                <span *ngIf="contadorIndicacoesRecebidas == 1"
+                  >Você já tem uma indicação de filme enviada por um
+                  amigo.</span
                 >
-                  Seus amigos já lhe fizeram<br>{{ contadorIndicacoesRecebidas }} indicações.
-                </div>
+                <span *ngIf="contadorIndicacoesRecebidas > 1"
+                  >Seus amigos já lhe fizeram
+                  {{ contadorIndicacoesRecebidas }} indicações de filmes.</span
+                >
               </div>
             </div>
           </div>
         </div>
-
+      </div>
     </div>
 
     <div class="col-lg-6" style="margin-bottom:1px">
-      <div *ngFor="let filme of lista_filmes">
+      <div *ngFor="let filme of lista_filmes" style="cursor: pointer" (click)="navigateMovie(filme.id)">
         <div class="box">
           <div class="col-lg-5 col-sm-5 col-xs-5" id="div_poster">
             Último filme adicionado:
@@ -122,7 +133,7 @@
         <div class="panel">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-md-12 col-xs-12">
+              <div class="col-md-12 col-xs-12" style="cursor: pointer"  (click)="navigate('mymoovies', 1)">
                 <div
                   class="col-md-4 col-xs-4"
                   style="padding:0; margin-left: 0"
@@ -133,7 +144,8 @@
                   class="col-md-8 col-xs-8"
                   style="color: black; text-align: left; padding:0; margin-left: 0"
                 >
-                  Até agora você já marcou<br>{{ contadorJaVistos }} filmes como assistidos.
+                  Até agora você já marcou<br />{{ contadorJaVistos }} filme<span *ngIf="contadorJaVistos>1">s</span>
+                  como assistido<span *ngIf="contadorJaVistos>1">s</span>.
                 </div>
               </div>
             </div>
@@ -141,29 +153,24 @@
         </div>
       </div>
 
-
-        <div class="panel">
-          <div class="panel-heading">
-            <div class="row">
-              <div class="col-md-12 col-xs-12">
-                <div
-                  class="col-md-4 col-xs-4"
-                  style="padding:0; margin-left: 0"
-                >
-                  <i id="i_querver" class="fas fa-check"></i>
-                </div>
-                <div
-                  class="col-md-8 col-xs-8"
-                  style="color: black; text-align: left; padding:0; margin-left: 0"
-                >
-                E já selecionou outros<br>{{ contadorQuerVer }} filmes para assistir depois.
-                </div>
+      <div class="panel">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12 col-xs-12" style="cursor: pointer"  (click)="navigate('mymoovies', 2)">
+              <div class="col-md-4 col-xs-4" style="padding:0; margin-left: 0">
+                <i id="i_querver" class="fas fa-check"></i>
+              </div>
+              <div
+                class="col-md-8 col-xs-8"
+                style="color: black; text-align: left; padding:0; margin-left: 0"
+              >
+                E já selecionou outros<br />{{ contadorQuerVer }} filme<span *ngIf="contadorQuerVer>1">s</span> para
+                assistir depois.
               </div>
             </div>
           </div>
         </div>
-
-
+      </div>
     </div>
   </div>
 </div>

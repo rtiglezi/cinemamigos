@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "app/providers/auth.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -9,14 +10,22 @@ import { AngularFireDatabase } from "angularfire2";
   styleUrls: ["./indicacoes-page.component.css"]
 })
 export class IndicacoesPageComponent implements OnInit {
+
+  localUser = this.authService.getLocalUser();
+
   private sub: any;
 
   usuarioId: string;
   fluxo: string;
   origem: string;
 
+  btn1Class = "btn btn-dark btn-sm";
+  btn2Class = "btn btn-dark btn-sm";
+  btn3Class = "btn btn-dark btn-sm";
+  btn4Class = "btn btn-dark btn-sm";
 
-  arrayIndicacoesRecebidas = [];
+
+  arrayIndicacoes = [];
 
   constructor(
     public authService: AuthService,
@@ -30,25 +39,56 @@ export class IndicacoesPageComponent implements OnInit {
       this.usuarioId = qp["usuarioId"];
       this.fluxo = qp["fluxo"];
       this.origem = qp["origem"];
+
+      if (this.fluxo=='enviadas') {
+        this.btn3Class = "btn btn-danger btn-sm";
+        this.btn4Class = "btn btn-dark btn-sm";
+      } else if (this.fluxo=='recebidas') {
+        this.btn3Class = "btn btn-dark btn-sm";
+        this.btn4Class = "btn btn-danger btn-sm";
+      };
+
+
     });
     this.getIndicacoes(this.fluxo);
+
   }
 
   getIndicacoes(fluxo) {
     if (fluxo == 'recebidas') {
       this.getIndicacoesRecebidas();
+    } else if (fluxo == 'enviadas') {
+      this.getIndicacoesEnviadas();
     }
   }
 
   getIndicacoesRecebidas() {
+    this.arrayIndicacoes=[];
     this.db
     .list("indicacoes", {query: {
-      orderByChild: "amigoEscolhidoId",
-      equalTo: this.usuarioId
+      orderByChild: "data"
     }})
     .subscribe(r => {
-      this.arrayIndicacoesRecebidas = r;
-      console.log(this.arrayIndicacoesRecebidas);
+      r.map(m=>{
+        if (m.amigoEscolhidoId == this.localUser.user_uid ) {
+          this.arrayIndicacoes.push(m);
+        }
+      });
+    });
+  }
+
+  getIndicacoesEnviadas() {
+    this.arrayIndicacoes=[];
+    this.db
+    .list("indicacoes", {query: {
+      orderByChild: "data"
+    }})
+    .subscribe(r => {
+      r.map(m=>{
+        if (m.usuarioId == this.localUser.user_uid ) {
+          this.arrayIndicacoes.push(m);
+        }
+      });
     });
   }
 
@@ -63,6 +103,36 @@ export class IndicacoesPageComponent implements OnInit {
         queryParams: { id: filmeId, origem: "indicacoes", usuarioId: this.usuarioId, fluxo: this.fluxo }
       });
      });
+  }
+
+  backClicked() {
+    if (this.origem) {
+      this.router.navigate([this.origem], {
+        queryParams: {
+          usuarioId: this.usuarioId,
+          fluxo: this.fluxo,
+          origem: this.origem
+         }
+      });
+    } else {
+      this.router.navigate([""]);
+    }
+  }
+
+  go(status) {
+    this.router.navigate(["mymoovies"], {
+      queryParams: { status: status }
+    });
+  }
+
+  goIndicacoes(fluxo) {
+    this.router.navigate(["indicacoes"], {
+      queryParams: {
+        usuarioId: this.usuarioId,
+        fluxo: fluxo,
+        origem: "profile"
+      }
+    });
   }
 
 

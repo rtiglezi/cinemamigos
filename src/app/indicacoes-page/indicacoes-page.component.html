@@ -1,34 +1,57 @@
 <app-nav></app-nav>
 <div class="visible-xs" style="height: 40px"></div>
 
+<div style="text-align: center">
+
+
+    <button class="{{btn1Class}}" (click)="go(1)">
+        <span><i id="i_javiu" class="fas fa-check-double"></i> Já Vi</span>
+      </button>
+
+      <button class="{{btn2Class}}" (click)="go(2)">
+        <span><i id="i_querver" class="fas fa-check"></i> Quero ver</span>
+      </button>
+
+      <button class="{{btn3Class}}" (click)="goIndicacoes('enviadas')">
+          <span><i id="i_javiu" class="far fa-share-square"></i> Indiquei</span>
+        </button>
+
+        <button class="{{btn4Class}}" (click)="goIndicacoes('recebidas')">
+          <span><i id="i_querver" class="far fa-comment"></i> Me indicaram</span>
+        </button>
+</div>
+
+<hr />
+
 <div class="container">
-  <div>
-    <div class="panel-heading">
-      <div class="row">
-        <div class="col-md-12 col-xs-12">
-          Indicações
-          <hr />
-        </div>
-      </div>
-    </div>
-  </div>
   <div
     class="col-lg-4"
-    *ngFor="let indicacao of arrayIndicacoesRecebidas.slice().reverse()"
+    *ngFor="let indicacao of arrayIndicacoes.slice().reverse()"
   >
-
-
     <div class="box">
+      <div class="panel col-lg-12" *ngIf="fluxo == 'recebidas'">
+        Quem lhe indicou este filme:
+        <hr />
+        <img
+          class="img avatar"
+          src="{{ indicacao.usuarioFoto }}"
+          align="left"
+        />
+        {{ indicacao.usuarioNome }}<br />
+        {{ indicacao.usuarioEmail }}
+      </div>
 
-        <div class="panel col-lg-12">
-            Quem lhe indicou este filme:
-            <hr />
-
-            <img class="img avatar" src="{{ indicacao.usuarioFoto }}" align="left" />
-            {{ indicacao.usuarioNome }}<br />
-            {{ indicacao.usuarioEmail }}
-          </div>
-
+      <div class="panel col-lg-12" *ngIf="fluxo == 'enviadas'">
+        Você indicou para:
+        <hr />
+        <img
+          class="img avatar"
+          src="{{ indicacao.amigoEscolhidoFoto }}"
+          align="left"
+        />
+        {{ indicacao.amigoEscolhidoNome }}<br />
+        {{ indicacao.amigoEscolhidoEmail }}
+      </div>
       <div
         id="titulo"
         style="
@@ -42,37 +65,64 @@
         {{ indicacao.filmeTitulo.length >= 30 ? "..." : "" }} ({{
           indicacao.filmeAno | date: "y"
         }})
-        <span *ngIf="!indicacao.lida" style="color: orange;">nova!!!</span>
+        <span *ngIf="!indicacao.lida" style="color: orange;"
+          ><br />(indicação nova!!!)</span
+        >
+        <span *ngIf="indicacao.lida" style="color: orange;"
+          ><br />(enviada em {{ indicacao.data | date: "dd/MM/yyyy" }})</span
+        >
       </div>
 
       <div class="col-lg-5 col-sm-5 col-xs-5" id="div_poster">
         <img
           class="img-moovie"
-          (click)="navigate(indicacao.filmeId, indicacao.usuarioId, indicacao.amigoEscolhidoId)"
+          (click)="
+            navigate(
+              indicacao.filmeId,
+              indicacao.usuarioId,
+              indicacao.amigoEscolhidoId
+            )
+          "
           [src]="'https://image.tmdb.org/t/p/w92/' + indicacao.filmePoster"
         />
       </div>
 
-      <div class="col-lg-7 col-sm-7 col-xs-7" id="div_sinopse">
-          {{ indicacao.mensagem | slice: 0:180 }}
-          {{ indicacao.mensagem >= 180 ? "..." : "" }}
+      <div
+        class="col-lg-7 col-sm-7 col-xs-7"
+        id="div_sinopse"
+        style="padding-top:8px"
+      >
+        Msg. de {{ indicacao.usuarioNome }}:
+        <hr />
+        <span style="font-weight: normal; font-size: 12px">
+          {{ indicacao.mensagem | slice: 0:150 }}
+          {{ indicacao.mensagem >= 150 ? "..." : "" }}
+        </span>
       </div>
 
       <div style="text-align: center">
-          <button
-            style="color: black; width: 100%; margin-bottom:10px"
-            class="btn btn-xs btn-warning"
-            (click)="navigate(indicacao.filmeId, indicacao.usuarioId, indicacao.amigoEscolhidoId)"
-          >
-            + informações...
-          </button>
-        </div>
-
+        <button
+          style="color: black; width: 100%; margin-bottom:10px"
+          class="btn btn-xs btn-warning"
+          (click)="
+            navigate(
+              indicacao.filmeId,
+              indicacao.usuarioId,
+              indicacao.amigoEscolhidoId
+            )
+          "
+        >
+          + informações...
+        </button>
+      </div>
     </div>
 
-
-
     <br />
+  </div>
+  <div (click)="backClicked()">
+    <button class="btn btn-default btn-block">
+      <span class="glyphicon glyphicon-triangle-left">Voltar</span>
+    </button>
   </div>
 </div>
 

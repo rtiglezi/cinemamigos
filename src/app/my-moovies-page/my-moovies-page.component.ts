@@ -17,6 +17,8 @@ export class MyMooviesPageComponent implements OnInit {
 
   btn1Class;
   btn2Class;
+  btn3Class = "btn btn-dark btn-sm";
+  btn4Class = "btn btn-dark btn-sm";
 
   resultado: any;
 
@@ -78,6 +80,66 @@ export class MyMooviesPageComponent implements OnInit {
     this.router.navigate(["mymoovies"], {
       queryParams: { status: status }
     });
+  }
+
+  goIndicacoes(fluxo) {
+    this.router.navigate(["indicacoes"], {
+      queryParams: {
+        usuarioId: this.localUser.user_uid,
+        fluxo: fluxo,
+        origem: "profile"
+      }
+    });
+  }
+
+  indicar(filmeId) {
+
+    this.db
+        .object("usuarios/" + this.localUser.user_uid + "/filmes/" + filmeId)
+        .subscribe(r => {
+
+          let classAvaliacao: string;
+          let colorAvaliacao: string;
+          let nomeAvaliacao: string;
+          let starChecked: number;
+
+          starChecked = r.rate;
+
+          if (starChecked == 1) {
+            classAvaliacao = "far fa-tired";
+            colorAvaliacao = "rgb(248, 120, 66)";
+            nomeAvaliacao = "Ruim";
+          } else if (starChecked == 2) {
+            classAvaliacao = "far fa-meh";
+            colorAvaliacao = "rgb(255, 141, 34)";
+            nomeAvaliacao = "Mediano";
+          } else if (starChecked == 3) {
+            classAvaliacao = "far fa-smile";
+            colorAvaliacao = "rgb(224, 193, 12)";
+            nomeAvaliacao = "Bom";
+          } else if (starChecked == 4) {
+            classAvaliacao = "far fa-grin-alt";
+            colorAvaliacao = "rgb(163, 202, 20)";
+            nomeAvaliacao = "Muito Bom";
+          } else if (starChecked == 5) {
+            classAvaliacao = "far fa-grin-stars";
+            colorAvaliacao = "rgb(73, 156, 6)";
+            nomeAvaliacao = "Memorável!";
+          }
+
+          this.router.navigate(["amigos"], {
+            queryParams: {
+              filmeId: filmeId,
+              filmeTitulo: r.titulo,
+              filmeAno: r.lancamento,
+              filmePoster: r.poster,
+              colorAvaliacao: colorAvaliacao,
+              classAvaliacao: classAvaliacao,
+              nomeAvaliacao: nomeAvaliacao,
+              origem: "mymoovies" }
+          });
+
+        });
   }
 
   navigate(id) {

@@ -165,4 +165,11 @@ export class AmigosPageComponent implements OnInit {
   navigate() {
     this.router.navigate(["profile"]);
   }
+
+  backClicked() {
+    if (this.origem) {
+      this.router.navigate([this.origem]);
+    }
+  }
+
 }

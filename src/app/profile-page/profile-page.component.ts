@@ -172,8 +172,8 @@ export class ProfilePageComponent implements OnInit {
     this.router.navigate(["login"]);
   }
 
-  navigate(destino) {
-    this.router.navigate([destino]);
+  navigate(destino, status) {
+    this.router.navigate([destino],{queryParams: {status: status}});
   }
 
   showToast(msg) {
@@ -187,6 +187,12 @@ export class ProfilePageComponent implements OnInit {
     setTimeout(function() {
       x.nativeElement.className = x.nativeElement.className.replace("show", "");
     }, 3000);
+  }
+
+  navigateMovie(id) {
+    this.router.navigate(["moovie"], {
+      queryParams: { id: id, origem: "profile" }
+    });
   }
 
 }
