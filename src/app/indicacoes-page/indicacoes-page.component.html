@@ -24,6 +24,17 @@
 <hr />
 
 <div class="container">
+
+  <div style="padding: 10px">
+    <span *ngIf="fluxo=='recebidas' && arrayIndicacoes.length==0">
+        Você ainda não recebeu nenhuma indicação.
+    </span>
+    <span *ngIf="fluxo=='enviadas' && arrayIndicacoes.length==0">
+          Você ainda não fez nenhuma indicação.
+    </span>
+  </div>
+
+
   <div
     class="col-lg-4"
     *ngFor="let indicacao of arrayIndicacoes.slice().reverse()"
