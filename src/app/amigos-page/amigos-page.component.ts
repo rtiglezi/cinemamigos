@@ -35,6 +35,7 @@ export class AmigosPageComponent implements OnInit {
   arrayAmigos = [];
   @ViewChild("srch") domSearch: ElementRef;
   @ViewChild("srchIcon") domSearchIcon: ElementRef;
+  @ViewChild("msg") domMsg: ElementRef;
 
   @ViewChild("btnEnviar") domBtnEnviar: ElementRef;
   @ViewChild("btnFechar") domBtnFechar: ElementRef;

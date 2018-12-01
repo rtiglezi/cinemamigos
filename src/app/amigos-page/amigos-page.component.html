@@ -1,5 +1,4 @@
 <app-nav></app-nav>
-<div class="visible-xs" style="height: 40px"></div>
 
 <div class="container">
 
@@ -21,7 +20,7 @@
 
     <div class="panel form-group has-feedback" style="margin-top: 5px">
       <span class="titulo-pagina"
-        >Localize o(a) amigo(a):</span
+        >Localize um(a) amigo(a) para indicar:</span
       >
       <div class="form-group has-feedback">
         <input
@@ -30,15 +29,15 @@
           (keyup)="getAmigos(srch.value)"
           type="text"
           class="txtSearch"
-          placeholder="Nome ou parte do nome do(a) amigo(a)..."
+          placeholder="Digite o nome do(a) amigo(a)..."
         />
 
         <div class="divBoxSearch" *ngFor="let am of arrayAmigos"
         >
           <div
             class="divHover divBoxSearchInternal"
-          >
-            <span (click)="mostraBoxIndicacao(am.Id, am.nome, am.email, am.foto)">
+            (click)="mostraBoxIndicacao(am.Id, am.nome, am.email, am.foto)">
+            <span>
             <img class="img avatar" src="{{ am.foto }}" align="left" />
             {{ am.nome }}<br />
             {{ am.email }}
@@ -72,11 +71,5 @@
         </div>
 
   </div>
-
-
-
-  <br />
-  <br />
-  <br />
-  <app-footer></app-footer>
 </div>
+<br>
