@@ -35,7 +35,7 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   public filme = new Object();
 
-  public filmeid;
+  public filmeId;
   public filmeTitulo;
   public filmeAno;
   public filmePoster;
@@ -57,6 +57,10 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   public isThereSelection: boolean = false;
 
+  classAvaliacao: string;
+  colorAvaliacao: string;
+  nomeAvaliacao: string;
+
   @ViewChild("snackbar") toast: ElementRef;
   @ViewChild("marcarJaVi") jaVi: ElementRef;
   @ViewChild("marcarQueroVer") queroVer: ElementRef;
@@ -76,9 +80,9 @@ export class MoovieDetailsPageComponent implements OnInit {
       this.searchParam = qp["searchParam"];
     });
 
-    this.filmeid = this.id;
+    this.filmeId = this.id;
 
-    this.moviesService.getMovieDetails(this.filmeid).subscribe(data => {
+    this.moviesService.getMovieDetails(this.filmeId).subscribe(data => {
       const response = data as any;
       const objeto_retorno = JSON.parse(response._body);
       this.filme = objeto_retorno;
@@ -104,7 +108,7 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   getMoovieService() {
     this.db
-      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
+      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeId)
       .subscribe(r => {
         if (r.status) {
           this.status = r.status;
@@ -126,6 +130,30 @@ export class MoovieDetailsPageComponent implements OnInit {
             } else if (this.starChecked == 5) {
               this.star5Checked = true;
             }
+
+            if (this.starChecked == 1) {
+              this.classAvaliacao = "far fa-tired";
+              this.colorAvaliacao = "rgb(248, 120, 66)";
+              this.nomeAvaliacao = "Ruim";
+            } else if (this.starChecked == 2) {
+              this.classAvaliacao = "far fa-meh";
+              this.colorAvaliacao = "rgb(255, 141, 34)";
+              this.nomeAvaliacao = "Mediano";
+            } else if (this.starChecked == 3) {
+              this.classAvaliacao = "far fa-smile";
+              this.colorAvaliacao = "rgb(224, 193, 12)";
+              this.nomeAvaliacao = "Bom";
+            } else if (this.starChecked == 4) {
+              this.classAvaliacao = "far fa-grin-alt";
+              this.colorAvaliacao = "rgb(163, 202, 20)";
+              this.nomeAvaliacao = "Muito Bom";
+            } else if (this.starChecked == 5) {
+              this.classAvaliacao = "far fa-grin-stars";
+              this.colorAvaliacao = "rgb(73, 156, 6)";
+              this.nomeAvaliacao = "Memorável!";
+            }
+
+
           } else if (this.status == "2") {
             this.clsJaVi = "btn btn-sm btn-white";
             this.clsQueroVer = "btn btn-sm btn-red";
@@ -187,7 +215,7 @@ export class MoovieDetailsPageComponent implements OnInit {
 
   deleteMoovieService() {
     return this.db
-      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
+      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeId)
       .remove();
   }
 
@@ -231,9 +259,9 @@ export class MoovieDetailsPageComponent implements OnInit {
     var marcado = this.dataAtualFormatadaUS();
 
     this.db
-      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeid)
+      .object("usuarios/" + this.localUser.user_uid + "/filmes/" + this.filmeId)
       .update({
-        id: this.filmeid,
+        id: this.filmeId,
         titulo: this.filmeTitulo,
         lancamento: this.filmeAno,
         poster: this.filmePoster,
@@ -243,6 +271,8 @@ export class MoovieDetailsPageComponent implements OnInit {
         rate: this.starChecked
       })
       .then(r => {
+
+
         // const swalWithBootstrapButtons = swal.mixin({
         //   confirmButtonClass: "btn btn-red",
         //   cancelButtonClass: "btn btn-red",
@@ -300,4 +330,19 @@ export class MoovieDetailsPageComponent implements OnInit {
       x.nativeElement.className = x.nativeElement.className.replace("show", "");
     }, 3000);
   }
+
+  navigate() {
+    this.router.navigate(["amigos"], {
+      queryParams: {
+        filmeId: this.filmeId,
+        filmeTitulo: this.filmeTitulo,
+        filmeAno: this.filmeAno,
+        filmePoster: this.filmePoster,
+        colorAvaliacao: this.colorAvaliacao,
+        classAvaliacao: this.classAvaliacao,
+        nomeAvaliacao: this.nomeAvaliacao,
+        origem: "moovie" }
+    });
+  }
+
 }

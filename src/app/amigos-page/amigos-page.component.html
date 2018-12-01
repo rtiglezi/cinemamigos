@@ -3,37 +3,77 @@
 
 <div class="container">
 
-  <span class="titulo-pagina">Encontrar pessoa:</span>
-  <div class="form-group has-feedback">
-    <input
-      #srch
-      autofocus
-      (keyup)="getAmigos(srch.value)"
-      type="text"
-      class="txtSearch"
-      placeholder="Digite o nome ou parte do nome da pessoa"
-    />
-    <div
-      class="divBoxSearch"
-      *ngIf="arrayAmigos.length > 0"
-    >
-      <div class="divHover divBoxSearchInternal" *ngFor="let am of arrayAmigos">
+  <div class="col-lg-12" style="margin-bottom:1px">
+    <div class="box">
+      <div class="col-lg-2 col-sm-3 col-xs-5" id="div_poster">
+        <img
+          class="img-border"
+          [src]="'https://image.tmdb.org/t/p/w92/' + filmePoster"
+        />
+      </div>
 
-           <img class="img avatar" src="{{ am.foto }}" align="left" />
-              {{ am.nome }}<br>
-              {{ am.email }}
-              <hr>
-
+      <div class="col-lg-10 col-sm-9 col-xs-7">
+        <div id="div_titulo">
+          {{ filmeTitulo }} ({{ filmeAno | date: "y" }})
+        </div>
+        <hr />
+        <div>
+          <i id="i_avaliacao" [style.color]="colorAvaliacao" [class]="classAvaliacao"></i>
+        </div>
+        <div>Você achou {{ nomeAvaliacao }}</div>
+        <hr />
       </div>
     </div>
-    <span #srchIcon>
-      <i class="glyphicon glyphicon-search form-control-feedback"></i>
-    </span>
+
+    <div class="panel form-group has-feedback" style="margin-top: 5px">
+      <span class="titulo-pagina"
+        >Localize um amigo para indicar este filme:</span
+      >
+      <div class="form-group has-feedback">
+        <input
+          #srch
+          autofocus
+          (keyup)="getAmigos(srch.value)"
+          type="text"
+          class="txtSearch"
+          placeholder="Nome ou parte do nome do amigo..."
+        />
+
+        <div class="divBoxSearch" *ngFor="let am of arrayAmigos"
+        >
+          <div
+            class="divHover divBoxSearchInternal"
+          >
+            <span (click)="mostraBoxIndicacao(am.Id, am.nome, am.email, am.foto)">
+            <img class="img avatar" src="{{ am.foto }}" align="left" />
+            {{ am.nome }}<br />
+            {{ am.email }}
+            </span>
+            <hr />
+          </div>
+        </div>
+        <span #srchIcon>
+          <i class="glyphicon glyphicon-search form-control-feedback"></i>
+        </span>
+      </div>
+    </div>
+
+    <div *ngIf="amigoEscolhido" class="panel-indicacao">
+        <img class="img avatar-escolhido" src="{{ amigoEscolhidoFoto }}" align="left" />
+        Amigo escolhido:<br />
+        {{ amigoEscolhidoNome }}<br />
+        {{ amigoEscolhidoEmail }}
+        <hr >
+        Diga a seu amigo porque você acha que ele irá gostar desse filme:
+        <textarea #msg style="width: 100%; height: 50px;"></textarea>
+        <button #btnEnviar (click)="confirmarEnvioIndicacao(msg.value)" class="btn btn-danger">Enviar a indicação</button>
+        <button #btnFechar style="display: none" class="btn btn-default">Fechar</button>
+      </div>
+
   </div>
+
+  <br />
+  <br />
+  <br />
+  <app-footer></app-footer>
 </div>
-
-
-<br />
-<br />
-<br />
-<app-footer></app-footer>

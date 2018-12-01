@@ -113,14 +113,25 @@ i {
   color: white;
 }
 
-#i_amigos {
-  color: #075E55;
+#i_indiquei {
+  color: darkcyan;
   padding: 0px;
   margin-top: 0px;
 }
 
-#i_requisicoes {
-  color: rgb(255, 0, 0);
+#i_indicaram {
+  color: orangered;
+  padding: 0px;
+  margin-top: 0px;
+}
+
+#i_nova_indicacao {
+  color: orange;
+  font-size: 18px;
+}
+
+#i_novo_comentario {
+  color: orange;
   font-size: 18px;
 }
 

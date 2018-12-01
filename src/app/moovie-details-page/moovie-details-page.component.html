@@ -137,6 +137,15 @@
         </form>
       </div>
 
+
+      <div *ngIf="starChecked">
+       <button
+          (click)="navigate()"
+          type="button"
+          class="btn btn-xs btn-danger"
+           class="btn btn-default"><i class="fas fa-share-square" style="color: red; font-size: 15px;"></i> Indique Este Filme A Um Amigo Agora</button>
+      </div>
+
       <hr />
 
       <div

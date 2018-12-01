@@ -2,7 +2,7 @@
 <div class="visible-xs" style="height: 40px"></div>
 <div class="container text-center">
   <div class="row">
-    <div class="col-12 box-status" style="margin-bottom:10px">
+    <div  *ngIf="haIndicacaoNaoLida" class="col-12 box-status" style="margin-bottom:20px">
 
         <div class="row">
             <div class="col-md-12 col-xs-12">
@@ -11,7 +11,7 @@
                 style="padding:0; margin-left: 0"
               >
 
-                <i id="i_requisicoes" class="fas fa-user-clock"></i> 13 requisições
+                <i id="i_nova_indicacao" class="fas fa-certificate fa-blink"></i> nova indicação
 
               </div>
               <div
@@ -19,7 +19,7 @@
                 style="padding:0; margin-left: 0"
               >
 
-              <i id="i_requisicoes" class="fas fa-film"></i> 48 indicações
+              <!--<i  id="i_novo_comentario" class="fas fa-comment fa-blink"></i> novo comentário-->
 
               </div>
             </div>
@@ -37,7 +37,7 @@
         <div>Participante desde: {{ primeiroAceso | date: "dd/MM/yyyy" }}</div>
       </div>
 
-      <div style="margin-top:10px;">
+      <div style="margin-top:20px;">
         <div class="panel">
           <div class="panel-heading">
             <div class="row">
@@ -46,27 +46,42 @@
                   class="col-md-4 col-xs-4"
                   style="padding:0; margin-left: 0"
                 >
-                  <i id="i_amigos" class="fas fa-users"></i>
+                  <i id="i_indiquei" class="far fa-share-square"></i>
                 </div>
                 <div
                   class="col-md-8 col-xs-8"
                   style="color: black; text-align: left; padding:0; margin-left: 0"
                 >
-                  15 amigos adicionados<br />
-                  <button
-                    style="color: black; margin-right: 0px"
-                    class="btn btn-warning btn-xs"
-                    (click)="navigate('amigos')"
-                  >
-                    gerenciar amigos
-                  </button>
-
+                    Voce já indicou 15 filmes<br>a seus amigos.
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <div
+                  class="col-md-4 col-xs-4"
+                  style="padding:0; margin-left: 0"
+                >
+                  <i id="i_indicaram" class="fas fa-certificate"></i>
+                </div>
+                <div
+                  class="col-md-8 col-xs-8"
+                  style="color: black; text-align: left; padding:0; margin-left: 0"
+                >
+                  Seus amigos já lhe fizeram<br>{{ contadorIndicacoesRecebidas }} indicações.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
 
     <div class="col-lg-6" style="margin-bottom:1px">
@@ -96,11 +111,12 @@
           </div>
         </div>
       </div>
-      <div style="margin-top:10px;">
+
+      <div style="margin-top:20px;">
         <div class="panel">
           <div class="panel-heading">
             <div class="row">
-              <div class="col-md-6 col-xs-6">
+              <div class="col-md-12 col-xs-12">
                 <div
                   class="col-md-4 col-xs-4"
                   style="padding:0; margin-left: 0"
@@ -111,24 +127,37 @@
                   class="col-md-8 col-xs-8"
                   style="color: black; text-align: left; padding:0; margin-left: 0"
                 >
-                  {{ contadorJaVistos }} filmes já<br>assistidos<br />
-                </div>
-              </div>
-              <div class="col-md-6 col-xs-6" style="padding: 0">
-                <div class="col-md-4 col-xs-4" style="padding:0">
-                  <i id="i_querver" class="fas fa-check"></i>
-                </div>
-                <div
-                  class="col-md-8 col-xs-8"
-                  style="color: black; text-align: left; padding:0"
-                >
-                  {{ contadorQuerVer }} filmes ainda<br>por assistir<br />
+                  Até agora você já marcou<br>{{ contadorJaVistos }} filmes como assistidos.
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <div
+                  class="col-md-4 col-xs-4"
+                  style="padding:0; margin-left: 0"
+                >
+                  <i id="i_querver" class="fas fa-check"></i>
+                </div>
+                <div
+                  class="col-md-8 col-xs-8"
+                  style="color: black; text-align: left; padding:0; margin-left: 0"
+                >
+                E já selecionou outros<br>{{ contadorQuerVer }} filmes para assistir depois.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
     </div>
   </div>
 </div>

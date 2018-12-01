@@ -25,6 +25,9 @@ export class ProfilePageComponent implements OnInit {
   contadorTalvez: any = 0;
   contadorDispensa: any = 0;
 
+  contadorIndicacoesRecebidas: any = 0;
+  haIndicacaoNaoLida: boolean = false;
+
 
   constructor(
     private db: AngularFireDatabase,
@@ -38,12 +41,37 @@ export class ProfilePageComponent implements OnInit {
       this.getLastWatched(1);
       this.getCreation();
       this.getMoovieService();
+      this.getIndicacoes();
   }
 
   getCreation() {
     this.db.object("usuarios/" + this.localUser.user_uid + "/dados").subscribe(r=> {
       this.primeiroAceso = r.primeiroAcesso;
     })
+  }
+
+  getIndicacoes() {
+    this.db
+    .list("indicacoes", {query: {
+      orderByChild: "amigoEscolhidoId",
+      equalTo: this.localUser.user_uid
+    }})
+    .subscribe(r => {
+
+      this.contadorIndicacoesRecebidas = r.length;
+
+      r.map(m => {
+        if (m.lida == false) {
+          this.haIndicacaoNaoLida = true;
+        }
+      });
+
+      this.contadorJaVistos = this.contadorJaVistos.toString();
+      this.contadorQuerVer = this.contadorQuerVer.toString();
+      this.contadorTalvez = this.contadorTalvez.toString();
+      this.contadorDispensa = this.contadorDispensa.toString();
+
+    });
   }
 
 
