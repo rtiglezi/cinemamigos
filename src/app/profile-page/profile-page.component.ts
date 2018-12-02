@@ -63,7 +63,7 @@ export class ProfilePageComponent implements OnInit {
     .subscribe(r => {
       this.contadorIndicacoesRecebidas = r.length;
       r.map(m => {
-        if (m.lida == false) {
+        if (m.status == 0) {
           this.haIndicacaoNaoLida = true;
         }
       });

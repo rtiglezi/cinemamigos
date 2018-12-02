@@ -61,7 +61,6 @@ export class AmigosPageComponent implements OnInit {
   }
 
   getAmigos(query) {
-    this.arrayAmigos = [];
     this.db
       .list("usuarios", {
         query: {
@@ -69,6 +68,8 @@ export class AmigosPageComponent implements OnInit {
         }
       })
       .subscribe(r => {
+        this.arrayAmigos = [];
+
         r.map(m => {
           if (m.dados.nome.toLowerCase().indexOf(query.toLowerCase()) != -1) {
             if (query.length > 0) {
@@ -154,7 +155,7 @@ export class AmigosPageComponent implements OnInit {
         filmeAno: this.filmeAno,
         filmePoster: this.filmePoster,
         mensagem: msg,
-        lida: false
+        status: 0
       })
       .then(r => {
         this.domBtnEnviar.nativeElement.innerHTML =

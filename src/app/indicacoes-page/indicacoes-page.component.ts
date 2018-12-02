@@ -42,16 +42,20 @@ export class IndicacoesPageComponent implements OnInit {
   }
 
   getIndicacoes(fluxo) {
-    console.log(fluxo);
     if (fluxo == "recebidas") {
+      this.btn3Class = "btn btn-dark btn-sm";
+      this.btn4Class = "btn btn-danger btn-sm";
+      this.fluxo = 'recebidas';
       this.getIndicacoesRecebidas();
     } else if (fluxo == "enviadas") {
+      this.btn3Class = "btn btn-danger btn-sm";
+      this.btn4Class = "btn btn-dark btn-sm";
+      this.fluxo = 'enviadas';
       this.getIndicacoesEnviadas();
     }
   }
 
   getIndicacoesRecebidas() {
-    this.arrayIndicacoes = [];
     this.db
       .list("indicacoes", {
         query: {
@@ -59,8 +63,9 @@ export class IndicacoesPageComponent implements OnInit {
         }
       })
       .subscribe(r => {
+        this.arrayIndicacoes = [];
         r.map(m => {
-          if (m.amigoEscolhidoId == this.localUser.user_uid) {
+          if (m.amigoEscolhidoId == this.localUser.user_uid && m.status != 2) {
             this.fluxo = "recebidas";
             this.btn3Class = "btn btn-dark btn-sm";
             this.btn4Class = "btn btn-danger btn-sm";
@@ -71,7 +76,6 @@ export class IndicacoesPageComponent implements OnInit {
   }
 
   getIndicacoesEnviadas() {
-    this.arrayIndicacoes = [];
     this.db
       .list("indicacoes", {
         query: {
@@ -79,6 +83,7 @@ export class IndicacoesPageComponent implements OnInit {
         }
       })
       .subscribe(r => {
+        this.arrayIndicacoes = [];
         r.map(m => {
           if (m.usuarioId == this.localUser.user_uid) {
             this.fluxo = "enviadas";
@@ -97,7 +102,7 @@ export class IndicacoesPageComponent implements OnInit {
           "indicacoes/" + usuarioId + "_" + amigoEscolhidoId + "_" + filmeId
         )
         .update({
-          lida: true,
+          status: 1,
           lidaEm: Date.now()
         })
         .then(r => {});
@@ -111,6 +116,7 @@ export class IndicacoesPageComponent implements OnInit {
       }
     });
   }
+
 
   backClicked() {
     if (this.origem) {
@@ -133,9 +139,14 @@ export class IndicacoesPageComponent implements OnInit {
   }
 
   goIndicacoes(fluxo) {
-    this.getIndicacoes(fluxo);
+    this.router.navigate(["indicacoes"], {
+      queryParams: {
+        usuarioId: this.localUser.user_uid,
+        fluxo: fluxo,
+        origem: "indicacoes"
+      }
+    });
   }
-
 
   confirmarCancelamentoDeIndicacao(filmeId, usuarioId, amigoEscolhidoId) {
     const swalWithBootstrapButtons = swal.mixin({
@@ -156,20 +167,74 @@ export class IndicacoesPageComponent implements OnInit {
       reverseButtons: false
     }).then(result => {
       if (result.value) {
-        this.cancelarIndicacao(filmeId, usuarioId, amigoEscolhidoId).then(() => {
-          swalWithBootstrapButtons(
-            "Sua indicação foi cancelada com sucesso.",
-            "",
-            "success"
-          );
-          this.getIndicacoes(this.fluxo);
-        });
+        this.cancelarIndicacao(filmeId, usuarioId, amigoEscolhidoId).then(
+          () => {
+            swalWithBootstrapButtons(
+              "Sua indicação foi cancelada com sucesso.",
+              "",
+              "success"
+            );
+          }
+        );
       }
     });
   }
 
-  cancelarIndicacao(filmeId, usuarioId, amigoEscolhidoId){
-    return this.db.object("indicacoes/" + usuarioId + "_" + amigoEscolhidoId + "_" + filmeId)
-                .remove();
+  cancelarIndicacao(filmeId, usuarioId, amigoEscolhidoId) {
+    return this.db
+      .object(
+        "indicacoes/" + usuarioId + "_" + amigoEscolhidoId + "_" + filmeId
+      )
+      .remove()
+      .then(r => {
+        this.getIndicacoes('enviadas');
+        window.location.href = `indicacoes?usuarioId=${this.localUser.user_uid}&fluxo=enviadas`;
+      });
+  }
+
+  confirmarRejeitamentoDeIndicacao(filmeId, usuarioId, amigoEscolhidoId) {
+    const swalWithBootstrapButtons = swal.mixin({
+      confirmButtonClass: "btn btn-red",
+      cancelButtonClass: "btn btn-red",
+      buttonsStyling: false
+    });
+
+    swalWithBootstrapButtons({
+      title: "Rejeitar essa indicação e excluí-la de sua lista?",
+      //text: "O remetente será informado que você rejeitou.",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sim",
+      confirmButtonColor: "red",
+      cancelButtonText: "Cancelar",
+      buttonsStyling: true,
+      reverseButtons: false
+    }).then(result => {
+      if (result.value) {
+        this.rejeitarIndicacao(filmeId, usuarioId, amigoEscolhidoId).then(
+          () => {
+            swalWithBootstrapButtons(
+              "Essa indicação foi excluída de sua lista.",
+              "",
+              "success"
+            );
+          }
+        );
+      }
+    });
+  }
+
+  rejeitarIndicacao(filmeId, usuarioId, amigoEscolhidoId) {
+    return this.db
+      .object(
+        "indicacoes/" + usuarioId + "_" + amigoEscolhidoId + "_" + filmeId
+      )
+      .update({
+        status: 2
+      })
+      .then(r => {
+        this.getIndicacoes('recebidas');
+        window.location.href = `indicacoes?usuarioId=${this.localUser.user_uid}&fluxo=recebidas`;
+      });
   }
 }
