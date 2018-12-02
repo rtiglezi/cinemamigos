@@ -22,6 +22,13 @@
 
 <hr />
 
+<div class="container">
+    <div *ngIf="lista_filmes.length == 0" style="padding:10px;">
+        Nenhum filme encontrado nesta lista.
+      </div>
+</div>
+
+
 <div class="col-lg-3" *ngFor="let filme of lista_filmes?.slice().reverse()">
   <div class="box">
     <div
@@ -82,8 +89,8 @@
   <br />
 </div>
 
-<div class="container-fluid" (click)="backClicked()">
-  <button class="btn btn-warning btn-block">
+<div class="container" (click)="backClicked()">
+  <button class="btn btn-default btn-block">
     <span class="glyphicon glyphicon-triangle-left">Voltar</span>
   </button>
 </div>
