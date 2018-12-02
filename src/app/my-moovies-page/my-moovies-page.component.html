@@ -20,16 +20,21 @@
 
 <hr />
 
-<div class="container">
+<div class="container" style="text-align: center; background-color: rgba(255, 255, 255, 0.692)">
   <div *ngIf="carregando" style="padding:10px;">
     Carregando lista de filmes...
   </div>
   <div *ngIf="!carregando" style="padding:10px;">
-    <span *ngIf="lista_filmes.length == 0">
-      Nenhum filme encontrado nesta lista.
-    </span>
+      <span *ngIf="lista_filmes.length == 0">
+        Nenhum filme encontrado nesta lista.
+      </span>
+      <span *ngIf="lista_filmes.length > 0">
+        Quantidade de filmes encontrados nesta lista: {{ lista_filmes.length }}
+      </span>
   </div>
 </div>
+
+<hr>
 
 <div class="col-lg-3" *ngFor="let filme of lista_filmes?.slice().reverse()">
   <div class="box">
