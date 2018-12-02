@@ -14,6 +14,8 @@ export class IndicacoesPageComponent implements OnInit {
 
   private sub: any;
 
+  carregando: boolean = false;
+
   usuarioId: string;
   fluxo: string;
   origem: string;
@@ -56,6 +58,7 @@ export class IndicacoesPageComponent implements OnInit {
   }
 
   getIndicacoesRecebidas() {
+    this.carregando = true;
     this.db
       .list("indicacoes", {
         query: {
@@ -72,10 +75,12 @@ export class IndicacoesPageComponent implements OnInit {
             this.arrayIndicacoes.push(m);
           }
         });
+        this.carregando = false;
       });
   }
 
   getIndicacoesEnviadas() {
+    this.carregando = true;
     this.db
       .list("indicacoes", {
         query: {
@@ -92,6 +97,7 @@ export class IndicacoesPageComponent implements OnInit {
             this.arrayIndicacoes.push(m);
           }
         });
+        this.carregando = false;
       });
   }
 

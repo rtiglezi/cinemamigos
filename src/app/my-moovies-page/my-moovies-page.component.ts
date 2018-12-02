@@ -12,6 +12,8 @@ import swal from "sweetalert2";
 export class MyMooviesPageComponent implements OnInit {
   lista_filmes = new Array<any>();
 
+  carregando: boolean = false;
+
   searchParam: String;
 
   public search: String;
@@ -60,6 +62,7 @@ export class MyMooviesPageComponent implements OnInit {
 
   getWatcheds(status) {
     this.lista_filmes = [];
+    this.carregando = true;
     this.db
       .list("usuarios/" + this.localUser.user_uid + "/filmes", {
         query: {
@@ -76,6 +79,7 @@ export class MyMooviesPageComponent implements OnInit {
             this.resultado = "0";
           }
         });
+        this.carregando = false;
       });
   }
 

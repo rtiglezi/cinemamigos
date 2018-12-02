@@ -21,16 +21,18 @@
 <hr />
 
 <div class="container">
-
-
   <div style="padding: 10px">
-
-    <span *ngIf="(fluxo == 'recebidas' && arrayIndicacoes.length == 0)">
-      Você ainda não recebeu nenhuma indicação.
-    </span>
-    <span *ngIf="(fluxo == 'enviadas' && arrayIndicacoes.length == 0)">
-        Você ainda não fez nenhuma indicação.
-    </span>
+    <div *ngIf="carregando">
+      Carregando lista de indicações...
+    </div>
+    <div  *ngIf="!carregando">
+      <div *ngIf="fluxo == 'recebidas'">
+        Quantidade de indicações que você recebeu: {{ arrayIndicacoes.length }}
+      </div>
+      <div *ngIf="fluxo == 'enviadas'">
+        Quantidade de indicações que você enviou: {{ arrayIndicacoes.length }}
+      </div>
+    </div>
   </div>
 
   <div
@@ -39,7 +41,7 @@
   >
     <div class="box">
       <div class="panel col-lg-12" *ngIf="fluxo == 'recebidas'">
-        Quem lhe indicou este filme:
+        Indicação de:
         <hr />
         <img
           class="img avatar"
@@ -51,7 +53,7 @@
       </div>
 
       <div class="panel col-lg-12" *ngIf="fluxo == 'enviadas'">
-        Você indicou para:
+        Sua indicação para:
         <hr />
         <img
           class="img avatar"
@@ -81,7 +83,8 @@
           ><br />(lida em {{ indicacao.lidaEm | date: "dd/MM/yyyy" }})</span
         >
         <span *ngIf="indicacao.status == 2" style="color: orange;"
-          ><br />(rejeitada em {{ indicacao.lidaEm | date: "dd/MM/yyyy" }})</span
+          ><br />(rejeitada em
+          {{ indicacao.lidaEm | date: "dd/MM/yyyy" }})</span
         >
       </div>
 
@@ -113,7 +116,6 @@
       </div>
 
       <div style="text-align: center">
-
         <span style="text-align: center">
           <button
             style="color: black; margin-bottom:10px"
@@ -129,7 +131,6 @@
             + infs. sobre o filme
           </button>
         </span>
-
 
         <span style="text-align: center" *ngIf="fluxo == 'enviadas'">
           <button
@@ -147,7 +148,6 @@
           </button>
         </span>
 
-
         <span style="text-align: center" *ngIf="fluxo == 'recebidas'">
           <button
             style="color: white; margin-bottom:10px"
@@ -160,12 +160,9 @@
               )
             "
           >
-          <i class="fas fa-hand-paper"></i> Rejeitar essa indicação
+            <i class="fas fa-hand-paper"></i> Rejeitar essa indicação
           </button>
         </span>
-
-
-
       </div>
     </div>
 

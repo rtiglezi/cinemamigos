@@ -1,33 +1,35 @@
 <app-nav></app-nav>
 
 <div style="text-align: center">
+  <button class="{{btn1Class}}" (click)="go(1)">
+    <span><i id="i_javiu" class="fas fa-check-double"></i> Já Vi</span>
+  </button>
 
+  <button class="{{btn2Class}}" (click)="go(2)">
+    <span><i id="i_querver" class="fas fa-check"></i> Quero ver</span>
+  </button>
 
-    <button class="{{btn1Class}}" (click)="go(1)">
-      <span><i id="i_javiu" class="fas fa-check-double"></i> Já Vi</span>
-    </button>
+  <button class="{{btn3Class}}" (click)="goIndicacoes('enviadas')">
+    <span><i id="i_javiu" class="far fa-share-square"></i> Indiquei</span>
+  </button>
 
-    <button class="{{btn2Class}}" (click)="go(2)">
-      <span><i id="i_querver" class="fas fa-check"></i> Quero ver</span>
-    </button>
-
-    <button class="{{btn3Class}}" (click)="goIndicacoes('enviadas')">
-        <span><i id="i_javiu" class="far fa-share-square"></i> Indiquei</span>
-      </button>
-
-      <button class="{{btn4Class}}" (click)="goIndicacoes('recebidas')">
-        <span><i id="i_querver" class="far fa-comment"></i> Me indicaram</span>
-      </button>
-  </div>
+  <button class="{{btn4Class}}" (click)="goIndicacoes('recebidas')">
+    <span><i id="i_querver" class="far fa-comment"></i> Me indicaram</span>
+  </button>
+</div>
 
 <hr />
 
 <div class="container">
-    <div *ngIf="lista_filmes.length == 0" style="padding:10px;">
-        Nenhum filme encontrado nesta lista.
-      </div>
+  <div *ngIf="carregando" style="padding:10px;">
+    Carregando lista de filmes...
+  </div>
+  <div *ngIf="!carregando" style="padding:10px;">
+    <span *ngIf="lista_filmes.length == 0">
+      Nenhum filme encontrado nesta lista.
+    </span>
+  </div>
 </div>
-
 
 <div class="col-lg-3" *ngFor="let filme of lista_filmes?.slice().reverse()">
   <div class="box">
@@ -68,7 +70,7 @@
         + inf.
       </button>
       <button
-        *ngIf="status==1"
+        *ngIf="status == 1"
         style="color: black; margin-right: 0px"
         class="btn btn-xs btn-danger"
         (click)="indicar(filme.id)"
@@ -76,7 +78,7 @@
         indicar
       </button>
       <button
-        *ngIf="status==2"
+        *ngIf="status == 2"
         style="color: black; margin-right: 0px"
         class="btn btn-xs btn-danger"
         (click)="confirmarRemocao(filme.id)"
@@ -96,4 +98,3 @@
 </div>
 
 <br />
-
