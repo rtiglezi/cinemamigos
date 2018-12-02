@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 import { AuthService } from "app/providers/auth.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import swal from "sweetalert2";
 
 @Component({
   selector: "app-my-moovies-page",
@@ -35,10 +36,12 @@ export class MyMooviesPageComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(status = "1") {
+  ngOnInit() {
     this.sub = this.route.queryParams.subscribe(qp => {
       if (qp["status"]) {
         status = qp["status"];
+      } else {
+        status = '1';
       }
       this.getWatcheds(status);
       if (status == "1") {
@@ -151,5 +154,47 @@ export class MyMooviesPageComponent implements OnInit {
   backClicked() {
     window.history.back();
   }
+
+  confirmarRemocao(filmeId) {
+    const swalWithBootstrapButtons = swal.mixin({
+      confirmButtonClass: "btn btn-red",
+      cancelButtonClass: "btn btn-red",
+      buttonsStyling: false
+    });
+
+    swalWithBootstrapButtons({
+      title: "Deseja realmente remover o filme de sua lista?",
+      //text: "Ela não estará mais disponível também ao destinatário.",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sim",
+      confirmButtonColor: "red",
+      cancelButtonText: "Não",
+      buttonsStyling: true,
+      reverseButtons: false
+    }).then(result => {
+      if (result.value) {
+        this.remover(filmeId).then(
+          () => {
+            this.getWatcheds('2');
+            swalWithBootstrapButtons(
+              "Filme removido de sua lista com sucesso.",
+              "",
+              "success"
+            );
+          }
+        );
+      }
+    });
+  }
+
+  remover(filmeId) {
+    return this.db
+      .object(
+        "usuarios/" + this.localUser.user_uid + "/filmes/" + filmeId
+      )
+      .remove();
+  }
+
 
 }

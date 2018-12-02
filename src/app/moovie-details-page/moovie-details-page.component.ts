@@ -282,24 +282,6 @@ export class MoovieDetailsPageComponent implements OnInit {
         rate: this.starChecked
       })
       .then(r => {
-
-
-        // const swalWithBootstrapButtons = swal.mixin({
-        //   confirmButtonClass: "btn btn-red",
-        //   cancelButtonClass: "btn btn-red",
-        //   buttonsStyling: false
-        // });
-
-        // swal({
-        //   position: "top",
-        //   type: "success",
-        //   title: "Informação registrada!",
-        //   showConfirmButton: false,
-        //   timer: 2000
-        // });
-
-        // this.showToast('Informação registrada.');
-
         this.status = status;
         this.isThereSelection = true;
         if (this.status == "1") {
@@ -320,6 +302,7 @@ export class MoovieDetailsPageComponent implements OnInit {
           this.star3Checked = false;
           this.star4Checked = false;
           this.star5Checked = false;
+          window.location.href = "mymoovies?status=2";
         }
       });
   }

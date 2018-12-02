@@ -68,6 +68,14 @@
       >
         indicar
       </button>
+      <button
+        *ngIf="status==2"
+        style="color: black; margin-right: 0px"
+        class="btn btn-xs btn-danger"
+        (click)="confirmarRemocao(filme.id)"
+      >
+        remover
+      </button>
     </div>
   </div>
 
