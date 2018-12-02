@@ -35,19 +35,11 @@ export class IndicacoesPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     this.sub = this.route.queryParams.subscribe(qp => {
       this.usuarioId = qp["usuarioId"];
       this.fluxo = qp["fluxo"];
       this.origem = qp["origem"];
-
-      if (this.fluxo=='enviadas') {
-        this.btn3Class = "btn btn-danger btn-sm";
-        this.btn4Class = "btn btn-dark btn-sm";
-      } else if (this.fluxo=='recebidas') {
-        this.btn3Class = "btn btn-dark btn-sm";
-        this.btn4Class = "btn btn-danger btn-sm";
-      };
-
 
     });
     this.getIndicacoes(this.fluxo);
@@ -55,6 +47,7 @@ export class IndicacoesPageComponent implements OnInit {
   }
 
   getIndicacoes(fluxo) {
+    console.log(fluxo);
     if (fluxo == 'recebidas') {
       this.getIndicacoesRecebidas();
     } else if (fluxo == 'enviadas') {
@@ -71,6 +64,9 @@ export class IndicacoesPageComponent implements OnInit {
     .subscribe(r => {
       r.map(m=>{
         if (m.amigoEscolhidoId == this.localUser.user_uid ) {
+          this.fluxo = 'recebidas';
+          this.btn3Class = "btn btn-dark btn-sm";
+          this.btn4Class = "btn btn-danger btn-sm";
           this.arrayIndicacoes.push(m);
         }
       });
@@ -86,6 +82,9 @@ export class IndicacoesPageComponent implements OnInit {
     .subscribe(r => {
       r.map(m=>{
         if (m.usuarioId == this.localUser.user_uid ) {
+          this.fluxo = 'enviadas';
+          this.btn3Class = "btn btn-danger btn-sm";
+          this.btn4Class = "btn btn-dark btn-sm";
           this.arrayIndicacoes.push(m);
         }
       });
@@ -126,13 +125,7 @@ export class IndicacoesPageComponent implements OnInit {
   }
 
   goIndicacoes(fluxo) {
-    this.router.navigate(["indicacoes"], {
-      queryParams: {
-        usuarioId: this.usuarioId,
-        fluxo: fluxo,
-        origem: "profile"
-      }
-    });
+    this.getIndicacoes(fluxo);
   }
 
 
