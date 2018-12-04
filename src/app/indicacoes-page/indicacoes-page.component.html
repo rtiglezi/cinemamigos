@@ -29,19 +29,18 @@
     <div *ngIf="!carregando">
       <div *ngIf="fluxo == 'recebidas'">
         <div *ngIf="arrayIndicacoes.length == 0">
-          Nenhuma indicação de filme enviada para você até o momento.
+          Nenhuma indicação de filme enviada para você até agora.
         </div>
         <div *ngIf="arrayIndicacoes.length > 0">
-          Quantidade de indicações que você recebeu:
-          {{ arrayIndicacoes.length }}
+          Indicações que você recebeu: {{ arrayIndicacoes.length }}
         </div>
       </div>
       <div *ngIf="fluxo == 'enviadas'">
         <div *ngIf="arrayIndicacoes.length == 0">
-          Nenhuma indicação de filme enviada por você até o momento.
+          Você ainda não fez nenhuma indicação de filme até agora.
         </div>
         <div *ngIf="arrayIndicacoes.length > 0">
-          Quantidade de indicações que você enviou: {{ arrayIndicacoes.length }}
+          Indicações que você enviou: {{ arrayIndicacoes.length }}
         </div>
       </div>
     </div>
